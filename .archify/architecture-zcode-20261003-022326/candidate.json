@@ -1,0 +1,404 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "ZCode：多端入口、窗口 Host 与 Agent 运行时",
+    "locale": "zh-CN",
+    "output": ".archify/architecture-zcode-20261003-022326/zcode.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/zai-org/ZCode",
+      "provider": "github",
+      "revision": "29628c9acdb81b703bbd4080c207a0e7ce5e276e",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "desktop-ui",
+      "type": "frontend",
+      "label": "桌面 Renderer",
+      "sublabel": "共享 UI · hooks · Zustand",
+      "pos": [
+        40,
+        220
+      ],
+      "size": [
+        230,
+        76
+      ],
+      "sources": [
+        {
+          "path": "packages/desktop/src/renderer/src/main.tsx",
+          "line": 303,
+          "end_line": 350,
+          "label": "MessagePort 与共享 Root"
+        },
+        {
+          "path": "packages/ui/src/hooks/useServices.tsx",
+          "line": 9,
+          "end_line": 26,
+          "label": "服务访问 Context"
+        }
+      ]
+    },
+    {
+      "id": "main",
+      "type": "backend",
+      "label": "Electron Main",
+      "sublabel": "窗口调度 · 跨 Host lease",
+      "pos": [
+        420,
+        40
+      ],
+      "size": [
+        230,
+        76
+      ],
+      "sources": [
+        {
+          "path": "packages/desktop/src/main/desktopHostProcess.ts",
+          "line": 248,
+          "end_line": 270,
+          "label": "utilityProcess.fork"
+        },
+        {
+          "path": "packages/desktop/src/main/desktopRemoteSessions.ts",
+          "line": 40,
+          "end_line": 59,
+          "label": "端口关联与薄转发"
+        },
+        {
+          "path": "packages/desktop/src/main/taskRealtimeBus.ts",
+          "line": 317,
+          "end_line": 350,
+          "label": "跨 Host 运行 lease 的实际裁决"
+        }
+      ]
+    },
+    {
+      "id": "host",
+      "type": "backend",
+      "label": "窗口 Host",
+      "sublabel": "本地服务 · 远端连接注册表",
+      "pos": [
+        420,
+        220
+      ],
+      "size": [
+        230,
+        90
+      ],
+      "sources": [
+        {
+          "path": "packages/desktop/src/host/index.ts",
+          "line": 1990,
+          "end_line": 2031,
+          "label": "attachment RPC 与 clientMode"
+        },
+        {
+          "path": "packages/desktop/src/host/index.ts",
+          "line": 1760,
+          "end_line": 1800,
+          "label": "连接所有者与失效清理"
+        },
+        {
+          "path": "packages/services/src/node.ts",
+          "line": 2301,
+          "end_line": 2337,
+          "label": "Session facade 与 task wrapper"
+        }
+      ]
+    },
+    {
+      "id": "remote",
+      "type": "backend",
+      "label": "远端执行环境",
+      "sublabel": "zcode-server · services · Agent",
+      "pos": [
+        420,
+        445
+      ],
+      "size": [
+        230,
+        76
+      ],
+      "sources": [
+        {
+          "path": "packages/desktop/src/host/index.ts",
+          "line": 1652,
+          "end_line": 1702,
+          "label": "远端连接及服务 facade"
+        },
+        {
+          "path": "packages/server/src/remote/connect.ts",
+          "line": 183,
+          "end_line": 212,
+          "label": "部署、执行、握手"
+        },
+        {
+          "path": "packages/server/src/stdioServices.ts",
+          "line": 1,
+          "end_line": 49,
+          "label": "远端服务装配"
+        }
+      ]
+    },
+    {
+      "id": "web-ui",
+      "type": "frontend",
+      "label": "Web 浏览器",
+      "sublabel": "共享 Root · 平台能力注入",
+      "pos": [
+        40,
+        660
+      ],
+      "size": [
+        230,
+        76
+      ],
+      "sources": [
+        {
+          "path": "packages/web/src/main.tsx",
+          "line": 438,
+          "end_line": 469,
+          "label": "WebSocket、Root、能力限制"
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "独立 Web Server",
+      "sublabel": "HTTP · WebSocket · services",
+      "pos": [
+        420,
+        660
+      ],
+      "size": [
+        230,
+        76
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/entry-http.ts",
+          "line": 8,
+          "end_line": 26,
+          "label": "独立服务装配"
+        },
+        {
+          "path": "packages/server/src/http.ts",
+          "line": 302,
+          "end_line": 343,
+          "label": "认证与连接信任边界"
+        }
+      ]
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "Agent CLI / Runtime",
+      "sublabel": "CommandInbox · 会话执行权威",
+      "pos": [
+        820,
+        220
+      ],
+      "size": [
+        250,
+        90
+      ],
+      "sources": [
+        {
+          "path": "packages/services/src/zcode-agent/zcodeAgentProcessManager.ts",
+          "line": 1019,
+          "end_line": 1037,
+          "label": "按工作区启动与 stdio"
+        },
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/v4-gateway.ts",
+          "line": 2390,
+          "end_line": 2499,
+          "label": "admission、执行与 ACK"
+        },
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+          "line": 117,
+          "end_line": 183,
+          "label": "去重、FIFO 与 admissionSeq"
+        }
+      ]
+    },
+    {
+      "id": "provider",
+      "type": "external",
+      "label": "模型 Provider",
+      "sublabel": "模型适配器 · AI SDK",
+      "pos": [
+        820,
+        40
+      ],
+      "size": [
+        250,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 523,
+          "end_line": 556,
+          "label": "模型适配器及 Provider Runtime"
+        },
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-runtime.ts",
+          "line": 1,
+          "end_line": 52,
+          "label": "AI SDK 请求适配"
+        }
+      ]
+    },
+    {
+      "id": "session-db",
+      "type": "database",
+      "label": "会话持久化",
+      "sublabel": "SQLite · 消息与会话记录",
+      "pos": [
+        820,
+        445
+      ],
+      "size": [
+        250,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+          "line": 88,
+          "end_line": 113,
+          "label": "补序号、持久化、通知顺序"
+        },
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+          "line": 609,
+          "end_line": 652,
+          "label": "消息与部件写入"
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "工具执行适配器",
+      "sublabel": "进程 · 文件 · MCP 等端口",
+      "pos": [
+        1210,
+        220
+      ],
+      "size": [
+        230,
+        90
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 726,
+          "end_line": 765,
+          "label": "Runtime 的执行能力注入"
+        },
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+          "line": 190,
+          "end_line": 215,
+          "label": "实际子进程执行"
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "desktop-attachment",
+      "from": "desktop-ui",
+      "to": "host",
+      "label": "MessagePort RPC",
+      "variant": "emphasis"
+    },
+    {
+      "id": "main-fork",
+      "from": "main",
+      "to": "host",
+      "label": "fork / init-local"
+    },
+    {
+      "id": "host-agent",
+      "from": "host",
+      "to": "agent",
+      "label": "stdio 协议",
+      "variant": "emphasis"
+    },
+    {
+      "id": "host-remote",
+      "from": "host",
+      "to": "remote",
+      "label": "远端部署与 RPC"
+    },
+    {
+      "id": "web-ws",
+      "from": "web-ui",
+      "to": "server",
+      "label": "WebSocket /ws"
+    },
+    {
+      "id": "server-agent",
+      "from": "server",
+      "to": "agent",
+      "label": "services → stdio"
+    },
+    {
+      "id": "agent-provider",
+      "from": "agent",
+      "to": "provider",
+      "label": "模型请求"
+    },
+    {
+      "id": "agent-storage",
+      "from": "agent",
+      "to": "session-db",
+      "label": "持久化后通知"
+    },
+    {
+      "id": "agent-tools",
+      "from": "agent",
+      "to": "tools",
+      "label": "注入执行端口"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "两条交付语义",
+      "items": [
+        "桌面 attachment：desktop-continuous；Web /ws：web-remote-replayable。",
+        "连接 facade 依据 clientMode 裁剪能力；/ws/host 需消费有效 capability。",
+        "图中 Runtime 表示复用的实现角色，各部署拥有自己的进程实例，并非全局单例。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "状态与事件顺序",
+      "items": [
+        "CLI CommandInbox：commandId 去重 → session FIFO → admissionSeq → 执行 → settle。",
+        "Runtime：eventStore 补序号 → durable persistence → usage 记录 → notifyEventSinks。",
+        "Host：连接与 attachment 生命周期；Session facade 与 task wrapper 不替代 Runtime 执行事实。",
+        "Main 的 TaskRealtimeBus 维护跨 Host lease 与传输 replay；核心会话执行事实仍由 Runtime 维护。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "阅读范围与限制",
+      "items": [
+        "主图覆盖桌面、本地独立 Web、远端执行；CLI/TUI、插件、自动化为扩展能力。",
+        "Host 可接受 replayable scoped attachment；外部手机 relay 的部署与配对闭环本次未确认。",
+        "普通 Web 入口显式 allowRemoteWorkspace=false；不能把后端远端能力等同于前端完整支持。"
+      ]
+    }
+  ]
+}

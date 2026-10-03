@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "215f0b80-fd96-4ffb-9534-48e464532747",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "F:\\github\\ZCode\\.archify\\architecture-zcode-20261003-022326\\candidate.json",
+  "output": "F:\\github\\ZCode\\.archify\\architecture-zcode-20261003-022326\\zcode.html",
+  "specification": {
+    "sha256": "f6077e9fac9405ec31946538d5a202e3acae21d841d65ad11b33fbb9bedb8bcd",
+    "bytes": 10542
+  },
+  "artifact": {
+    "sha256": "cc1687226f3b4ee2d1724674ce98ce902aa1b71bd1544193963069d898d9130f",
+    "bytes": 769639
+  }
+}
