@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 10A · Event Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/10a-events/events.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      940,
+      570
+    ]
+  },
+  "stages": [
+    {
+      "label": "事件生产"
+    },
+    {
+      "label": "编号与顺序"
+    },
+    {
+      "label": "事实处理"
+    },
+    {
+      "label": "消费投影"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "label": "Runtime 事件",
+      "sublabel": "Model / Tool / Turn",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+          "line": 68
+        }
+      ],
+      "stage": 0,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "queue",
+      "label": "Stream 写队列",
+      "sublabel": "tail / boundary drain",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model-streaming-event-queue.ts",
+          "line": 12
+        }
+      ],
+      "stage": 1,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "append",
+      "label": "appendEvent",
+      "sublabel": "所有事件经过 seq owner",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+          "line": 80
+        }
+      ],
+      "stage": 1,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "seq",
+      "label": "EventStore seq",
+      "sublabel": "单调编号 / 瞬态回收",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/contracts/src/events/in-memory-session-event-store.ts",
+          "line": 60
+        }
+      ],
+      "stage": 2,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "durable",
+      "label": "Durable / usage",
+      "sublabel": "选择性持久化",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+          "line": 104
+        }
+      ],
+      "stage": 2,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "sink",
+      "label": "Event sinks",
+      "sublabel": "append 后事实再通知",
+      "type": "messagebus",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+          "line": 108
+        }
+      ],
+      "stage": 3,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "from": "source",
+      "to": "append",
+      "label": "普通事件",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "source",
+      "to": "queue",
+      "label": "stream delta",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        208,
+        225
+      ]
+    },
+    {
+      "from": "queue",
+      "to": "append",
+      "label": "有序 drain",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        315,
+        225
+      ]
+    },
+    {
+      "from": "append",
+      "to": "seq",
+      "label": "append",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "seq",
+      "to": "durable",
+      "label": "storedEvent",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        530,
+        225
+      ]
+    },
+    {
+      "from": "durable",
+      "to": "sink",
+      "label": "完成后通知",
+      "variant": "default",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "序号所有者",
+      "items": [
+        "live / replay / snapshot 使用相同 seq",
+        "高频 delta 不等于每个 token 永久落库"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "背压",
+      "items": [
+        "默认 pending 128；finish/error/tool-call 边界 drain",
+        "写失败在边界抛出，不能用静默丢弃代替成功"
+      ]
+    }
+  ]
+}

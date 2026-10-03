@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 6B · Repository Context Data Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/06b-repository-context/repository-context.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      940,
+      570
+    ]
+  },
+  "stages": [
+    {
+      "label": "仓库事实"
+    },
+    {
+      "label": "工具视图"
+    },
+    {
+      "label": "预算与归属"
+    },
+    {
+      "label": "模型输入"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "files",
+      "label": "文件内容",
+      "sublabel": "由 FS 或子进程读取",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+          "line": 115
+        }
+      ],
+      "stage": 0,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "instructions",
+      "label": "指令与 memory",
+      "sublabel": "有限 snapshot / index",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/context/index.ts",
+          "line": 102
+        }
+      ],
+      "stage": 0,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "read",
+      "label": "Read / 搜索输出",
+      "sublabel": "匹配与定向内容",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+          "line": 200
+        }
+      ],
+      "stage": 1,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "prefix",
+      "label": "Context prefix",
+      "sublabel": "system + meta-user",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+          "line": 87
+        }
+      ],
+      "stage": 1,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "budget",
+      "label": "序列化结果",
+      "sublabel": "截断 / artifact preview",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+          "line": 46
+        }
+      ],
+      "stage": 2,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "history",
+      "label": "History entries",
+      "sublabel": "保留来源与 toolCallId",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ],
+      "stage": 2,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "request",
+      "label": "Provider 请求视图",
+      "sublabel": "投影，不回写原 history",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+          "line": 48
+        }
+      ],
+      "stage": 3,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "from": "files",
+      "to": "read",
+      "label": "按需读取",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "instructions",
+      "to": "prefix",
+      "label": "初始化",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "read",
+      "to": "budget",
+      "label": "output",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "budget",
+      "to": "history",
+      "label": "tool entry",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        530,
+        225
+      ]
+    },
+    {
+      "from": "prefix",
+      "to": "history",
+      "label": "prefix",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "history",
+      "to": "request",
+      "label": "投影",
+      "variant": "default",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "不同输入来源",
+      "items": [
+        "AGENTS / memory 不等于全仓库源码",
+        "匹配路径、文件全文和模型可见 preview 必须区分"
+      ]
+    }
+  ]
+}

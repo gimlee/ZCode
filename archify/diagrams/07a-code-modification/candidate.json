@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "图 7A · Code Modification Sequence",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/07a-code-modification/code-modification.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      650
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "model",
+      "label": "模型",
+      "sublabel": "选择 Read / Edit",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 205
+        }
+      ]
+    },
+    {
+      "id": "exec",
+      "label": "Executor",
+      "sublabel": "权限与 lifecycle",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ]
+    },
+    {
+      "id": "handler",
+      "label": "Read / Edit",
+      "sublabel": "freshness / matcher",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 156
+        }
+      ]
+    },
+    {
+      "id": "fs",
+      "label": "FS Adapter",
+      "sublabel": "revision + 实际 IO",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+          "line": 291
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "sublabel": "配对后 checkpoint",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m0",
+      "from": "model",
+      "to": "exec",
+      "label": "Read call",
+      "variant": "default",
+      "y": 170
+    },
+    {
+      "id": "m1",
+      "from": "exec",
+      "to": "handler",
+      "label": "允许后调用",
+      "variant": "default",
+      "y": 200
+    },
+    {
+      "id": "m2",
+      "from": "handler",
+      "to": "fs",
+      "label": "stat / read",
+      "variant": "default",
+      "y": 230
+    },
+    {
+      "id": "m3",
+      "from": "fs",
+      "to": "handler",
+      "label": "内容与 revision",
+      "variant": "return",
+      "y": 260
+    },
+    {
+      "id": "m4",
+      "from": "handler",
+      "to": "model",
+      "label": "读取视图",
+      "variant": "return",
+      "y": 290
+    },
+    {
+      "id": "m5",
+      "from": "model",
+      "to": "exec",
+      "label": "Edit call",
+      "variant": "default",
+      "y": 320
+    },
+    {
+      "id": "m6",
+      "from": "exec",
+      "to": "handler",
+      "label": "解析与许可",
+      "variant": "default",
+      "y": 350
+    },
+    {
+      "id": "m7",
+      "from": "handler",
+      "to": "fs",
+      "label": "重新读取",
+      "variant": "default",
+      "y": 380
+    },
+    {
+      "id": "m8",
+      "from": "fs",
+      "to": "handler",
+      "label": "当前内容",
+      "variant": "return",
+      "y": 410
+    },
+    {
+      "id": "m9",
+      "from": "handler",
+      "to": "fs",
+      "label": "匹配成功后写入",
+      "variant": "default",
+      "y": 440
+    },
+    {
+      "id": "m10",
+      "from": "fs",
+      "to": "handler",
+      "label": "新 revision",
+      "variant": "return",
+      "y": 470
+    },
+    {
+      "id": "m11",
+      "from": "handler",
+      "to": "history",
+      "label": "result / patch",
+      "variant": "default",
+      "y": 500
+    },
+    {
+      "id": "m12",
+      "from": "history",
+      "to": "model",
+      "label": "提交后下一步",
+      "variant": "return",
+      "y": 530
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "写入条件",
+      "items": [
+        "读前写、唯一匹配与 expectedRevision 是不同检查",
+        "Edit 是文本替换；内置 ApplyPatch 未启用"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "实际 IO",
+      "items": [
+        "temp / sync / rename 失败时存在直接写 fallback",
+        "checkpoint 是 tool result 闭合后的附加操作"
+      ]
+    }
+  ]
+}

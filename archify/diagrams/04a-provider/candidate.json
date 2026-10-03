@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 4A · Model Provider Architecture",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/04a-provider/provider.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      980,
+      800
+    ]
+  },
+  "components": [
+    {
+      "id": "registry",
+      "label": "Provider Registry",
+      "sublabel": "有效配置 / 选择校验",
+      "pos": [
+        35,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "database",
+      "sources": [
+        {
+          "path": "packages/provider/src/registry.ts",
+          "line": 74
+        }
+      ]
+    },
+    {
+      "id": "factory",
+      "label": "Model Factory",
+      "sublabel": "冻结 provider / model 事实",
+      "pos": [
+        350,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/provider-registry-model-runtime.ts",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model 句柄",
+      "sublabel": "bind / generateText / streamText",
+      "pos": [
+        665,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+          "line": 40
+        }
+      ]
+    },
+    {
+      "id": "runner",
+      "label": "Adapter Runner",
+      "sublabel": "admission / retry / events",
+      "pos": [
+        665,
+        320
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner.ts",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "id": "execution",
+      "label": "SDK Execution",
+      "sublabel": "snapshot / auth / factories",
+      "pos": [
+        350,
+        320
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 181
+        }
+      ]
+    },
+    {
+      "id": "maps",
+      "label": "Option Maps",
+      "sublabel": "reasoning / max-output patch",
+      "pos": [
+        35,
+        320
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-option-map-fetch.ts",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "id": "responses",
+      "label": "OpenAI Responses",
+      "sublabel": "createOpenAI.responses",
+      "pos": [
+        35,
+        600
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "cloud",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 282
+        }
+      ]
+    },
+    {
+      "id": "anthropic",
+      "label": "Anthropic Messages",
+      "sublabel": "createAnthropic + compat",
+      "pos": [
+        350,
+        600
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "cloud",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 292
+        }
+      ]
+    },
+    {
+      "id": "chat",
+      "label": "Chat Completions",
+      "sublabel": "createOpenAICompatible",
+      "pos": [
+        665,
+        600
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "cloud",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 302
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "registry-factory",
+      "from": "registry",
+      "to": "factory",
+      "label": "selection",
+      "variant": "default"
+    },
+    {
+      "id": "factory-model",
+      "from": "factory",
+      "to": "model",
+      "label": "创建",
+      "variant": "default"
+    },
+    {
+      "id": "model-runner",
+      "from": "model",
+      "to": "runner",
+      "label": "执行",
+      "variant": "default"
+    },
+    {
+      "id": "runner-execution",
+      "from": "runner",
+      "to": "execution",
+      "label": "resolve",
+      "variant": "default"
+    },
+    {
+      "id": "execution-maps",
+      "from": "execution",
+      "to": "maps",
+      "label": "包装 fetch",
+      "variant": "default"
+    },
+    {
+      "id": "execution-responses",
+      "from": "execution",
+      "to": "responses",
+      "label": "Responses",
+      "variant": "default"
+    },
+    {
+      "id": "execution-anthropic",
+      "from": "execution",
+      "to": "anthropic",
+      "label": "Messages",
+      "variant": "default"
+    },
+    {
+      "id": "execution-chat",
+      "from": "execution",
+      "to": "chat",
+      "label": "Chat",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "协议而非品牌",
+      "items": [
+        "供应商品牌通过 Registry 配置复用这三种工厂",
+        "没有原生 Gemini / Ollama SDK factory"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "尝试边界",
+      "items": [
+        "endpoint / 协议随句柄冻结；auth 可以逐 attempt 刷新",
+        "SDK maxRetries=0；可见输出后交给 Core recovery"
+      ]
+    }
+  ]
+}

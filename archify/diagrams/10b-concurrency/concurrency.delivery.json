@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "3bd85f9d-32c3-429b-bc21-52672a04e684",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\10b-concurrency\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\10b-concurrency\\concurrency.html",
+  "specification": {
+    "sha256": "310913dc8262f6e62c8d2af75d43536fef24b0677c4946130b908d6c0de92ff1",
+    "bytes": 4893
+  },
+  "artifact": {
+    "sha256": "7221bc93b94d83c459770e3fbc06231b564f6ff24f9b290ddfeb85559159eee6",
+    "bytes": 758444
+  }
+}

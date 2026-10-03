@@ -1,0 +1,214 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 11C · Skill / Plugin Lifecycle",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/11c-plugin-lifecycle/plugin-lifecycle.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "装配与使用"
+    },
+    {
+      "id": "configuration",
+      "label": "配置变化"
+    },
+    {
+      "id": "terminal",
+      "label": "完成或未启用"
+    }
+  ],
+  "states": [
+    {
+      "id": "discover",
+      "label": "发现插件",
+      "sublabel": "来源 / manifest / config",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+          "line": 127
+        }
+      ],
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "enable",
+      "label": "启用判断",
+      "sublabel": "enabled components",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+          "line": 180
+        }
+      ],
+      "lane": "main",
+      "col": 1,
+      "type": "decision",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "assemble",
+      "label": "App 装配",
+      "sublabel": "roots / hooks / MCP / profiles",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/startup-marks.ts",
+          "line": 11
+        }
+      ],
+      "lane": "main",
+      "col": 2,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "metadata",
+      "label": "Context 技能清单",
+      "sublabel": "路径身份 / disabled filter",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/skills/index.ts",
+          "line": 58
+        }
+      ],
+      "lane": "main",
+      "col": 3,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "load",
+      "label": "Skill tool 按需加载",
+      "sublabel": "100000 bytes / 正文",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/skills/index.ts",
+          "line": 94
+        }
+      ],
+      "lane": "main",
+      "col": 4,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "change",
+      "label": "设置或卸载",
+      "sublabel": "config 镜像 / suppressed",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/plugin-facade.ts",
+          "line": 42
+        }
+      ],
+      "lane": "configuration",
+      "col": 1,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "excluded",
+      "label": "不注入组件",
+      "sublabel": "检查展示不等于执行",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+          "line": 193
+        }
+      ],
+      "lane": "terminal",
+      "col": 1,
+      "type": "failure",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "result",
+      "label": "正文回注",
+      "sublabel": "skill_content → tool result",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/skill.ts",
+          "line": 35
+        }
+      ],
+      "lane": "terminal",
+      "col": 4,
+      "type": "success",
+      "width": 176,
+      "height": 78
+    }
+  ],
+  "transitions": [
+    {
+      "from": "discover",
+      "to": "enable",
+      "label": "解析",
+      "variant": "default"
+    },
+    {
+      "from": "enable",
+      "to": "assemble",
+      "label": "enabled",
+      "variant": "default"
+    },
+    {
+      "from": "enable",
+      "to": "excluded",
+      "label": "disabled",
+      "variant": "default"
+    },
+    {
+      "from": "assemble",
+      "to": "metadata",
+      "label": "初始化",
+      "variant": "default"
+    },
+    {
+      "from": "metadata",
+      "to": "load",
+      "label": "模型调用",
+      "variant": "default"
+    },
+    {
+      "from": "load",
+      "to": "result",
+      "label": "返回",
+      "variant": "default"
+    },
+    {
+      "from": "change",
+      "to": "discover",
+      "label": "下次装配",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "流程抽象",
+      "items": [
+        "图表示真实调用阶段，不是源码新增枚举",
+        "set enabled 成功不证明当前所有旧实例即时替换"
+      ]
+    }
+  ]
+}

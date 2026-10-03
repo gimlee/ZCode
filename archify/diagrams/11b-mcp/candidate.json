@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "图 11B · MCP Tool Sequence",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/11b-mcp/mcp.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      580
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "core",
+      "label": "Core Executor",
+      "sublabel": "schema / permission / hooks",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ]
+    },
+    {
+      "id": "wrapper",
+      "label": "MCP ToolEntry",
+      "sublabel": "真实 server/tool 路由",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+          "line": 214
+        }
+      ]
+    },
+    {
+      "id": "adapter",
+      "label": "Node MCP",
+      "sublabel": "deadline / connection",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+          "line": 438
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "label": "外部 Server",
+      "sublabel": "stdio / HTTP / SSE",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+          "line": 1449
+        }
+      ]
+    },
+    {
+      "id": "result",
+      "label": "结果与 History",
+      "sublabel": "media / budget / 配对",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m0",
+      "from": "core",
+      "to": "wrapper",
+      "label": "许可后 handler",
+      "variant": "default",
+      "y": 170
+    },
+    {
+      "id": "m1",
+      "from": "wrapper",
+      "to": "adapter",
+      "label": "callTool + identity + signal",
+      "variant": "default",
+      "y": 200
+    },
+    {
+      "id": "m2",
+      "from": "adapter",
+      "to": "server",
+      "label": "按需连接（已有连接跳过）",
+      "variant": "default",
+      "y": 230
+    },
+    {
+      "id": "m3",
+      "from": "server",
+      "to": "adapter",
+      "label": "ready / descriptors",
+      "variant": "return",
+      "y": 260
+    },
+    {
+      "id": "m4",
+      "from": "adapter",
+      "to": "server",
+      "label": "SDK callTool",
+      "variant": "default",
+      "y": 290
+    },
+    {
+      "id": "m5",
+      "from": "server",
+      "to": "adapter",
+      "label": "content / isError",
+      "variant": "return",
+      "y": 320
+    },
+    {
+      "id": "m6",
+      "from": "adapter",
+      "to": "wrapper",
+      "label": "规范化外部结果",
+      "variant": "return",
+      "y": 350
+    },
+    {
+      "id": "m7",
+      "from": "wrapper",
+      "to": "core",
+      "label": "handler output",
+      "variant": "return",
+      "y": 380
+    },
+    {
+      "id": "m8",
+      "from": "core",
+      "to": "result",
+      "label": "serialize / commit",
+      "variant": "default",
+      "y": 410
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "局部恢复",
+      "items": [
+        "共享 connecting 只限制当前 waiter 的 deadline",
+        "断连可重连一次；REPL 进程内变量不恢复"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "权限边界",
+      "items": [
+        "普通 MCP 仍走本地 executor approval",
+        "server hints 不授予官方 CUA 信任"
+      ]
+    }
+  ]
+}

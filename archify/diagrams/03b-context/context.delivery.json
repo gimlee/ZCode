@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "1422a986-b77c-4b92-9781-b6091359bb6a",
+  "status": "current",
+  "command": "deliver",
+  "type": "lifecycle",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\context.html",
+  "specification": {
+    "sha256": "04ee92c1ea017410d321c7225ded57494db39295c108742d7a206d04115072f5",
+    "bytes": 5860
+  },
+  "artifact": {
+    "sha256": "dd46f6f3dfebd7cd839953e1d8c38470d1b0046be3c051c41de027895f241e20",
+    "bytes": 765829
+  }
+}

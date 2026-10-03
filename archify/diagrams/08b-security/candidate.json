@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 8B · Permission and Host Boundary",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/08b-security/security.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "input",
+      "label": "工具调用",
+      "sublabel": "schema / resolveInput",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ],
+      "pos": [
+        35,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "policy",
+      "label": "Permission policy",
+      "sublabel": "mode / rules / capability",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/permission/service.ts",
+          "line": 99
+        }
+      ],
+      "pos": [
+        365,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "broker",
+      "label": "确认 / Hook",
+      "sublabel": "ask 时竞速与复核",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/permission-flow.ts",
+          "line": 184
+        }
+      ],
+      "pos": [
+        365,
+        300
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "handler",
+      "label": "允许后的 Handler",
+      "sublabel": "FS / Bash / MCP",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 443
+        }
+      ],
+      "pos": [
+        35,
+        300
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "env",
+      "label": "路径与环境",
+      "sublabel": "规范化 / env overlay",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/path-policy.ts",
+          "line": 15
+        }
+      ],
+      "pos": [
+        35,
+        540
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "host",
+      "label": "宿主执行器",
+      "sublabel": "Node IO / spawn",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+          "line": 197
+        }
+      ],
+      "pos": [
+        365,
+        540
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "resources",
+      "label": "宿主资源",
+      "sublabel": "文件 / 进程 / 网络",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-process.ts",
+          "line": 58
+        }
+      ],
+      "pos": [
+        695,
+        540
+      ],
+      "size": [
+        220,
+        80
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "input",
+      "to": "policy",
+      "label": "权限判定",
+      "variant": "default"
+    },
+    {
+      "from": "policy",
+      "to": "broker",
+      "label": "ask",
+      "variant": "default"
+    },
+    {
+      "from": "policy",
+      "to": "handler",
+      "label": "allow",
+      "variant": "default"
+    },
+    {
+      "from": "broker",
+      "to": "handler",
+      "label": "许可并复核",
+      "variant": "default"
+    },
+    {
+      "from": "handler",
+      "to": "env",
+      "label": "执行事实",
+      "variant": "default"
+    },
+    {
+      "from": "env",
+      "to": "host",
+      "label": "IO 请求",
+      "variant": "default"
+    },
+    {
+      "from": "host",
+      "to": "resources",
+      "label": "宿主权限",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "真实边界",
+      "items": [
+        "permission 是业务执行 gate，deny 阻止 handler",
+        "yolo 与 alwaysAsk 的顺序以报告为准"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "没有强隔离承诺",
+      "items": [
+        "当前路径 policy 允许 workspace 外路径",
+        "旧 sandbox 已撤除；网络 env 不是网络封锁"
+      ]
+    }
+  ]
+}

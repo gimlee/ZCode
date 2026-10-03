@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "lifecycle",
+  "quality": "showcase",
+  "specification": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\candidate.json",
+    "sha256": "04ee92c1ea017410d321c7225ded57494db39295c108742d7a206d04115072f5",
+    "bytes": 5860
+  },
+  "artifact": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\context.html",
+    "sha256": "dd46f6f3dfebd7cd839953e1d8c38470d1b0046be3c051c41de027895f241e20",
+    "bytes": 765829
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\context.finalize.json",
+    "summaryReceipt": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\context.finalize-summary.json",
+    "browserCheckReceipt": "F:\\github\\ZCode\\archify\\diagrams\\03b-context\\context.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-02T18:25:19.682Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3894,
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 4
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "from": "append",
+            "to": "active",
+            "label": "下一步",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "right": {
+            "from": "clear",
+            "to": "budget",
+            "label": "继续",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "point": [
+            605,
+            158
+          ]
+        },
+        {
+          "left": {
+            "from": "append",
+            "to": "active",
+            "label": "下一步",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "right": {
+            "from": "budget",
+            "to": "summary",
+            "label": "压力",
+            "collectionIndex": 7,
+            "artifactIndex": 8
+          },
+          "point": [
+            635,
+            158
+          ]
+        },
+        {
+          "left": {
+            "from": "append",
+            "to": "active",
+            "label": "下一步",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "right": {
+            "from": "request",
+            "to": "summary",
+            "label": "超限",
+            "collectionIndex": 8,
+            "artifactIndex": 9
+          },
+          "point": [
+            840,
+            158
+          ]
+        },
+        {
+          "left": {
+            "from": "append",
+            "to": "active",
+            "label": "下一步",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "right": {
+            "from": "replace",
+            "to": "request",
+            "label": "恢复",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "point": [
+            855,
+            158
+          ]
+        }
+      ],
+      "detours": [],
+      "truncated": false
+    },
+    "hints": [
+      "append → active crosses clear → budget: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "append → active crosses budget → summary: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "append → active crosses request → summary: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "append → active crosses replace → request: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

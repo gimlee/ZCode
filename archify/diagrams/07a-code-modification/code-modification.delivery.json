@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "d8b47884-a000-4341-bb42-b82d586444b8",
+  "status": "current",
+  "command": "deliver",
+  "type": "sequence",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\07a-code-modification\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\07a-code-modification\\code-modification.html",
+  "specification": {
+    "sha256": "1f040babf28f5d18a351fd2984d7edf1f1ec35b3c02b834ae7d707e6221a5f75",
+    "bytes": 4368
+  },
+  "artifact": {
+    "sha256": "6fe4d78f0bdc5179e8c4cf838b2a02b40f3df2a5ff9a027ed409a66e2ef1385d",
+    "bytes": 755542
+  }
+}

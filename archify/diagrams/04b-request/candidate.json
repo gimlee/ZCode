@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "图 4B · LLM Request Sequence",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/04b-request/request.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      680
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "core",
+      "label": "Core",
+      "sublabel": "model step",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model",
+      "sublabel": "options 校验",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+          "line": 91
+        }
+      ]
+    },
+    {
+      "id": "runner",
+      "label": "Runner",
+      "sublabel": "单次 attempt",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+          "line": 123
+        }
+      ]
+    },
+    {
+      "id": "admission",
+      "label": "Admission",
+      "sublabel": "in-flight ticket",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "id": "sdk",
+      "label": "SDK / Fetch",
+      "sublabel": "转换与 option maps",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-options.ts",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "id": "provider",
+      "label": "Provider API",
+      "sublabel": "三种配置协议",
+      "type": "cloud",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 282
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m0",
+      "from": "core",
+      "to": "model",
+      "label": "请求与选项",
+      "variant": "default",
+      "y": 170
+    },
+    {
+      "id": "m1",
+      "from": "model",
+      "to": "runner",
+      "label": "校验后执行",
+      "variant": "default",
+      "y": 210
+    },
+    {
+      "id": "m2",
+      "from": "runner",
+      "to": "admission",
+      "label": "申请 attempt",
+      "variant": "default",
+      "y": 250
+    },
+    {
+      "id": "m3",
+      "from": "admission",
+      "to": "runner",
+      "label": "ticket",
+      "variant": "return",
+      "y": 290
+    },
+    {
+      "id": "m4",
+      "from": "runner",
+      "to": "sdk",
+      "label": "刷新 auth 并转换",
+      "variant": "default",
+      "y": 330
+    },
+    {
+      "id": "m5",
+      "from": "sdk",
+      "to": "provider",
+      "label": "序列化与 body patch",
+      "variant": "emphasis",
+      "y": 370
+    },
+    {
+      "id": "m6",
+      "from": "provider",
+      "to": "sdk",
+      "label": "响应或 SSE",
+      "variant": "return",
+      "y": 410
+    },
+    {
+      "id": "m7",
+      "from": "sdk",
+      "to": "runner",
+      "label": "SDK 结果与 chunks",
+      "variant": "return",
+      "y": 450
+    },
+    {
+      "id": "m8",
+      "from": "runner",
+      "to": "core",
+      "label": "标准事件与 usage",
+      "variant": "return",
+      "y": 490
+    },
+    {
+      "id": "m9",
+      "from": "runner",
+      "to": "admission",
+      "label": "释放 ticket",
+      "variant": "default",
+      "y": 530
+    },
+    {
+      "id": "m10",
+      "from": "admission",
+      "to": "runner",
+      "label": "释放完成",
+      "variant": "return",
+      "y": 570
+    }
+  ],
+  "activations": [
+    {
+      "participant": "runner",
+      "from": 205,
+      "to": 575,
+      "type": "backend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "流式主路径",
+      "items": [
+        "归一化后的 text / reasoning / tool 事件上送 Core",
+        "只有 final tool-call input 可以成为执行参数"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "重试分支",
+      "items": [
+        "可重试失败：先 release，再退避并重新 admission",
+        "已输出后的中断由 Core recovery 新建请求；本图不假设重放"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+  "diagrams": [
+    {
+      "diagram": "图 0 · ZCode Initial Repository Map",
+      "type": "architecture",
+      "specification": "archify/diagrams/00-repository/candidate.json",
+      "specificationSha256": "a6fad147a8b9ce3d3278caf92d5a9598b2b3adb1573160e119da1d786db5b05a",
+      "artifact": "archify/diagrams/00-repository/repository.html",
+      "artifactSha256": "21ffa4a4bb8d1367b17871b586740b763e2e04dbfbbd8de2ea1d7689b497bad0",
+      "receipt": "archify/diagrams/00-repository/repository.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/00-repository/repository.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 1A · Startup Lifecycle",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/01a-startup/candidate.json",
+      "specificationSha256": "d9a0d4976853d70a5e27dcaf2e2274542d6a7a553c63245934fd1b3cc8282b45",
+      "artifact": "archify/diagrams/01a-startup/startup.html",
+      "artifactSha256": "e95e91b657bb970881e7b8645e8c964afac352b034d7c6a30d3f0cac5b5f2303",
+      "receipt": "archify/diagrams/01a-startup/startup.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/01a-startup/startup.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 1,
+        "routesOverSuggestedBends": 1,
+        "routesOverSuggestedStretch": 1
+      }
+    },
+    {
+      "diagram": "图 1B · Runtime Architecture",
+      "type": "architecture",
+      "specification": "archify/diagrams/01b-runtime/candidate.json",
+      "specificationSha256": "a330e08ebc28baef7ebe70a853a1c0cf494cff132a639939fa721ea8c95e46f8",
+      "artifact": "archify/diagrams/01b-runtime/runtime.html",
+      "artifactSha256": "cda2ea894487da7bface6233a70392e5e1a4b74bc9c6a071e702ac97187b723d",
+      "receipt": "archify/diagrams/01b-runtime/runtime.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/01b-runtime/runtime.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedBends": 1
+      }
+    },
+    {
+      "diagram": "图 2A · Agent Runtime Workflow",
+      "type": "workflow",
+      "specification": "archify/diagrams/02a-workflow/candidate.json",
+      "specificationSha256": "14548449fc165fc7915ffb4ecba0336ba3a1ce18dc1eae134b215fbf2afe4f01",
+      "artifact": "archify/diagrams/02a-workflow/workflow.html",
+      "artifactSha256": "45a8aac3d25c015a4aaa8fb5d1af4f8cbb2dbdc690ea677be12e3682bd74a308",
+      "receipt": "archify/diagrams/02a-workflow/workflow.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/02a-workflow/workflow.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedBends": 2,
+        "routesOverSuggestedStretch": 4
+      }
+    },
+    {
+      "diagram": "图 2B · Agent Loop Lifecycle",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/02b-loop/candidate.json",
+      "specificationSha256": "332ff1fca7c47be417c09fb7714b5170060e5e98e9283d1d6aeca61ffbfb4bba",
+      "artifact": "archify/diagrams/02b-loop/loop.html",
+      "artifactSha256": "e5b95d81cbbc0c9e4be50af744ea2919692a63c65587e7ee77a85df44524125a",
+      "receipt": "archify/diagrams/02b-loop/loop.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/02b-loop/loop.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 3
+      }
+    },
+    {
+      "diagram": "图 2C · Agent Loop State Machine",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/02c-state/candidate.json",
+      "specificationSha256": "7c7dd0d04d49faa72b74b92da28a37e051c06a8b1b00627530282c47d95ed0dc",
+      "artifact": "archify/diagrams/02c-state/state.html",
+      "artifactSha256": "d594ee67288471e629610e922f687b3734a178b2dec14fe6b90baaeb2f30f060",
+      "receipt": "archify/diagrams/02c-state/state.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/02c-state/state.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 22,
+        "routesOverSuggestedBends": 4
+      }
+    },
+    {
+      "diagram": "图 3A · Prompt Composition",
+      "type": "dataflow",
+      "specification": "archify/diagrams/03a-prompt/candidate.json",
+      "specificationSha256": "d1dba92d33cc75edfdbefa5e7d261717e0465056f1bb9eb472f4643442a9c4f4",
+      "artifact": "archify/diagrams/03a-prompt/prompt.html",
+      "artifactSha256": "003ff8ee254f3792b0afa82cc3371ebe7024903ee29cbc213dce96c6f82ec538",
+      "receipt": "archify/diagrams/03a-prompt/prompt.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/03a-prompt/prompt.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 3B · Context Lifecycle",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/03b-context/candidate.json",
+      "specificationSha256": "04ee92c1ea017410d321c7225ded57494db39295c108742d7a206d04115072f5",
+      "artifact": "archify/diagrams/03b-context/context.html",
+      "artifactSha256": "dd46f6f3dfebd7cd839953e1d8c38470d1b0046be3c051c41de027895f241e20",
+      "receipt": "archify/diagrams/03b-context/context.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/03b-context/context.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 4
+      }
+    },
+    {
+      "diagram": "图 3C · Model Context Data Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/03c-model-context/candidate.json",
+      "specificationSha256": "38b91c5a2a0e79b80dbb837794d2c42c42a56619103341a313bce1fce3f4a9b3",
+      "artifact": "archify/diagrams/03c-model-context/model-context.html",
+      "artifactSha256": "6b2e9bb86edf1a1d865bad0c9c890f4e62f8c9a7618fc5dd5e3eb1cf5bb604fb",
+      "receipt": "archify/diagrams/03c-model-context/model-context.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/03c-model-context/model-context.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 4A · Model Provider Architecture",
+      "type": "architecture",
+      "specification": "archify/diagrams/04a-provider/candidate.json",
+      "specificationSha256": "1c12835c5768915fd064be1cad99fcaf79ece24794c7823a0c4d8cc8b3980bbc",
+      "artifact": "archify/diagrams/04a-provider/provider.html",
+      "artifactSha256": "273c5bf66c64403c956fec590691718e485a83e7e595ce19e7f5c7bb0a7e0089",
+      "receipt": "archify/diagrams/04a-provider/provider.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/04a-provider/provider.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 4B · LLM Request Sequence",
+      "type": "sequence",
+      "specification": "archify/diagrams/04b-request/candidate.json",
+      "specificationSha256": "6f31053543696d16de93f2850576b41d97a3eb4e464c565e94c49ce7924d4545",
+      "artifact": "archify/diagrams/04b-request/request.html",
+      "artifactSha256": "059c693159a9e1e2ba867a10e454bbd10f582df55873360680365f2bd3084531",
+      "receipt": "archify/diagrams/04b-request/request.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/04b-request/request.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 4C · Provider Adapter Data Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/04c-adapter/candidate.json",
+      "specificationSha256": "098a0e3630dc0e1e631ff7f5c80fe4a04243c8d9186625256b9b67087a52e6fa",
+      "artifact": "archify/diagrams/04c-adapter/adapter.html",
+      "artifactSha256": "9d647a046b12ac9d96d06ce1ebd140beb72240df5599a66d92f4a3903327c7d6",
+      "receipt": "archify/diagrams/04c-adapter/adapter.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/04c-adapter/adapter.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 5A · Tool Architecture",
+      "type": "architecture",
+      "specification": "archify/diagrams/05a-tools/candidate.json",
+      "specificationSha256": "7fb755b3bf77611f5153a287bc603ab6bc9bb6adef24e453f85449692d4b5057",
+      "artifact": "archify/diagrams/05a-tools/tools.html",
+      "artifactSha256": "5788675f2f7b38733d2fcab283b9c6e9426bc1fe574ea8089b53ea2defbaf4b7",
+      "receipt": "archify/diagrams/05a-tools/tools.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/05a-tools/tools.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 5B · Tool Call Sequence",
+      "type": "sequence",
+      "specification": "archify/diagrams/05b-tool-call/candidate.json",
+      "specificationSha256": "3505ace77de7bb6cd9dc6d3b7e2d8ef492c07b6e6ad42d2f30604bcaea3ec540",
+      "artifact": "archify/diagrams/05b-tool-call/tool-call.html",
+      "artifactSha256": "cfb8b619ef8e5a2ec1d094b10d0bb9461b57bb806d3ab0de448f355b8833e026",
+      "receipt": "archify/diagrams/05b-tool-call/tool-call.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/05b-tool-call/tool-call.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 5C · Tool Result Data Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/05c-tool-result/candidate.json",
+      "specificationSha256": "89c3284da58e4067f5bf223142109c9fbb0e4ce9556b41f02a46fa740e4af9e9",
+      "artifact": "archify/diagrams/05c-tool-result/tool-result.html",
+      "artifactSha256": "e7fd05080c54c6779bbdb6c18b01bfc314ba4ec6afff443644bc3ff649bd16a5",
+      "receipt": "archify/diagrams/05c-tool-result/tool-result.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/05c-tool-result/tool-result.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 6A · Repository Understanding Workflow",
+      "type": "workflow",
+      "specification": "archify/diagrams/06a-repository-workflow/candidate.json",
+      "specificationSha256": "e20cbec5722f6886f6e2b16bcbed3541e3cb98fc63bd23cc8023ab7118d9911f",
+      "artifact": "archify/diagrams/06a-repository-workflow/repository-workflow.html",
+      "artifactSha256": "654b804a8cd4f076231d5fdaefa67ffb86c09b1390b410f8cd7407760414e4f7",
+      "receipt": "archify/diagrams/06a-repository-workflow/repository-workflow.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/06a-repository-workflow/repository-workflow.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedStretch": 1
+      }
+    },
+    {
+      "diagram": "图 6B · Repository Context Data Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/06b-repository-context/candidate.json",
+      "specificationSha256": "c5714989a191a29cf2526e3843b6c15e035acd311dedf1e9bb9f89345be69310",
+      "artifact": "archify/diagrams/06b-repository-context/repository-context.html",
+      "artifactSha256": "f37da99029b412b91cfe1b9d1f110dca2fd15f0c535695a47ffc36c737f2178a",
+      "receipt": "archify/diagrams/06b-repository-context/repository-context.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/06b-repository-context/repository-context.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 7A · Code Modification Sequence",
+      "type": "sequence",
+      "specification": "archify/diagrams/07a-code-modification/candidate.json",
+      "specificationSha256": "1f040babf28f5d18a351fd2984d7edf1f1ec35b3c02b834ae7d707e6221a5f75",
+      "artifact": "archify/diagrams/07a-code-modification/code-modification.html",
+      "artifactSha256": "6fe4d78f0bdc5179e8c4cf838b2a02b40f3df2a5ff9a027ed409a66e2ef1385d",
+      "receipt": "archify/diagrams/07a-code-modification/code-modification.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/07a-code-modification/code-modification.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 7B · Coding Task Workflow",
+      "type": "workflow",
+      "specification": "archify/diagrams/07b-coding-workflow/candidate.json",
+      "specificationSha256": "d269ef97a9b445100a60d913f75126ef9f376eb2781661d796b5eb1484cc9a97",
+      "artifact": "archify/diagrams/07b-coding-workflow/coding-workflow.html",
+      "artifactSha256": "0085051043119e3246a3f34b044f258e344229761e4f887c30662fda1eab059c",
+      "receipt": "archify/diagrams/07b-coding-workflow/coding-workflow.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/07b-coding-workflow/coding-workflow.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedBends": 2,
+        "routesOverSuggestedStretch": 1
+      }
+    },
+    {
+      "diagram": "图 7C · Edit / Patch Data Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/07c-edit-data/candidate.json",
+      "specificationSha256": "8238aa2f2e4dc3af0915721fc2a9d55cb6baabf3a0dd861b0a75f6b1d750a746",
+      "artifact": "archify/diagrams/07c-edit-data/edit-data.html",
+      "artifactSha256": "e6a7b3961807987ebad24fcf2058696b9761bb2d894453315d002959c0814376",
+      "receipt": "archify/diagrams/07c-edit-data/edit-data.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/07c-edit-data/edit-data.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 8A · Shell Execution Sequence",
+      "type": "sequence",
+      "specification": "archify/diagrams/08a-shell/candidate.json",
+      "specificationSha256": "52568ddf6ed36dd907ec5b2bd60ab52fd4ae1d1646e79bf6372960440cc234e9",
+      "artifact": "archify/diagrams/08a-shell/shell.html",
+      "artifactSha256": "3b9838fb51ee3586eaf556a0a9a4c740abb749f39d14100f6bf12d49d75a0550",
+      "receipt": "archify/diagrams/08a-shell/shell.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/08a-shell/shell.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 8B · Permission and Host Boundary",
+      "type": "architecture",
+      "specification": "archify/diagrams/08b-security/candidate.json",
+      "specificationSha256": "f473366a8e35c7099cd81ca48e2bf3e51bd08bd1b0765ea1d50c9aef96c49f35",
+      "artifact": "archify/diagrams/08b-security/security.html",
+      "artifactSha256": "d25a2bf6a87089d7d5ff491729d00036ffc320c7a78ec6dec34b75fb655d3691",
+      "receipt": "archify/diagrams/08b-security/security.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/08b-security/security.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedBends": 1
+      }
+    },
+    {
+      "diagram": "图 9A · Session Lifecycle",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/09a-session/candidate.json",
+      "specificationSha256": "64516236b5f7bb87e94e1aca49af89a24c407449d5417de4ec2b57c27907b4db",
+      "artifact": "archify/diagrams/09a-session/session.html",
+      "artifactSha256": "f76293724b2373d45eed24f72636b09a89829f0401d380b6856be9c6c6f761c8",
+      "receipt": "archify/diagrams/09a-session/session.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/09a-session/session.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 1
+      }
+    },
+    {
+      "diagram": "图 9B · State Ownership",
+      "type": "architecture",
+      "specification": "archify/diagrams/09b-state/candidate.json",
+      "specificationSha256": "2a3ddea7d9be889e3860944346e57f9ec36037be2e55aa30dcddf450e2e01922",
+      "artifact": "archify/diagrams/09b-state/state.html",
+      "artifactSha256": "c9580bc5a90719b6d6f83b738bfbb1fae3e489c710791c888e4cf0797d8a59c3",
+      "receipt": "archify/diagrams/09b-state/review-2/state.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/09b-state/review-2/state.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 9C · Persistence Data Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/09c-persistence/candidate.json",
+      "specificationSha256": "8421834be69c20626c9a4cf932e74e37c1dc1787f85f5c2a6f5ee5726d131922",
+      "artifact": "archify/diagrams/09c-persistence/persistence.html",
+      "artifactSha256": "4298e65c65e5bb303aaa18870fd6c1dc07bfaaabe38193ef3075b13d55086c8a",
+      "receipt": "archify/diagrams/09c-persistence/persistence.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/09c-persistence/persistence.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 10A · Event Flow",
+      "type": "dataflow",
+      "specification": "archify/diagrams/10a-events/candidate.json",
+      "specificationSha256": "544a78275d428765ef5b19c1d17e7e23cce050c3ff663c14d956d8abdf8bfccc",
+      "artifact": "archify/diagrams/10a-events/events.html",
+      "artifactSha256": "fcccafbb01d5e3952f14582e5f94082b3e55b7871912ee40aff0480d6fad8b2b",
+      "receipt": "archify/diagrams/10a-events/events.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/10a-events/events.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 10B · Concurrency Owners",
+      "type": "architecture",
+      "specification": "archify/diagrams/10b-concurrency/candidate.json",
+      "specificationSha256": "310913dc8262f6e62c8d2af75d43536fef24b0677c4946130b908d6c0de92ff1",
+      "artifact": "archify/diagrams/10b-concurrency/concurrency.html",
+      "artifactSha256": "7221bc93b94d83c459770e3fbc06231b564f6ff24f9b290ddfeb85559159eee6",
+      "receipt": "archify/diagrams/10b-concurrency/concurrency.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/10b-concurrency/concurrency.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedBends": 1
+      }
+    },
+    {
+      "diagram": "图 11A · Extension Architecture",
+      "type": "architecture",
+      "specification": "archify/diagrams/11a-extension/candidate.json",
+      "specificationSha256": "00d907f6b15e5d3714f1e53e1b8e1cc452bc2fc2d881f1e5752539b2abd5079c",
+      "artifact": "archify/diagrams/11a-extension/extension.html",
+      "artifactSha256": "51ed9fa3d8dfb95b158c626e00de0f5a3339605b3184afc5ff85150d91a3a491",
+      "receipt": "archify/diagrams/11a-extension/extension.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/11a-extension/extension.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 11B · MCP Tool Sequence",
+      "type": "sequence",
+      "specification": "archify/diagrams/11b-mcp/candidate.json",
+      "specificationSha256": "023501610668943c48ba0cfc3ebf4043cf8c8b4f89c14fa0c3b3acc1a03df80b",
+      "artifact": "archify/diagrams/11b-mcp/mcp.html",
+      "artifactSha256": "27b9f2d9056f7309ea85c448b85543fc75b7678359228a055de0d8f3f1e8540c",
+      "receipt": "archify/diagrams/11b-mcp/review-2/mcp.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/11b-mcp/review-2/mcp.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 11C · Skill / Plugin Lifecycle",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/11c-plugin-lifecycle/candidate.json",
+      "specificationSha256": "16f0b8d0aa7f78dfb9abe0904df8dc7f9d780de08bd1073925f8a3a0254fb96f",
+      "artifact": "archify/diagrams/11c-plugin-lifecycle/plugin-lifecycle.html",
+      "artifactSha256": "74427d8546091c0c3d2ef6978f4de50fbc2c97656fc0918a2f7e70ca6e05f2a4",
+      "receipt": "archify/diagrams/11c-plugin-lifecycle/plugin-lifecycle.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/11c-plugin-lifecycle/plugin-lifecycle.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 1,
+        "routesOverSuggestedBends": 1,
+        "routesOverSuggestedStretch": 1
+      }
+    },
+    {
+      "diagram": "图 12A · Frontend / Runtime Architecture",
+      "type": "architecture",
+      "specification": "archify/diagrams/12a-front-runtime/candidate.json",
+      "specificationSha256": "49d899f2b86d83df24f2c1bd9a0a76a99f872672d43d699d78eb8dc0a34c0612",
+      "artifact": "archify/diagrams/12a-front-runtime/front-runtime.html",
+      "artifactSha256": "485d1ad5e5b5876399b027093b2c3679fb6a96991e8978f1ac5583c566d428db",
+      "receipt": "archify/diagrams/12a-front-runtime/review-2/front-runtime.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/12a-front-runtime/review-2/front-runtime.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 12B · UI Request Sequence",
+      "type": "sequence",
+      "specification": "archify/diagrams/12b-ui-request/candidate.json",
+      "specificationSha256": "5caab32cee8f36245ddaa2ec1de6611d748a02257eaf8f1706f648b17616989b",
+      "artifact": "archify/diagrams/12b-ui-request/ui-request.html",
+      "artifactSha256": "9fca6281237cb64635e4600a77a8d6df6e3dc5d77fd26ecfe4abf747d9aee178",
+      "receipt": "archify/diagrams/12b-ui-request/ui-request.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/12b-ui-request/ui-request.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    },
+    {
+      "diagram": "图 13A · Error Recovery Workflow",
+      "type": "workflow",
+      "specification": "archify/diagrams/13a-recovery/candidate.json",
+      "specificationSha256": "8686b5fb2937b2468c73a82967f01ff6bd9767be37c32e52ae7944390e3715f6",
+      "artifact": "archify/diagrams/13a-recovery/recovery.html",
+      "artifactSha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+      "receipt": "archify/diagrams/13a-recovery/recovery.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/13a-recovery/recovery.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "routesOverSuggestedBends": 4,
+        "routesOverSuggestedStretch": 3
+      }
+    },
+    {
+      "diagram": "图 13B · Physical Model Retry Lifecycle",
+      "type": "lifecycle",
+      "specification": "archify/diagrams/13b-retry/candidate.json",
+      "specificationSha256": "fa5b55d23ec1b66e3eaf058d3c1249a130594ec4465fe44e91abd326c92004d1",
+      "artifact": "archify/diagrams/13b-retry/retry.html",
+      "artifactSha256": "84ff96bbabd497071e84564e760a37b20b4e7e9a28a9db50d6574f7e32df51f1",
+      "receipt": "archify/diagrams/13b-retry/retry.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/13b-retry/retry.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {
+        "resolvedCrossovers": 1,
+        "routesOverSuggestedBends": 2,
+        "routesOverSuggestedStretch": 2
+      }
+    },
+    {
+      "diagram": "图 19 · ZCode Master Architecture Map",
+      "type": "architecture",
+      "specification": "archify/diagrams/19-master/candidate.json",
+      "specificationSha256": "1431a271d5365eb84b371eafe52721e2b1af8207f737ba60e3b75b8c2bb4edee",
+      "artifact": "archify/diagrams/19-master/master.html",
+      "artifactSha256": "fdc4b81da5329cc5771c4d34ba2dbab830849bcf62b0301d7d9ba32bedbe02c0",
+      "receipt": "archify/diagrams/19-master/review-2/master.finalize-summary.json",
+      "gates": {
+        "validate": "pass",
+        "deliver": "pass",
+        "check": "pass",
+        "browser-check": "pass"
+      },
+      "browserEvidence": "archify/diagrams/19-master/review-2/master.browser-check.json",
+      "visualReview": "not-requested",
+      "advisory": {}
+    }
+  ]
+}

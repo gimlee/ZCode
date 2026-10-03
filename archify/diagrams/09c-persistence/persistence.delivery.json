@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "061ee691-215a-45fd-9471-cf9fa9b64e09",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\09c-persistence\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\09c-persistence\\persistence.html",
+  "specification": {
+    "sha256": "8421834be69c20626c9a4cf932e74e37c1dc1787f85f5c2a6f5ee5726d131922",
+    "bytes": 4685
+  },
+  "artifact": {
+    "sha256": "4298e65c65e5bb303aaa18870fd6c1dc07bfaaabe38193ef3075b13d55086c8a",
+    "bytes": 754945
+  }
+}

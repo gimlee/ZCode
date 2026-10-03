@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 9C · Persistence Data Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/09c-persistence/persistence.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      940,
+      570
+    ]
+  },
+  "stages": [
+    {
+      "label": "运行事实"
+    },
+    {
+      "label": "保存接口"
+    },
+    {
+      "label": "durable 数据"
+    },
+    {
+      "label": "恢复视图"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "message",
+      "label": "消息与工具结果",
+      "sublabel": "user / assistant / paired tool",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/message-persistence.ts",
+          "line": 1
+        }
+      ],
+      "stage": 0,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "checkpoint",
+      "label": "Checkpoint facts",
+      "sublabel": "snapshot / rewind metadata",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/workspace-checkpoint-persistence.ts",
+          "line": 28
+        }
+      ],
+      "stage": 0,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "store",
+      "label": "SessionStore",
+      "sublabel": "message / part / session_entry",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+          "line": 609
+        }
+      ],
+      "stage": 1,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "artifact",
+      "label": "Artifact port",
+      "sublabel": "文件快照与大输出",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/file-rewind.ts",
+          "line": 327
+        }
+      ],
+      "stage": 1,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "db",
+      "label": "SQLite facts",
+      "sublabel": "包括 inputs promotion",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/repositories/session-inputs.ts",
+          "line": 191
+        }
+      ],
+      "stage": 2,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "files",
+      "label": "Artifact files",
+      "sublabel": "与 DB 是不同 IO",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/file-rewind.ts",
+          "line": 337
+        }
+      ],
+      "stage": 2,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "resume",
+      "label": "Resume / Hydration",
+      "sublabel": "branch、compact、配对",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/session-history-hydrator.ts",
+          "line": 51
+        }
+      ],
+      "stage": 3,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "from": "message",
+      "to": "store",
+      "label": "保存",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "checkpoint",
+      "to": "store",
+      "label": "entry",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        208,
+        225
+      ]
+    },
+    {
+      "from": "checkpoint",
+      "to": "artifact",
+      "label": "快照",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        208,
+        284
+      ]
+    },
+    {
+      "from": "store",
+      "to": "db",
+      "label": "写入",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "artifact",
+      "to": "files",
+      "label": "持久化",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "db",
+      "to": "resume",
+      "label": "读 facts",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "files",
+      "to": "resume",
+      "label": "按需加载",
+      "variant": "default",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "事务边界",
+      "items": [
+        "input promotion + user/parts 可同一 SQLite 事务",
+        "artifact 与 DB 不是一个跨 IO 原子事务"
+      ]
+    }
+  ]
+}

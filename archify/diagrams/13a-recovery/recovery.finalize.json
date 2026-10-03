@@ -1,0 +1,1640 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "workflow",
+  "quality": "showcase",
+  "startedAt": "2026-10-03T07:07:45.282Z",
+  "specification": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\candidate.json",
+    "sha256": "8686b5fb2937b2468c73a82967f01ff6bd9767be37c32e52ae7944390e3715f6",
+    "bytes": 5718
+  },
+  "artifact": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+    "sha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+    "bytes": 759792
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "D:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\leeking\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "workflow",
+        "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\candidate.json",
+        "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "F:\\github\\ZCode",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "8686b5fb2937b2468c73a82967f01ff6bd9767be37c32e52ae7944390e3715f6",
+          "bytes": 5718
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 1454,
+      "command": [
+        "D:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\leeking\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "workflow",
+        "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\candidate.json",
+        "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "F:\\github\\ZCode",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "b20c06a6-e3e6-463d-b54d-5ecf46a2603d",
+        "ok": true,
+        "command": "deliver",
+        "type": "workflow",
+        "input": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\candidate.json",
+        "output": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+        "specification": {
+          "sha256": "8686b5fb2937b2468c73a82967f01ff6bd9767be37c32e52ae7944390e3715f6",
+          "bytes": 5718
+        },
+        "artifact": {
+          "sha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+          "bytes": 759792
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        },
+        "evidence": {
+          "verified": true,
+          "repository": "https://github.com/gimlee/ZCode",
+          "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+          "references": 9
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 229,
+      "command": [
+        "D:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\leeking\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "check",
+        "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+        "artifact": {
+          "sha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+          "bytes": 759792
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "showcase",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 0
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 34,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 6.763636363636364,
+            "maxBends": 3,
+            "routesOverSuggestedBends": 4,
+            "maxStretch": 1.681,
+            "routesOverSuggestedStretch": 3,
+            "minSegmentPx": 16,
+            "minInteriorSegmentPx": 76,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "from": "attempt",
+                  "to": "recover",
+                  "label": "已输出",
+                  "collectionIndex": 0,
+                  "artifactIndex": 1
+                },
+                "bends": 3,
+                "stretch": 1.137
+              },
+              {
+                "relationship": {
+                  "from": "attempt",
+                  "to": "retry",
+                  "label": "可重试",
+                  "collectionIndex": 1,
+                  "artifactIndex": 2
+                },
+                "bends": 3,
+                "stretch": 1.681
+              },
+              {
+                "relationship": {
+                  "from": "recover",
+                  "to": "end",
+                  "label": "预算或安全性失败",
+                  "collectionIndex": 5,
+                  "artifactIndex": 6
+                },
+                "bends": 3,
+                "stretch": 1.647
+              },
+              {
+                "relationship": {
+                  "from": "retry",
+                  "to": "end",
+                  "label": "不可重试",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
+                },
+                "bends": 3,
+                "stretch": 1.587
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": false,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "legacy-930",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 930,
+            "actualBudgetPx": 930,
+            "limit": "legacy",
+            "requestedTargetPx": null,
+            "requestedTargetMet": null,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "node",
+              "id": "attempt"
+            },
+            "minimumSourceTextPx": 8,
+            "minimumProjectedTextPx": 6.763636363636364,
+            "semanticTextCount": 27
+          },
+          "issues": []
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "b20c06a6-e3e6-463d-b54d-5ecf46a2603d"
+      }
+    },
+    "browser-check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 2311,
+      "command": [
+        "D:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\leeking\\.agents\\skills\\archify\\bin\\archify.mjs",
+        "browser-check",
+        "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+        "--json",
+        "--require-provenance"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "pass",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "b20c06a6-e3e6-463d-b54d-5ecf46a2603d",
+        "artifact": {
+          "path": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+          "sha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+          "bytes": 759792
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+        },
+        "diagnostics": [],
+        "containment": {
+          "status": "pass",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1202,
+              "diagramWidth": 1172,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 746,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 121,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 121,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 121,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 121,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1256,
+              "diagramWidth": 1226,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 780,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 127,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 127,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 127,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 127,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1381,
+              "diagramWidth": 1351,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 860,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 140,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 140,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 140,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 140,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1750,
+              "diagramWidth": 1700,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1082,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 176,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 176,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 176,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 176,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "themeStates": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "light",
+              "resolvedTheme": "light",
+              "ok": true
+            },
+            {
+              "width": 1440,
+              "height": 900,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "requestedTheme": "dark",
+              "resolvedTheme": "dark",
+              "ok": true
+            }
+          ]
+        },
+        "readability": {
+          "status": "pass",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1202,
+              "diagramWidth": 1172,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 746,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 121,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 121,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 121,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 121,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1256,
+              "diagramWidth": 1226,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 780,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 127,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 127,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 127,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 127,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1381,
+              "diagramWidth": 1351,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 860,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 140,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 140,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 140,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 140,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1750,
+              "diagramWidth": 1700,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1082,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 176,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 176,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 176,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 176,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "viewerChrome": {
+          "status": "pass",
+          "viewports": [
+            {
+              "width": 1440,
+              "height": 900,
+              "theme": "light",
+              "innerWidth": 1440,
+              "innerHeight": 900,
+              "scrollWidth": 1440,
+              "scrollHeight": 900,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1202,
+              "diagramWidth": 1172,
+              "pageComposition": {
+                "bodyPaddingPx": 12,
+                "headerPx": 52,
+                "diagramChromePx": 78,
+                "svgPx": 746,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 121,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 121,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 121,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 121,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 81,
+                  "spaceAboveNodesPx": 36,
+                  "spaceBelowNodesPx": 4
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1600,
+              "height": 1000,
+              "theme": "light",
+              "innerWidth": 1600,
+              "innerHeight": 1000,
+              "scrollWidth": 1600,
+              "scrollHeight": 1000,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1256,
+              "diagramWidth": 1226,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 780,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 127,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 127,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 127,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 127,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 85,
+                  "spaceAboveNodesPx": 38,
+                  "spaceBelowNodesPx": 4
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 1920,
+              "height": 1080,
+              "theme": "light",
+              "innerWidth": 1920,
+              "innerHeight": 1080,
+              "scrollWidth": 1920,
+              "scrollHeight": 1080,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1381,
+              "diagramWidth": 1351,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 60,
+                "diagramChromePx": 84,
+                "svgPx": 860,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 140,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 140,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 140,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 140,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 93,
+                  "spaceAboveNodesPx": 42,
+                  "spaceBelowNodesPx": 5
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 54,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            },
+            {
+              "width": 2048,
+              "height": 1320,
+              "theme": "light",
+              "innerWidth": 2048,
+              "innerHeight": 1320,
+              "scrollWidth": 2048,
+              "scrollHeight": 1320,
+              "overflowX": false,
+              "overflowY": false,
+              "verticalScrollAccepted": false,
+              "overflowDisposition": "contained",
+              "readerLayout": "adaptive",
+              "readerOverflow": null,
+              "readerFit": null,
+              "ok": true,
+              "readerWidth": 1750,
+              "diagramWidth": 1700,
+              "pageComposition": {
+                "bodyPaddingPx": 64,
+                "headerPx": 68,
+                "diagramChromePx": 94,
+                "svgPx": 1082,
+                "cardsPx": 0,
+                "viewBoxHeight": 700
+              },
+              "viewBoxWidth": 1100,
+              "workflowLanes": [
+                {
+                  "frameId": "lane-0",
+                  "heightPx": 176,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "attempt",
+                    "retry",
+                    "backoff"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-1",
+                  "heightPx": 176,
+                  "nodeCount": 3,
+                  "nodeIds": [
+                    "recover",
+                    "compact",
+                    "new"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-2",
+                  "heightPx": 176,
+                  "nodeCount": 2,
+                  "nodeIds": [
+                    "handler",
+                    "paired"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                },
+                {
+                  "frameId": "lane-3",
+                  "heightPx": 176,
+                  "nodeCount": 1,
+                  "nodeIds": [
+                    "end"
+                  ],
+                  "nodeSpanPx": 117,
+                  "spaceAboveNodesPx": 53,
+                  "spaceBelowNodesPx": 6
+                }
+              ],
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8,
+              "minimumProjectedEdgeTextPx": 8,
+              "minimumProjectedNodeText": "分类 / 输出边界",
+              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeTextOwner": {
+                "kind": "node",
+                "id": "attempt"
+              },
+              "minimumRequiredNodeTextPx": 6,
+              "readabilityOk": true,
+              "hasLegend": true,
+              "hasNavigationDock": true,
+              "legendDockIntersectionArea": 0,
+              "dockStageIntersectionArea": 0,
+              "dockStageGap": 10,
+              "requiredDockStageGap": 10,
+              "viewerChromeStageOk": true,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
+              "viewerChromeOk": true,
+              "resolvedTheme": "light"
+            }
+          ]
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "receipt": "recovery.browser-check.json",
+          "files": []
+        }
+      }
+    }
+  },
+  "diagnostics": [],
+  "evidence": {
+    "receipt": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.finalize.json",
+    "summaryReceipt": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.finalize-summary.json",
+    "browserCheckReceipt": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "finishedAt": "2026-10-03T07:07:50.235Z",
+  "durationMs": 4952,
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-02T18:25:19.682Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  }
+}

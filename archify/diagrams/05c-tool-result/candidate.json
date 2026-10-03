@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 5C · Tool Result Data Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/05c-tool-result/tool-result.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      580
+    ]
+  },
+  "stages": [
+    {
+      "label": "输出"
+    },
+    {
+      "label": "投影"
+    },
+    {
+      "label": "结果"
+    },
+    {
+      "label": "历史"
+    },
+    {
+      "label": "请求"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "raw",
+      "label": "Handler output",
+      "sublabel": "native / MCP 原始结果",
+      "stage": 0,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 443
+        }
+      ]
+    },
+    {
+      "id": "serialize",
+      "label": "模型 Serializer",
+      "sublabel": "schema / format / budget",
+      "stage": 1,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+          "line": 46
+        }
+      ]
+    },
+    {
+      "id": "display",
+      "label": "UI display",
+      "sublabel": "独立摘要 / 展示字段",
+      "stage": 1,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/result-display.ts",
+          "line": 1
+        }
+      ]
+    },
+    {
+      "id": "result",
+      "label": "ExecutionResult",
+      "sublabel": "modelContent / error / IDs",
+      "stage": 2,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/types.ts",
+          "line": 409
+        }
+      ]
+    },
+    {
+      "id": "artifact",
+      "label": "Artifact store",
+      "sublabel": "大输出可存全文与路径",
+      "stage": 2,
+      "row": 2,
+      "type": "database",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+          "line": 83
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "Paired tool entry",
+      "sublabel": "role=tool / isError / call ID",
+      "stage": 3,
+      "row": 0,
+      "type": "database",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "label": "Provider projection",
+      "sublabel": "下一轮 tool-result message",
+      "stage": 4,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/transform.ts",
+          "line": 100
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "raw-serialize",
+      "from": "raw",
+      "to": "serialize",
+      "label": "输出",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "raw-display",
+      "from": "raw",
+      "to": "display",
+      "label": "展示",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        207,
+        280
+      ]
+    },
+    {
+      "id": "serialize-result",
+      "from": "serialize",
+      "to": "result",
+      "label": "内容",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "serialize-artifact",
+      "from": "serialize",
+      "to": "artifact",
+      "label": "可选存储",
+      "variant": "dashed",
+      "route": "straight",
+      "labelAt": [
+        422,
+        280
+      ]
+    },
+    {
+      "id": "result-history",
+      "from": "result",
+      "to": "history",
+      "label": "配对提交",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "history-request",
+      "from": "history",
+      "to": "request",
+      "label": "投影",
+      "variant": "emphasis",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "送模型的内容",
+      "items": [
+        "优先 modelContent；没有时才用文本 / JSON / error 摘要",
+        "raw output、stack、display 和性能字段不整体注入提示"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "预算与配对",
+      "items": [
+        "结果按声明的 call ID 顺序提交，保留失败与 sibling 配对",
+        "artifact 返回预览路径；CUA 图像与引用有可信原子保护"
+      ]
+    }
+  ]
+}

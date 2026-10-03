@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "3125a248-d570-4ee0-b523-a75456a0d3fb",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\03a-prompt\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\03a-prompt\\prompt.html",
+  "specification": {
+    "sha256": "d1dba92d33cc75edfdbefa5e7d261717e0465056f1bb9eb472f4643442a9c4f4",
+    "bytes": 5291
+  },
+  "artifact": {
+    "sha256": "003ff8ee254f3792b0afa82cc3371ebe7024903ee29cbc213dce96c6f82ec538",
+    "bytes": 755387
+  }
+}

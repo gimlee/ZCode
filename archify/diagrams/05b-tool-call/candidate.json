@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "图 5B · Tool Call Sequence",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/05b-tool-call/tool-call.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      690
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "model",
+      "label": "Model",
+      "sublabel": "normalized calls",
+      "type": "cloud",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 645
+        }
+      ]
+    },
+    {
+      "id": "core",
+      "label": "Core Loop",
+      "sublabel": "schedule / aggregate",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 43
+        }
+      ]
+    },
+    {
+      "id": "executor",
+      "label": "Executor",
+      "sublabel": "统一生命周期",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ]
+    },
+    {
+      "id": "permission",
+      "label": "Policy / Hooks",
+      "sublabel": "allow / deny / ask",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/permission-flow.ts",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "handler",
+      "label": "Handler / I/O",
+      "sublabel": "native 或 MCP",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+          "line": 214
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History",
+      "sublabel": "canonical / turn",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+          "line": 379
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m0",
+      "from": "model",
+      "to": "core",
+      "label": "final tool calls",
+      "y": 170,
+      "variant": "default"
+    },
+    {
+      "id": "m1",
+      "from": "core",
+      "to": "executor",
+      "label": "调度与 lookup 校验",
+      "y": 206,
+      "variant": "default"
+    },
+    {
+      "id": "m2",
+      "from": "executor",
+      "to": "permission",
+      "label": "PreTool / policy",
+      "y": 242,
+      "variant": "default"
+    },
+    {
+      "id": "m3",
+      "from": "permission",
+      "to": "executor",
+      "label": "allow / ask 结果",
+      "y": 278,
+      "variant": "return"
+    },
+    {
+      "id": "m4",
+      "from": "executor",
+      "to": "handler",
+      "label": "入参 + deadline",
+      "y": 314,
+      "variant": "default"
+    },
+    {
+      "id": "m5",
+      "from": "handler",
+      "to": "executor",
+      "label": "raw output",
+      "y": 350,
+      "variant": "return"
+    },
+    {
+      "id": "m6",
+      "from": "executor",
+      "to": "permission",
+      "label": "PostToolUse",
+      "y": 386,
+      "variant": "default"
+    },
+    {
+      "id": "m7",
+      "from": "permission",
+      "to": "executor",
+      "label": "additional contexts",
+      "y": 422,
+      "variant": "return"
+    },
+    {
+      "id": "m8",
+      "from": "executor",
+      "to": "core",
+      "label": "有界模型结果",
+      "y": 458,
+      "variant": "return"
+    },
+    {
+      "id": "m9",
+      "from": "core",
+      "to": "history",
+      "label": "paired result commit",
+      "y": 494,
+      "variant": "default"
+    },
+    {
+      "id": "m10",
+      "from": "history",
+      "to": "core",
+      "label": "下一轮 entries",
+      "y": 530,
+      "variant": "return"
+    },
+    {
+      "id": "m11",
+      "from": "core",
+      "to": "model",
+      "label": "messages + tools",
+      "y": 566,
+      "variant": "emphasis"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "executor",
+      "from": 200,
+      "to": 465,
+      "type": "backend"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "批准同一输入",
+      "items": [
+        "schema / validateInput / resolveInput 在 PreTool hooks 前完成",
+        "hook 改写后再校验；permission 改写后重验权限"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "失败与恢复",
+      "items": [
+        "lookup / schema / deny / handler error 回 paired failure result",
+        "SDK final input 才执行；providerExecuted 不重复调用"
+      ]
+    }
+  ]
+}

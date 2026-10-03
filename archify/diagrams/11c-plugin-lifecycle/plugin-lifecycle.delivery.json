@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "02b1774a-d52f-4202-9578-748f376ec2af",
+  "status": "current",
+  "command": "deliver",
+  "type": "lifecycle",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\11c-plugin-lifecycle\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\11c-plugin-lifecycle\\plugin-lifecycle.html",
+  "specification": {
+    "sha256": "16f0b8d0aa7f78dfb9abe0904df8dc7f9d780de08bd1073925f8a3a0254fb96f",
+    "bytes": 4704
+  },
+  "artifact": {
+    "sha256": "74427d8546091c0c3d2ef6978f4de50fbc2c97656fc0918a2f7e70ca6e05f2a4",
+    "bytes": 760252
+  }
+}

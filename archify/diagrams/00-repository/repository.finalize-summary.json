@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\00-repository\\candidate.json",
+    "sha256": "a6fad147a8b9ce3d3278caf92d5a9598b2b3adb1573160e119da1d786db5b05a",
+    "bytes": 9344
+  },
+  "artifact": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\00-repository\\repository.html",
+    "sha256": "21ffa4a4bb8d1367b17871b586740b763e2e04dbfbbd8de2ea1d7689b497bad0",
+    "bytes": 771406
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "F:\\github\\ZCode\\archify\\diagrams\\00-repository\\repository.finalize.json",
+    "summaryReceipt": "F:\\github\\ZCode\\archify\\diagrams\\00-repository\\repository.finalize-summary.json",
+    "browserCheckReceipt": "F:\\github\\ZCode\\archify\\diagrams\\00-repository\\repository.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-02T18:25:19.682Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 4372
+}

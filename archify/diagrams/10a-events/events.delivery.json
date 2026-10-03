@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "8dcabbbc-9208-4fe0-bdae-7dd76a7e5564",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\10a-events\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\10a-events\\events.html",
+  "specification": {
+    "sha256": "544a78275d428765ef5b19c1d17e7e23cce050c3ff663c14d956d8abdf8bfccc",
+    "bytes": 4346
+  },
+  "artifact": {
+    "sha256": "fcccafbb01d5e3952f14582e5f94082b3e55b7871912ee40aff0480d6fad8b2b",
+    "bytes": 753201
+  }
+}

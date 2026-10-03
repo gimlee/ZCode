@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 9B · State Ownership",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/09b-state/state.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "app",
+      "label": "Session App",
+      "sublabel": "依赖、facades 与生命周期",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 150
+        }
+      ],
+      "pos": [
+        30,
+        60
+      ],
+      "size": [
+        210,
+        80
+      ]
+    },
+    {
+      "id": "runtime",
+      "label": "Agent Runtime",
+      "sublabel": "foreground / turn / queue owner",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+          "line": 1
+        }
+      ],
+      "pos": [
+        330,
+        60
+      ],
+      "size": [
+        230,
+        80
+      ]
+    },
+    {
+      "id": "store",
+      "label": "SessionStore Port",
+      "sublabel": "durable facts 写入接口",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/message-persistence.ts",
+          "line": 1
+        }
+      ],
+      "pos": [
+        650,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "db",
+      "label": "SQLite",
+      "sublabel": "messages / parts / inputs",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+          "line": 225
+        }
+      ],
+      "pos": [
+        960,
+        60
+      ],
+      "size": [
+        210,
+        80
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "Turn-local state",
+      "sublabel": "当前请求与 reservation",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ],
+      "pos": [
+        30,
+        310
+      ],
+      "size": [
+        210,
+        80
+      ]
+    },
+    {
+      "id": "history",
+      "label": "Canonical History",
+      "sublabel": "活跃 entries 的唯一 owner",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+          "line": 137
+        }
+      ],
+      "pos": [
+        330,
+        310
+      ],
+      "size": [
+        230,
+        80
+      ]
+    },
+    {
+      "id": "events",
+      "label": "Live Event Store",
+      "sublabel": "seq / turn-window retention",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/contracts/src/events/in-memory-session-event-store.ts",
+          "line": 32
+        }
+      ],
+      "pos": [
+        650,
+        310
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "task",
+      "label": "Task Registry",
+      "sublabel": "child / background execution",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/subagent/runner.ts",
+          "line": 131
+        }
+      ],
+      "pos": [
+        330,
+        560
+      ],
+      "size": [
+        230,
+        80
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "app",
+      "to": "runtime",
+      "label": "持有",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "store",
+      "label": "保存事实",
+      "variant": "default"
+    },
+    {
+      "from": "store",
+      "to": "db",
+      "label": "repository IO",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "turn",
+      "label": "控制",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "history",
+      "label": "维护",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "events",
+      "label": "append",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "task",
+      "label": "任务登记",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "状态分层",
+      "items": [
+        "UI snapshot 是投影；canonical history 是 runtime 事实",
+        "resident pool 控制容量，不拥有 session 消息"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "冷热差异",
+      "items": [
+        "SQLite 恢复 messages/parts 与 selected state",
+        "live seq buffer 和运行中 turn 不原样序列化"
+      ]
+    }
+  ]
+}

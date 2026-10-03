@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "37c9be4d-1c75-459f-a6d1-32160f630c4b",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\06a-repository-workflow\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\06a-repository-workflow\\repository-workflow.html",
+  "specification": {
+    "sha256": "e20cbec5722f6886f6e2b16bcbed3541e3cb98fc63bd23cc8023ab7118d9911f",
+    "bytes": 5251
+  },
+  "artifact": {
+    "sha256": "654b804a8cd4f076231d5fdaefa67ffb86c09b1390b410f8cd7407760414e4f7",
+    "bytes": 757018
+  }
+}

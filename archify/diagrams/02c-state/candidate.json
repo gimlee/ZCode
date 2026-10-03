@@ -1,0 +1,324 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 2C · Agent Loop State Machine",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/02c-state/state.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "subtitle": "完整 canTransitionTo 契约 · 合法迁移不等于普通 runtime 的实际事件轨迹"
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "输入与模型状态"
+    },
+    {
+      "id": "tools",
+      "label": "工具与汇总状态"
+    },
+    {
+      "id": "permission",
+      "label": "权限状态契约"
+    },
+    {
+      "id": "terminal",
+      "label": "终态与重置契约"
+    }
+  ],
+  "states": [
+    {
+      "id": "idle",
+      "label": "idle",
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "sublabel": "TurnPhase 迁移契约",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "processing_input",
+      "label": "processing_input",
+      "lane": "main",
+      "col": 1,
+      "type": "active",
+      "sublabel": "TurnPhase 迁移契约",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "awaiting_model_response",
+      "label": "awaiting_model_response",
+      "lane": "main",
+      "col": 2,
+      "type": "waiting",
+      "sublabel": "TurnPhase 迁移契约",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "streaming",
+      "label": "streaming",
+      "lane": "main",
+      "col": 3,
+      "type": "active",
+      "sublabel": "结果推进到此；非实时流全貌",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "aggregating_results",
+      "label": "aggregating_results",
+      "lane": "tools",
+      "col": 2,
+      "type": "active",
+      "sublabel": "TurnPhase 迁移契约",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "scheduling_tools",
+      "label": "scheduling_tools",
+      "lane": "tools",
+      "col": 3,
+      "type": "active",
+      "sublabel": "TurnPhase 迁移契约",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "executing_tools",
+      "label": "executing_tools",
+      "lane": "tools",
+      "col": 4,
+      "type": "active",
+      "sublabel": "TurnPhase 迁移契约",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "awaiting_permission",
+      "label": "awaiting_permission",
+      "lane": "permission",
+      "col": 4,
+      "type": "waiting",
+      "sublabel": "定义存在；实际权限走 broker",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "completing",
+      "label": "completing",
+      "lane": "terminal",
+      "col": 3,
+      "type": "success",
+      "sublabel": "契约终态 / 新 turn 重建",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    },
+    {
+      "id": "error",
+      "label": "error",
+      "lane": "terminal",
+      "col": 4,
+      "type": "failure",
+      "sublabel": "契约终态 / fail 可直设",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+          "line": 230
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "idle",
+      "to": "processing_input"
+    },
+    {
+      "from": "processing_input",
+      "to": "awaiting_model_response"
+    },
+    {
+      "from": "processing_input",
+      "to": "completing"
+    },
+    {
+      "from": "awaiting_model_response",
+      "to": "streaming"
+    },
+    {
+      "from": "awaiting_model_response",
+      "to": "completing"
+    },
+    {
+      "from": "awaiting_model_response",
+      "to": "error",
+      "variant": "security"
+    },
+    {
+      "from": "streaming",
+      "to": "scheduling_tools"
+    },
+    {
+      "from": "streaming",
+      "to": "aggregating_results"
+    },
+    {
+      "from": "streaming",
+      "to": "completing"
+    },
+    {
+      "from": "streaming",
+      "to": "error",
+      "variant": "security"
+    },
+    {
+      "from": "scheduling_tools",
+      "to": "executing_tools"
+    },
+    {
+      "from": "scheduling_tools",
+      "to": "awaiting_permission",
+      "variant": "dashed"
+    },
+    {
+      "from": "scheduling_tools",
+      "to": "error",
+      "variant": "security"
+    },
+    {
+      "from": "executing_tools",
+      "to": "aggregating_results"
+    },
+    {
+      "from": "executing_tools",
+      "to": "awaiting_permission",
+      "variant": "dashed"
+    },
+    {
+      "from": "executing_tools",
+      "to": "error",
+      "variant": "security"
+    },
+    {
+      "from": "aggregating_results",
+      "to": "awaiting_model_response"
+    },
+    {
+      "from": "aggregating_results",
+      "to": "scheduling_tools"
+    },
+    {
+      "from": "aggregating_results",
+      "to": "completing"
+    },
+    {
+      "from": "aggregating_results",
+      "to": "error",
+      "variant": "security"
+    },
+    {
+      "from": "awaiting_permission",
+      "to": "executing_tools",
+      "variant": "dashed"
+    },
+    {
+      "from": "awaiting_permission",
+      "to": "error",
+      "variant": "security"
+    },
+    {
+      "from": "completing",
+      "to": "idle",
+      "variant": "dashed"
+    },
+    {
+      "from": "error",
+      "to": "idle",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "执行事实",
+      "items": [
+        "普通 while 直接调用 start / request / response / schedule / aggregate / complete",
+        "getNextPhase 未在普通 loop 调用；错误通过 outcome events 收口"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "契约与事件",
+      "items": [
+        "machine.requestPermission 当前检索只有定义；真实交互由 executor/broker 管",
+        "fail 直接设置 error；新 turn create，不用 idle reset 边续同一对象"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 3A · Prompt Composition",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/03a-prompt/prompt.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      940,
+      560
+    ]
+  },
+  "stages": [
+    {
+      "label": "来源"
+    },
+    {
+      "label": "构建"
+    },
+    {
+      "label": "注入"
+    },
+    {
+      "label": "历史"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "defaults",
+      "label": "身份与默认规则",
+      "sublabel": "custom / workflow 分支",
+      "stage": 0,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+          "line": 99
+        }
+      ]
+    },
+    {
+      "id": "sources",
+      "label": "AGENTS / memory",
+      "sublabel": "用户与工作区；限长索引",
+      "stage": 0,
+      "row": 1,
+      "type": "database",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/context/index.ts",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "id": "skills",
+      "label": "技能目录",
+      "sublabel": "名称 / 描述 / 路径",
+      "stage": 0,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/sections/skills.ts",
+          "line": 43
+        }
+      ]
+    },
+    {
+      "id": "builder",
+      "label": "ContextBuilder",
+      "sublabel": "system / meta-user 分组",
+      "stage": 1,
+      "row": 1,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+          "line": 87
+        }
+      ]
+    },
+    {
+      "id": "system",
+      "label": "System blocks",
+      "sublabel": "prefix → stable → dynamic",
+      "stage": 2,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+          "line": 234
+        }
+      ]
+    },
+    {
+      "id": "meta",
+      "label": "Meta attachments",
+      "sublabel": "skills → context_prefix",
+      "stage": 2,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+          "line": 282
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History prefix",
+      "sublabel": "角色与来源分别保存",
+      "stage": 3,
+      "row": 1,
+      "type": "database",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/context-history-entries.ts",
+          "line": 1
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "defaults-builder",
+      "from": "defaults",
+      "to": "builder",
+      "label": "默认段",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        207,
+        205
+      ]
+    },
+    {
+      "id": "sources-builder",
+      "from": "sources",
+      "to": "builder",
+      "label": "指令",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        199,
+        292
+      ]
+    },
+    {
+      "id": "skills-builder",
+      "from": "skills",
+      "to": "builder",
+      "label": "清单",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        207,
+        335
+      ]
+    },
+    {
+      "id": "builder-system",
+      "from": "builder",
+      "to": "system",
+      "label": "system",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        422,
+        205
+      ]
+    },
+    {
+      "id": "builder-meta",
+      "from": "builder",
+      "to": "meta",
+      "label": "meta",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        422,
+        335
+      ]
+    },
+    {
+      "id": "system-history",
+      "from": "system",
+      "to": "history",
+      "label": "消息",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        637,
+        205
+      ]
+    },
+    {
+      "id": "meta-history",
+      "from": "meta",
+      "to": "history",
+      "label": "附件",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        637,
+        335
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "技能与代码",
+      "items": [
+        "这里只加载技能清单；Skill 执行后正文才进入工具结果",
+        "源码通过 Read / Search 等工具或用户附件进入请求"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "角色边界",
+      "items": [
+        "内部没有 developer role；reminder 不等于真实用户输入",
+        "custom prompt 抑制默认动态 system，仍可保留 meta-user 上下文"
+      ]
+    }
+  ]
+}

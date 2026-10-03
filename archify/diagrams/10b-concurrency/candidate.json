@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 10B · Concurrency Owners",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/10b-concurrency/concurrency.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "inbox",
+      "label": "CommandInbox",
+      "sublabel": "同 session admission gate",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+          "line": 118
+        }
+      ],
+      "pos": [
+        35,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "queue",
+      "label": "Runtime Queue",
+      "sublabel": "一个 foreground drainer",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/runtime-command-queue.ts",
+          "line": 36
+        }
+      ],
+      "pos": [
+        365,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "loop",
+      "label": "Turn Loop",
+      "sublabel": "模型与工具步骤",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ],
+      "pos": [
+        695,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model admission",
+      "sublabel": "物理 attempt ticket",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+          "line": 38
+        }
+      ],
+      "pos": [
+        695,
+        320
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tool groups",
+      "sublabel": "安全并发 / early cache",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/batch-runner.ts",
+          "line": 24
+        }
+      ],
+      "pos": [
+        365,
+        320
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "child",
+      "label": "Child tasks",
+      "sublabel": "独立 session / abort",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/subagent/runner.ts",
+          "line": 131
+        }
+      ],
+      "pos": [
+        35,
+        320
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "events",
+      "label": "Stream queue",
+      "sublabel": "tail / boundary drain",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model-streaming-event-queue.ts",
+          "line": 12
+        }
+      ],
+      "pos": [
+        695,
+        560
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "registry",
+      "label": "Task registry",
+      "sublabel": "branch/run 防旧通知",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/runtime-command-queue.ts",
+          "line": 1
+        }
+      ],
+      "pos": [
+        35,
+        560
+      ],
+      "size": [
+        220,
+        80
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "inbox",
+      "to": "queue",
+      "label": "已接受输入",
+      "variant": "default"
+    },
+    {
+      "from": "queue",
+      "to": "loop",
+      "label": "执行",
+      "variant": "default"
+    },
+    {
+      "from": "loop",
+      "to": "model",
+      "label": "request",
+      "variant": "default"
+    },
+    {
+      "from": "loop",
+      "to": "tools",
+      "label": "schedule",
+      "variant": "default"
+    },
+    {
+      "from": "tools",
+      "to": "child",
+      "label": "Agent 工具",
+      "variant": "default"
+    },
+    {
+      "from": "child",
+      "to": "registry",
+      "label": "生命周期",
+      "variant": "default"
+    },
+    {
+      "from": "loop",
+      "to": "events",
+      "label": "delta 写队列",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "不同串行边界",
+      "items": [
+        "admission settle、command drain 与 model ticket 不互换",
+        "多个 session/child 可并行，不意味着每个一个 OS thread"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "关键竞态防护",
+      "items": [
+        "input/live pin、branch generation、foreground lease",
+        "工具最终按声明 ID 配对，非完成先后顺序"
+      ]
+    }
+  ]
+}

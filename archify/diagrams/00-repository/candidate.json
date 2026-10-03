@@ -1,0 +1,409 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 0 · ZCode Initial Repository Map",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/00-repository/repository.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "desktop",
+      "type": "frontend",
+      "label": "Desktop / 共享 UI",
+      "sublabel": "Renderer → 窗口 Host",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        200,
+        74
+      ],
+      "sources": [
+        {
+          "path": "packages/desktop/src/renderer/src/main.tsx",
+          "line": 303,
+          "end_line": 350
+        },
+        {
+          "path": "packages/desktop/src/host/index.ts",
+          "line": 2780,
+          "end_line": 2845
+        }
+      ]
+    },
+    {
+      "id": "services",
+      "type": "backend",
+      "label": "Services / Host",
+      "sublabel": "会话 facade · 工作区服务",
+      "pos": [
+        340,
+        90
+      ],
+      "size": [
+        200,
+        74
+      ],
+      "sources": [
+        {
+          "path": "packages/services/src/node.ts",
+          "line": 2301,
+          "end_line": 2337
+        },
+        {
+          "path": "packages/services/src/zcode-agent/zcodeAgentProcessManager.ts",
+          "line": 1019,
+          "end_line": 1037
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "type": "backend",
+      "label": "Agent CLI 入口",
+      "sublabel": "app-server · prompt · TUI",
+      "pos": [
+        640,
+        90
+      ],
+      "size": [
+        200,
+        74
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/cli/src/main.ts",
+          "line": 15,
+          "end_line": 93
+        },
+        {
+          "path": "apps/zcode-cli/packages/cli/src/run.ts",
+          "line": 498,
+          "end_line": 581
+        }
+      ]
+    },
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "Web / 共享 UI",
+      "sublabel": "Root · platform 注入",
+      "pos": [
+        40,
+        320
+      ],
+      "size": [
+        200,
+        74
+      ],
+      "sources": [
+        {
+          "path": "packages/web/src/main.tsx",
+          "line": 438,
+          "end_line": 469
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Server",
+      "sublabel": "HTTP / WebSocket / stdio",
+      "pos": [
+        340,
+        320
+      ],
+      "size": [
+        200,
+        74
+      ],
+      "sources": [
+        {
+          "path": "packages/server/src/entry-http.ts",
+          "line": 8,
+          "end_line": 26
+        },
+        {
+          "path": "packages/server/src/entry-stdio.ts",
+          "line": 39,
+          "end_line": 84
+        }
+      ]
+    },
+    {
+      "id": "bootstrap",
+      "type": "backend",
+      "label": "Bootstrap / App",
+      "sublabel": "配置 · Plugin · MCP",
+      "pos": [
+        640,
+        320
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 249,
+          "end_line": 283
+        },
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 144,
+          "end_line": 261
+        }
+      ]
+    },
+    {
+      "id": "runtime",
+      "type": "backend",
+      "label": "Core AgentRuntime",
+      "sublabel": "会话执行 · Turn Loop · Event",
+      "pos": [
+        640,
+        550
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+          "line": 228,
+          "end_line": 307
+        },
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 43,
+          "end_line": 218
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "type": "backend",
+      "label": "Context / History",
+      "sublabel": "ContextBuilder · MessageHistory",
+      "pos": [
+        340,
+        550
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+          "line": 277,
+          "end_line": 305
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "Tool System",
+      "sublabel": "Registry · Scheduler · Executor",
+      "pos": [
+        940,
+        550
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/helpers/runtime-tools.ts",
+          "line": 34,
+          "end_line": 50
+        },
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+          "line": 12,
+          "end_line": 54
+        }
+      ]
+    },
+    {
+      "id": "adapters",
+      "type": "backend",
+      "label": "执行 / I/O Adapters",
+      "sublabel": "文件 · Shell · MCP · Browser",
+      "pos": [
+        940,
+        320
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 726,
+          "end_line": 765
+        },
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+          "line": 190,
+          "end_line": 208
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "type": "backend",
+      "label": "Model / Provider",
+      "sublabel": "Registry · ModelFactory · AI SDK",
+      "pos": [
+        640,
+        775
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 523,
+          "end_line": 556
+        },
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-runtime.ts",
+          "line": 1,
+          "end_line": 52
+        }
+      ]
+    },
+    {
+      "id": "storage",
+      "type": "database",
+      "label": "Session / Storage",
+      "sublabel": "SQLite 消息 · Event 持久化",
+      "pos": [
+        940,
+        775
+      ],
+      "size": [
+        200,
+        80
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+          "line": 101,
+          "end_line": 109
+        },
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+          "line": 609,
+          "end_line": 652
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "desktop-rpc",
+      "from": "desktop",
+      "to": "services",
+      "label": "MessagePort",
+      "variant": "emphasis"
+    },
+    {
+      "id": "spawn-cli",
+      "from": "services",
+      "to": "cli",
+      "label": "stdio",
+      "variant": "emphasis"
+    },
+    {
+      "id": "cli-bootstrap",
+      "from": "cli",
+      "to": "bootstrap",
+      "label": "创建协议服务 / App"
+    },
+    {
+      "id": "web-server",
+      "from": "web",
+      "to": "server",
+      "label": "WebSocket"
+    },
+    {
+      "id": "server-services",
+      "from": "server",
+      "to": "services",
+      "label": "createLocalServices"
+    },
+    {
+      "id": "create-runtime",
+      "from": "bootstrap",
+      "to": "runtime",
+      "label": "new AgentRuntime",
+      "variant": "emphasis"
+    },
+    {
+      "id": "runtime-context",
+      "from": "runtime",
+      "to": "context",
+      "label": "历史 / Context"
+    },
+    {
+      "id": "runtime-tools",
+      "from": "runtime",
+      "to": "tools",
+      "label": "工具调用"
+    },
+    {
+      "id": "tools-adapters",
+      "from": "tools",
+      "to": "adapters",
+      "label": "调用注入端口"
+    },
+    {
+      "id": "runtime-model",
+      "from": "runtime",
+      "to": "model",
+      "label": "模型请求"
+    },
+    {
+      "id": "runtime-store",
+      "from": "runtime",
+      "to": "storage",
+      "label": "会话与事件写入"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Confirmed · 导航范围",
+      "items": [
+        "这是 12 个一级角色的初始导航图；细节由 Batch 1、2 的独立技术图展开。",
+        "packages/client + rpc 承载图中的 RPC；shared/contracts 承载协议与端口类型。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "边界说明",
+      "items": [
+        "Services 是产品服务层；Core AgentRuntime 执行每个会话的 Agent Loop。",
+        "不同部署复用同一实现，并不共享全局 Runtime 实例。Plugin/MCP 的启动装配先归入 Bootstrap。"
+      ]
+    }
+  ]
+}

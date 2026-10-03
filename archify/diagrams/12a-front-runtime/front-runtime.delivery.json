@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "535fd17b-09f9-4cc2-86be-eac74bde2683",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\12a-front-runtime\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\12a-front-runtime\\front-runtime.html",
+  "specification": {
+    "sha256": "49d899f2b86d83df24f2c1bd9a0a76a99f872672d43d699d78eb8dc0a34c0612",
+    "bytes": 5474
+  },
+  "artifact": {
+    "sha256": "485d1ad5e5b5876399b027093b2c3679fb6a96991e8978f1ac5583c566d428db",
+    "bytes": 762081
+  }
+}

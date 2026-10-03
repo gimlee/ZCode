@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "fde921d0-aad9-4c51-a8cf-ea8dfa4c3150",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\07c-edit-data\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\07c-edit-data\\edit-data.html",
+  "specification": {
+    "sha256": "8238aa2f2e4dc3af0915721fc2a9d55cb6baabf3a0dd861b0a75f6b1d750a746",
+    "bytes": 5134
+  },
+  "artifact": {
+    "sha256": "e6a7b3961807987ebad24fcf2058696b9761bb2d894453315d002959c0814376",
+    "bytes": 756755
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 2B · Agent Loop Lifecycle",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/02b-loop/loop.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "subtitle": "runRegularTurnLoop while(true) · 阶段抽象，不是 TurnPhase enum"
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "普通 model step 与结束判断"
+    },
+    {
+      "id": "tools",
+      "label": "本地工具回环"
+    },
+    {
+      "id": "recovery",
+      "label": "请求恢复分支"
+    },
+    {
+      "id": "terminal",
+      "label": "当前 turn 的退出"
+    }
+  ],
+  "states": [
+    {
+      "id": "receive",
+      "label": "Receive Task",
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "sublabel": "admission / 冻结 Model",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 93
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "label": "Build Context",
+      "lane": "main",
+      "col": 1,
+      "type": "active",
+      "sublabel": "compact / MCP / tools",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Call Model",
+      "lane": "main",
+      "col": 2,
+      "type": "waiting",
+      "sublabel": "一次 model step",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 205
+        }
+      ]
+    },
+    {
+      "id": "branch",
+      "label": "Local Tool?",
+      "lane": "main",
+      "col": 3,
+      "type": "decision",
+      "sublabel": "排除 providerExecuted",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 645
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "label": "Finished?",
+      "lane": "main",
+      "col": 4,
+      "type": "decision",
+      "sublabel": "inline guide / Stop hook",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-stop.ts",
+          "line": 199
+        }
+      ]
+    },
+    {
+      "id": "execute",
+      "label": "Execute Tools",
+      "lane": "tools",
+      "col": 3,
+      "type": "active",
+      "sublabel": "复用 streamed result",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 178
+        }
+      ]
+    },
+    {
+      "id": "result",
+      "label": "Add Tool Results",
+      "lane": "tools",
+      "col": 2,
+      "type": "active",
+      "sublabel": "配对 → history / store",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    },
+    {
+      "id": "recovery",
+      "label": "Recover Request",
+      "lane": "recovery",
+      "col": 1,
+      "type": "active",
+      "sublabel": "anchor / compact / Continue",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 278
+        }
+      ]
+    },
+    {
+      "id": "done",
+      "label": "Turn Completed",
+      "lane": "terminal",
+      "col": 4,
+      "type": "success",
+      "sublabel": "accounting / outcome",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 647
+        }
+      ]
+    },
+    {
+      "id": "error",
+      "label": "Cancelled / Error",
+      "lane": "terminal",
+      "col": 0,
+      "type": "failure",
+      "sublabel": "保留已 accepted future input",
+      "width": 186,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 715
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "receive",
+      "to": "context"
+    },
+    {
+      "from": "context",
+      "to": "model"
+    },
+    {
+      "from": "model",
+      "to": "branch"
+    },
+    {
+      "from": "branch",
+      "to": "finish",
+      "label": "无本地工具",
+      "labelAt": [
+        967,
+        47
+      ]
+    },
+    {
+      "from": "branch",
+      "to": "execute",
+      "label": "有本地工具"
+    },
+    {
+      "from": "execute",
+      "to": "result"
+    },
+    {
+      "from": "result",
+      "to": "context",
+      "label": "下一请求"
+    },
+    {
+      "from": "finish",
+      "to": "done",
+      "label": "不续跑"
+    },
+    {
+      "from": "finish",
+      "to": "context",
+      "label": "guide / hook"
+    },
+    {
+      "from": "model",
+      "to": "recovery",
+      "label": "可恢复异常 / 截断"
+    },
+    {
+      "from": "recovery",
+      "to": "context",
+      "label": "预算内重开"
+    },
+    {
+      "from": "receive",
+      "to": "error",
+      "label": "abort / error",
+      "variant": "security"
+    },
+    {
+      "from": "result",
+      "to": "done",
+      "label": "显式 turn-control"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "主回环",
+      "items": [
+        "tool success / error 成为配对结果后再请求模型",
+        "没有本地工具仍需经过文本完成 Gate"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "恢复与退出",
+      "items": [
+        "普通 loop 没有按工具次数硬停止",
+        "abort / 不可恢复错误可从执行中各边界退出；图简写入口边"
+      ]
+    }
+  ]
+}

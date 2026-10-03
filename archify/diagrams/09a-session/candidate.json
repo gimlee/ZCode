@@ -1,0 +1,248 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 9A · Session Lifecycle",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/09a-session/session.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "驻留会话"
+    },
+    {
+      "id": "recovery",
+      "label": "去激活与冷恢复"
+    },
+    {
+      "id": "terminal",
+      "label": "不可恢复目标"
+    }
+  ],
+  "states": [
+    {
+      "id": "create",
+      "label": "创建 App",
+      "sublabel": "新建或指定 sessionId",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 150
+        }
+      ],
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "ready",
+      "label": "Runtime ready",
+      "sublabel": "Context 按需初始化",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 434
+        }
+      ],
+      "lane": "main",
+      "col": 1,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "persist",
+      "label": "首次 durable session",
+      "sublabel": "user / parts / metadata",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/message-persistence.ts",
+          "line": 1
+        }
+      ],
+      "lane": "main",
+      "col": 2,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "turn",
+      "label": "执行 turn",
+      "sublabel": "模型、工具与结果",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ],
+      "lane": "main",
+      "col": 3,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "idle",
+      "label": "驻留空闲",
+      "sublabel": "等待下一输入或订阅",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/session-resident-pool.ts",
+          "line": 56
+        }
+      ],
+      "lane": "main",
+      "col": 4,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "closed",
+      "label": "释放 resident App",
+      "sublabel": "DB 保留；不复活 OS pid",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/session-resident-pool.ts",
+          "line": 152
+        }
+      ],
+      "lane": "recovery",
+      "col": 4,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "resume",
+      "label": "冷恢复单飞",
+      "sublabel": "订阅 persisted session",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/cold-session-resume.ts",
+          "line": 42
+        }
+      ],
+      "lane": "recovery",
+      "col": 2,
+      "type": "waiting",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "hydrate",
+      "label": "重建历史与状态",
+      "sublabel": "active branch / compact / mode",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/resume.ts",
+          "line": 56
+        }
+      ],
+      "lane": "recovery",
+      "col": 3,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "missing",
+      "label": "拒绝目标",
+      "sublabel": "不存在或 archived",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/resume.ts",
+          "line": 70
+        }
+      ],
+      "lane": "terminal",
+      "col": 2,
+      "type": "failure",
+      "width": 176,
+      "height": 78
+    }
+  ],
+  "transitions": [
+    {
+      "from": "create",
+      "to": "ready",
+      "label": "初始化",
+      "variant": "default"
+    },
+    {
+      "from": "ready",
+      "to": "persist",
+      "label": "首输入",
+      "variant": "default"
+    },
+    {
+      "from": "persist",
+      "to": "turn",
+      "label": "执行",
+      "variant": "default"
+    },
+    {
+      "from": "turn",
+      "to": "idle",
+      "label": "完成",
+      "variant": "default"
+    },
+    {
+      "from": "idle",
+      "to": "turn",
+      "label": "新输入",
+      "variant": "default"
+    },
+    {
+      "from": "idle",
+      "to": "closed",
+      "label": "符合回收",
+      "variant": "default"
+    },
+    {
+      "from": "closed",
+      "to": "resume",
+      "label": "重新订阅",
+      "variant": "default"
+    },
+    {
+      "from": "resume",
+      "to": "hydrate",
+      "label": "找到",
+      "variant": "default"
+    },
+    {
+      "from": "hydrate",
+      "to": "idle",
+      "label": "READY",
+      "variant": "default"
+    },
+    {
+      "from": "resume",
+      "to": "missing",
+      "label": "不可用",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "恢复含义",
+      "items": [
+        "Runtime 与 Context 被重建；不是原 JS/OS 状态续存",
+        "任务/订阅/交互/operation lease 会阻止 resident 回收"
+      ]
+    }
+  ]
+}

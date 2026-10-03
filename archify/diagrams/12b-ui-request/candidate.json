@@ -1,0 +1,175 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "图 12B · UI Request Sequence",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/12b-ui-request/ui-request.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      580
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "ui",
+      "label": "SessionPane",
+      "sublabel": "envelope / pending",
+      "type": "frontend",
+      "sources": [
+        {
+          "path": "packages/ui/src/v4/SessionPane.tsx",
+          "line": 1395
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "label": "Transport",
+      "sublabel": "handshake / sendCommand",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/ui/src/v4/agentConversationTransport.ts",
+          "line": 350
+        }
+      ]
+    },
+    {
+      "id": "host",
+      "label": "Host Service",
+      "sublabel": "trusted carrier / identity",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/services/src/zcode-agent/zcodeAgentService.ts",
+          "line": 5044
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "label": "CLI Gateway / Inbox",
+      "sublabel": "durable admission",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/v4-gateway.ts",
+          "line": 2376
+        }
+      ]
+    },
+    {
+      "id": "runtime",
+      "label": "Runtime / Store",
+      "sublabel": "执行与 committed facts",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 93
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m0",
+      "from": "ui",
+      "to": "transport",
+      "label": "上行前记录 pending ID",
+      "variant": "default",
+      "y": 170
+    },
+    {
+      "id": "m1",
+      "from": "transport",
+      "to": "host",
+      "label": "sendConversationCommandV4",
+      "variant": "default",
+      "y": 200
+    },
+    {
+      "id": "m2",
+      "from": "host",
+      "to": "cli",
+      "label": "request command + workspace route",
+      "variant": "default",
+      "y": 230
+    },
+    {
+      "id": "m3",
+      "from": "cli",
+      "to": "runtime",
+      "label": "admit input / enqueue",
+      "variant": "default",
+      "y": 260
+    },
+    {
+      "id": "m4",
+      "from": "cli",
+      "to": "host",
+      "label": "ACK accepted / duplicate",
+      "variant": "return",
+      "y": 290
+    },
+    {
+      "id": "m5",
+      "from": "host",
+      "to": "ui",
+      "label": "settle pending；等待投影",
+      "variant": "return",
+      "y": 320
+    },
+    {
+      "id": "m6",
+      "from": "runtime",
+      "to": "cli",
+      "label": "committed rows / queue / stream",
+      "variant": "default",
+      "y": 350
+    },
+    {
+      "id": "m7",
+      "from": "cli",
+      "to": "host",
+      "label": "trusted-profile subscription frames",
+      "variant": "default",
+      "y": 380
+    },
+    {
+      "id": "m8",
+      "from": "host",
+      "to": "transport",
+      "label": "snapshot / delta",
+      "variant": "default",
+      "y": 410
+    },
+    {
+      "id": "m9",
+      "from": "transport",
+      "to": "ui",
+      "label": "replace / contiguous apply",
+      "variant": "default",
+      "y": 440
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "恢复边界",
+      "items": [
+        "accepted projection 静默：重订阅，不重发 command",
+        "transport error：保留对账 ID，不能把 ACK 当 final answer"
+      ]
+    }
+  ]
+}

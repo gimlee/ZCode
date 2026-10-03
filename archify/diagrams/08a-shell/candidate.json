@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "图 8A · Shell Execution Sequence",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/08a-shell/shell.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      580
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "core",
+      "label": "Core Bash",
+      "sublabel": "解析与权限后",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+          "line": 97
+        }
+      ]
+    },
+    {
+      "id": "port",
+      "label": "ExecutionPort",
+      "sublabel": "前台 / 后台 lifecycle",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+          "line": 187
+        }
+      ]
+    },
+    {
+      "id": "adapter",
+      "label": "Node Adapter",
+      "sublabel": "shell/env/cwd 准备",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-process.ts",
+          "line": 58
+        }
+      ]
+    },
+    {
+      "id": "os",
+      "label": "OS 子进程",
+      "sublabel": "Agent 所在宿主",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+          "line": 197
+        }
+      ]
+    },
+    {
+      "id": "output",
+      "label": "输出与返回",
+      "sublabel": "preview / 持久化",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+          "line": 25
+        }
+      ]
+    }
+  ],
+  "messages": [
+    {
+      "id": "m0",
+      "from": "core",
+      "to": "port",
+      "label": "ExecutionRequest",
+      "variant": "default",
+      "y": 170
+    },
+    {
+      "id": "m1",
+      "from": "port",
+      "to": "adapter",
+      "label": "run + AbortSignal",
+      "variant": "default",
+      "y": 200
+    },
+    {
+      "id": "m2",
+      "from": "port",
+      "to": "adapter",
+      "label": "准备 shell / cwd",
+      "variant": "default",
+      "y": 230
+    },
+    {
+      "id": "m3",
+      "from": "adapter",
+      "to": "os",
+      "label": "spawn",
+      "variant": "default",
+      "y": 260
+    },
+    {
+      "id": "m4",
+      "from": "os",
+      "to": "output",
+      "label": "stdout / stderr",
+      "variant": "default",
+      "y": 290
+    },
+    {
+      "id": "m5",
+      "from": "os",
+      "to": "adapter",
+      "label": "exit / close",
+      "variant": "return",
+      "y": 320
+    },
+    {
+      "id": "m6",
+      "from": "adapter",
+      "to": "os",
+      "label": "取消或 timeout 清理",
+      "variant": "default",
+      "y": 350
+    },
+    {
+      "id": "m7",
+      "from": "output",
+      "to": "adapter",
+      "label": "输出事实",
+      "variant": "return",
+      "y": 380
+    },
+    {
+      "id": "m8",
+      "from": "adapter",
+      "to": "port",
+      "label": "status / exitCode / cwd",
+      "variant": "return",
+      "y": 410
+    },
+    {
+      "id": "m9",
+      "from": "port",
+      "to": "core",
+      "label": "BashOutput",
+      "variant": "return",
+      "y": 440
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "时间与终止",
+      "items": [
+        "timeout 从 spawn 后起算；准备期仍能取消",
+        "root shell 退出不等于后代和输出 pipe 已关闭"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "执行环境",
+      "items": [
+        "当前 exec adapter 使用宿主进程，不启用旧 sandbox",
+        "env overlay 和网络代理配置不构成 OS 访问隔离"
+      ]
+    }
+  ]
+}

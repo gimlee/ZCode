@@ -1,0 +1,518 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 19 · ZCode Master Architecture Map",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/19-master/master.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "ui",
+      "label": "V4 User Interface",
+      "sublabel": "输入 / pending / projection",
+      "type": "frontend",
+      "sources": [
+        {
+          "path": "packages/ui/src/v4/SessionPane.tsx",
+          "line": 1395
+        }
+      ],
+      "pos": [
+        35,
+        60
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "host",
+      "label": "Window Local Host",
+      "sublabel": "services / workspace clients",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/services/src/zcode-agent/zcodeAgentService.ts",
+          "line": 5044
+        }
+      ],
+      "pos": [
+        320,
+        60
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "app",
+      "label": "CLI Protocol / App",
+      "sublabel": "process resources / session facades",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 144
+        }
+      ],
+      "pos": [
+        605,
+        60
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "runtime",
+      "label": "Agent Runtime",
+      "sublabel": "command → turn → model step",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 43
+        }
+      ],
+      "pos": [
+        890,
+        60
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model Abstraction",
+      "sublabel": "immutable handle / capabilities",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+          "line": 40
+        }
+      ],
+      "pos": [
+        1175,
+        60
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "provider",
+      "label": "Provider Adapter",
+      "sublabel": "3 protocol factories / stream",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 344
+        }
+      ],
+      "pos": [
+        1460,
+        60
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "main",
+      "label": "Desktop Main",
+      "sublabel": "spawn / ports / native dispatch",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/desktop/src/main/desktopHostProcess.ts",
+          "line": 706
+        }
+      ],
+      "pos": [
+        35,
+        330
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "workspace",
+      "label": "Workspace / Remote",
+      "sublabel": "identity / connection registry",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/desktop/src/host/windowRemoteConnectionRegistry.ts",
+          "line": 1
+        }
+      ],
+      "pos": [
+        320,
+        330
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "inbox",
+      "label": "V4 Gateway / Inbox",
+      "sublabel": "durable admission / trusted profile",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+          "line": 118
+        }
+      ],
+      "pos": [
+        605,
+        330
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "context",
+      "label": "Context / Prompt",
+      "sublabel": "sections / projection / compact",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+          "line": 87
+        }
+      ],
+      "pos": [
+        890,
+        330
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tool System",
+      "sublabel": "registry / scheduler / executor",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ],
+      "pos": [
+        1175,
+        330
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "mcp",
+      "label": "MCP / Browser",
+      "sublabel": "external descriptors / transport",
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+          "line": 157
+        }
+      ],
+      "pos": [
+        1460,
+        330
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "remote",
+      "label": "Mobile Attachment",
+      "sublabel": "复用已有 Host 会话",
+      "type": "external",
+      "sources": [
+        {
+          "path": "packages/desktop/src/main/desktopRemoteSessions.ts",
+          "line": 976
+        }
+      ],
+      "pos": [
+        35,
+        600
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "storage",
+      "label": "SQLite / Artifacts",
+      "sublabel": "session / inputs / checkpoints",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+          "line": 225
+        }
+      ],
+      "pos": [
+        320,
+        600
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "plugins",
+      "label": "Skill / Plugin / Hooks",
+      "sublabel": "startup components / trust",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/startup-marks.ts",
+          "line": 11
+        }
+      ],
+      "pos": [
+        605,
+        600
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "history",
+      "label": "History / Events",
+      "sublabel": "canonical pairs / event sinks",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+          "line": 135
+        }
+      ],
+      "pos": [
+        890,
+        600
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "fs",
+      "label": "File / Search",
+      "sublabel": "Read/Edit/Write / text discovery",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+          "line": 115
+        }
+      ],
+      "pos": [
+        1175,
+        600
+      ],
+      "size": [
+        180,
+        80
+      ]
+    },
+    {
+      "id": "exec",
+      "label": "Shell / OS",
+      "sublabel": "cwd / env / process tree",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+          "line": 26
+        }
+      ],
+      "pos": [
+        1460,
+        600
+      ],
+      "size": [
+        180,
+        80
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "ui",
+      "to": "host",
+      "label": "service RPC",
+      "variant": "default"
+    },
+    {
+      "from": "host",
+      "to": "app",
+      "label": "stdio V4",
+      "variant": "default"
+    },
+    {
+      "from": "app",
+      "to": "runtime",
+      "label": "创建与注入",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "model",
+      "label": "request",
+      "variant": "default"
+    },
+    {
+      "from": "model",
+      "to": "provider",
+      "label": "bind / execute",
+      "variant": "default"
+    },
+    {
+      "from": "main",
+      "to": "host",
+      "label": "进程与端口",
+      "variant": "default"
+    },
+    {
+      "from": "host",
+      "to": "workspace",
+      "label": "identity 路由",
+      "variant": "default"
+    },
+    {
+      "from": "workspace",
+      "to": "remote",
+      "label": "已有 attachment",
+      "variant": "default"
+    },
+    {
+      "from": "app",
+      "to": "inbox",
+      "label": "protocol facade",
+      "variant": "default"
+    },
+    {
+      "from": "inbox",
+      "to": "runtime",
+      "label": "accepted input",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "context",
+      "label": "构造请求视图",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "tools",
+      "label": "local tool calls",
+      "variant": "default"
+    },
+    {
+      "from": "tools",
+      "to": "mcp",
+      "label": "external handler",
+      "variant": "default"
+    },
+    {
+      "from": "context",
+      "to": "history",
+      "label": "prefix / active entries",
+      "variant": "default"
+    },
+    {
+      "from": "history",
+      "to": "storage",
+      "label": "persisted facts",
+      "variant": "default",
+      "labelAt": [
+        795,
+        710
+      ]
+    },
+    {
+      "from": "plugins",
+      "to": "app",
+      "label": "components",
+      "variant": "default"
+    },
+    {
+      "from": "tools",
+      "to": "fs",
+      "label": "FS port",
+      "variant": "default"
+    },
+    {
+      "from": "tools",
+      "to": "exec",
+      "label": "Execution port",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "源码研究入口",
+      "items": [
+        "点击节点查看固定提交的源码；组件是责任聚合，不是全部包依赖图",
+        "主线：UI → Host → CLI App → Runtime → Model → Provider"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "两条执行闭环",
+      "items": [
+        "Context/History 决定模型看到什么；Tools → FS/Exec/MCP 改变外部世界",
+        "Tools result 规范化、配对提交后回到下一步；细节见专题图"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "所有者与范围",
+      "items": [
+        "Main/relay 调度转发；CLI 拥有 accepted inputs 和会话执行事实",
+        "Mobile 复用 attachment；文本 on-demand search，无确认 semantic index"
+      ]
+    }
+  ]
+}

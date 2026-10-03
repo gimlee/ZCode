@@ -1,0 +1,210 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 13B · Physical Model Retry Lifecycle",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/13b-retry/retry.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "物理尝试"
+    },
+    {
+      "id": "wait",
+      "label": "重试等待"
+    },
+    {
+      "id": "outcome",
+      "label": "结束"
+    }
+  ],
+  "states": [
+    {
+      "id": "admit",
+      "label": "Attempt admission",
+      "sublabel": "获取物理 in-flight ticket",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+          "line": 38
+        }
+      ],
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "request",
+      "label": "Resolve + request",
+      "sublabel": "刷新 auth / frozen model",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+          "line": 240
+        }
+      ],
+      "lane": "main",
+      "col": 1,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "classify",
+      "label": "分类与 boundary",
+      "sublabel": "retryable / policy / budget",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+          "line": 1455
+        }
+      ],
+      "lane": "main",
+      "col": 2,
+      "type": "decision",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "release",
+      "label": "Release ticket",
+      "sublabel": "失败后先释放槽",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+          "line": 38
+        }
+      ],
+      "lane": "wait",
+      "col": 2,
+      "type": "active",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "delay",
+      "label": "Backoff",
+      "sublabel": "Retry-After / cap / jitter",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-retry.ts",
+          "line": 39
+        }
+      ],
+      "lane": "wait",
+      "col": 1,
+      "type": "waiting",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "success",
+      "label": "模型结果",
+      "sublabel": "归一化回 Core",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-normalization.ts",
+          "line": 17
+        }
+      ],
+      "lane": "outcome",
+      "col": 1,
+      "type": "success",
+      "width": 176,
+      "height": 78
+    },
+    {
+      "id": "raise",
+      "label": "抛给 Core",
+      "sublabel": "recover / compact / fail",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 742
+        }
+      ],
+      "lane": "outcome",
+      "col": 2,
+      "type": "failure",
+      "width": 176,
+      "height": 78
+    }
+  ],
+  "transitions": [
+    {
+      "from": "admit",
+      "to": "request",
+      "label": "ticket",
+      "variant": "default"
+    },
+    {
+      "from": "request",
+      "to": "classify",
+      "label": "失败",
+      "variant": "default"
+    },
+    {
+      "from": "request",
+      "to": "success",
+      "label": "成功",
+      "variant": "default"
+    },
+    {
+      "from": "classify",
+      "to": "release",
+      "label": "允许 retry",
+      "variant": "default"
+    },
+    {
+      "from": "release",
+      "to": "delay",
+      "label": "退避",
+      "variant": "default",
+      "labelAt": [
+        490,
+        240
+      ]
+    },
+    {
+      "from": "delay",
+      "to": "admit",
+      "label": "下一 attempt",
+      "variant": "default"
+    },
+    {
+      "from": "classify",
+      "to": "raise",
+      "label": "停止重放",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "预算和取消",
+      "items": [
+        "普通默认 10 retries；配置可覆盖",
+        "workflow unbounded 仍有确定性 stop；等待可取消"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "层级",
+      "items": [
+        "这里只画 adapter attempt 生命周期",
+        "Core recovery 发新 step；不是续接原始 SSE 字节"
+      ]
+    }
+  ]
+}

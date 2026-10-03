@@ -1,0 +1,389 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "图 2A · Agent Runtime Workflow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/02a-workflow/workflow.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "subtitle": "实际 owner 与交接 · 普通 turn 主路径；protocol v4 admission 详见报告"
+  },
+  "lanes": [
+    {
+      "id": "surface",
+      "label": "输入与公开 App 接口"
+    },
+    {
+      "id": "runtime",
+      "label": "Runtime / Model owner"
+    },
+    {
+      "id": "tools",
+      "label": "Tool Scheduler / Executor 与结果提交"
+    },
+    {
+      "id": "outcome",
+      "label": "完成 Gate / Recovery / Outcome"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "user",
+      "label": "用户输入",
+      "lane": "surface",
+      "col": 0,
+      "type": "external",
+      "sublabel": "文本 / 附件 / intent",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/input-facade.ts",
+          "line": 369
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "label": "App.submitPrompt",
+      "lane": "surface",
+      "col": 1,
+      "type": "frontend",
+      "sublabel": "shell / resume / 展开",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/input-facade.ts",
+          "line": 127
+        }
+      ]
+    },
+    {
+      "id": "admit",
+      "label": "Runtime Command",
+      "lane": "runtime",
+      "col": 1,
+      "type": "messagebus",
+      "sublabel": "queue 串行执行",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "id": "context",
+      "label": "Context / Tools",
+      "lane": "runtime",
+      "col": 2,
+      "type": "backend",
+      "sublabel": "compact / MCP / 投影",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 69
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model 请求",
+      "lane": "runtime",
+      "col": 3,
+      "type": "cloud",
+      "sublabel": "streamText / generateText",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+          "line": 141
+        }
+      ]
+    },
+    {
+      "id": "response",
+      "label": "Response 分流",
+      "lane": "runtime",
+      "col": 4,
+      "type": "backend",
+      "sublabel": "本地 tool calls?",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 645
+        }
+      ]
+    },
+    {
+      "id": "tool",
+      "label": "Tool 执行",
+      "lane": "tools",
+      "col": 4,
+      "type": "backend",
+      "sublabel": "schedule / 权限 / handler",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 178
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "label": "提交 Tool Result",
+      "lane": "tools",
+      "col": 5,
+      "type": "database",
+      "sublabel": "durable + 双 history",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    },
+    {
+      "id": "recover",
+      "label": "恢复安全锚点",
+      "lane": "outcome",
+      "col": 3,
+      "type": "backend",
+      "sublabel": "core recovery / compact",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/streaming-tool-coordinator.ts",
+          "line": 148
+        }
+      ]
+    },
+    {
+      "id": "gate",
+      "label": "文本完成 Gate",
+      "lane": "runtime",
+      "col": 5,
+      "type": "security",
+      "sublabel": "guide / Stop hook",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-stop.ts",
+          "line": 199
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "label": "Turn outcome",
+      "lane": "surface",
+      "col": 5,
+      "type": "frontend",
+      "sublabel": "成功 · goal 可继续",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 647
+        }
+      ]
+    },
+    {
+      "id": "abort",
+      "label": "取消 / 失败",
+      "lane": "outcome",
+      "col": 1,
+      "type": "security",
+      "sublabel": "outcome + 释放执行资源",
+      "width": 148,
+      "height": 76,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 715
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "from": "user",
+      "to": "app",
+      "role": "main",
+      "variant": "default"
+    },
+    {
+      "id": "e1",
+      "from": "app",
+      "to": "admit",
+      "role": "main",
+      "variant": "default"
+    },
+    {
+      "id": "e2",
+      "from": "admit",
+      "to": "context",
+      "role": "main",
+      "variant": "default"
+    },
+    {
+      "id": "e3",
+      "from": "context",
+      "to": "model",
+      "role": "main",
+      "variant": "default"
+    },
+    {
+      "id": "e4",
+      "from": "model",
+      "to": "response",
+      "role": "main",
+      "variant": "default"
+    },
+    {
+      "id": "e5",
+      "from": "response",
+      "to": "gate",
+      "role": "main",
+      "label": "无本地工具",
+      "variant": "default"
+    },
+    {
+      "id": "e6",
+      "from": "gate",
+      "to": "final",
+      "role": "main",
+      "label": "不再续跑",
+      "variant": "default"
+    },
+    {
+      "id": "e7",
+      "from": "response",
+      "to": "tool",
+      "role": "branch",
+      "label": "有本地工具",
+      "variant": "default"
+    },
+    {
+      "id": "e8",
+      "from": "tool",
+      "to": "results",
+      "role": "branch",
+      "variant": "default"
+    },
+    {
+      "id": "e9",
+      "from": "results",
+      "to": "context",
+      "role": "return",
+      "label": "下一模型请求",
+      "variant": "emphasis",
+      "route": "bottom-channel",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "channelY": 580
+    },
+    {
+      "id": "e10",
+      "from": "model",
+      "to": "tool",
+      "role": "async",
+      "label": "安全只读调用提前执行",
+      "variant": "dashed"
+    },
+    {
+      "id": "e11",
+      "from": "model",
+      "to": "recover",
+      "role": "error",
+      "label": "可恢复异常",
+      "variant": "security"
+    },
+    {
+      "id": "e12",
+      "from": "recover",
+      "to": "context",
+      "role": "return",
+      "label": "安全重开",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e13",
+      "from": "gate",
+      "to": "context",
+      "role": "return",
+      "label": "guide / hook 续跑",
+      "variant": "emphasis",
+      "route": "up-channel",
+      "fromSide": "top",
+      "toSide": "top",
+      "channelY": 175
+    },
+    {
+      "id": "e14",
+      "from": "results",
+      "to": "final",
+      "role": "branch",
+      "label": "显式 turn-control",
+      "variant": "default"
+    },
+    {
+      "id": "e15",
+      "from": "admit",
+      "to": "abort",
+      "role": "error",
+      "label": "abort / error",
+      "variant": "security"
+    }
+  ],
+  "mainPath": [
+    "user",
+    "app",
+    "admit",
+    "context",
+    "model",
+    "response",
+    "gate",
+    "final"
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "工具闭合",
+      "items": [
+        "providerExecuted 调用不交本地 executor",
+        "已流式执行结果按 ID 复用；结果进入两种 history"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "语义边界",
+      "items": [
+        "图为普通 turn；协议端另经 CommandInbox admission",
+        "TurnComplete 不等于 active goal 已完成；取消在各 await 边界检查"
+      ]
+    }
+  ]
+}

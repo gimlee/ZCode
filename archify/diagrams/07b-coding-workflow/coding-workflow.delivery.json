@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b2f93708-14da-48c8-90e9-21e0f5441d02",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\07b-coding-workflow\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\07b-coding-workflow\\coding-workflow.html",
+  "specification": {
+    "sha256": "d269ef97a9b445100a60d913f75126ef9f376eb2781661d796b5eb1484cc9a97",
+    "bytes": 5356
+  },
+  "artifact": {
+    "sha256": "0085051043119e3246a3f34b044f258e344229761e4f887c30662fda1eab059c",
+    "bytes": 757770
+  }
+}

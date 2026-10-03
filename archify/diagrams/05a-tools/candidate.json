@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 5A · Tool Architecture",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/05a-tools/tools.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      980,
+      800
+    ]
+  },
+  "components": [
+    {
+      "id": "builtin",
+      "label": "Builtin entries",
+      "sublabel": "条件注册 / 功能与端口门",
+      "pos": [
+        35,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/index.ts",
+          "line": 195
+        }
+      ]
+    },
+    {
+      "id": "registry",
+      "label": "Tool Registry",
+      "sublabel": "canonical / aliases / lookup",
+      "pos": [
+        350,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "id": "contracts",
+      "label": "Model contracts",
+      "sublabel": "schemas / execute=undefined",
+      "pos": [
+        665,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "id": "mcp",
+      "label": "MCP entries",
+      "sublabel": "startup descriptors → wrapper",
+      "pos": [
+        35,
+        320
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+          "line": 60
+        }
+      ]
+    },
+    {
+      "id": "executor",
+      "label": "Tool Executor",
+      "sublabel": "validate / permission / budget",
+      "pos": [
+        350,
+        320
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "label": "Loop / Scheduler",
+      "sublabel": "final calls / 安全并发组",
+      "pos": [
+        665,
+        320
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/tools.ts",
+          "line": 38
+        }
+      ]
+    },
+    {
+      "id": "policy",
+      "label": "Permission / Hooks",
+      "sublabel": "rules / broker / input recheck",
+      "pos": [
+        35,
+        600
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/permission-flow.ts",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "id": "ports",
+      "label": "Handler I/O",
+      "sublabel": "FS / Exec / HTTP / MCP",
+      "pos": [
+        350,
+        600
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "external",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/types.ts",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "label": "结果与 History",
+      "sublabel": "paired tool entries / UI",
+      "pos": [
+        665,
+        600
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "builtin-registry",
+      "from": "builtin",
+      "to": "registry",
+      "label": "注册",
+      "variant": "default"
+    },
+    {
+      "id": "mcp-registry",
+      "from": "mcp",
+      "to": "registry",
+      "label": "注册",
+      "variant": "default"
+    },
+    {
+      "id": "registry-contracts",
+      "from": "registry",
+      "to": "contracts",
+      "label": "投影",
+      "variant": "default"
+    },
+    {
+      "id": "contracts-loop",
+      "from": "contracts",
+      "to": "loop",
+      "label": "tools 参数",
+      "variant": "default"
+    },
+    {
+      "id": "loop-executor",
+      "from": "loop",
+      "to": "executor",
+      "label": "schedule",
+      "variant": "default"
+    },
+    {
+      "id": "executor-registry",
+      "from": "executor",
+      "to": "registry",
+      "label": "lookup",
+      "variant": "default"
+    },
+    {
+      "id": "executor-policy",
+      "from": "executor",
+      "to": "policy",
+      "label": "审核",
+      "variant": "default"
+    },
+    {
+      "id": "executor-ports",
+      "from": "executor",
+      "to": "ports",
+      "label": "handler",
+      "variant": "default"
+    },
+    {
+      "id": "executor-history",
+      "from": "executor",
+      "to": "history",
+      "label": "提交结果",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "注册与曝光",
+      "items": [
+        "默认 Bash embedded search 隐藏 Grep/Glob；ApplyPatch 未启用",
+        "插件 Browser/CUA 使用 node_repl MCP，不重复启用裸 js"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "同一执行边界",
+      "items": [
+        "本地与 MCP 都走 executor；provider-native 内部由 API 执行",
+        "普通失败回模型；通用 executor 不自动重跑 handler"
+      ]
+    }
+  ]
+}

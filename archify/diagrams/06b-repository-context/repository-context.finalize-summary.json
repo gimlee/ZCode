@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "dataflow",
+  "quality": "showcase",
+  "specification": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\06b-repository-context\\candidate.json",
+    "sha256": "c5714989a191a29cf2526e3843b6c15e035acd311dedf1e9bb9f89345be69310",
+    "bytes": 4431
+  },
+  "artifact": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\06b-repository-context\\repository-context.html",
+    "sha256": "f37da99029b412b91cfe1b9d1f110dca2fd15f0c535695a47ffc36c737f2178a",
+    "bytes": 754168
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "F:\\github\\ZCode\\archify\\diagrams\\06b-repository-context\\repository-context.finalize.json",
+    "summaryReceipt": "F:\\github\\ZCode\\archify\\diagrams\\06b-repository-context\\repository-context.finalize-summary.json",
+    "browserCheckReceipt": "F:\\github\\ZCode\\archify\\diagrams\\06b-repository-context\\repository-context.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-02T18:25:19.682Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3577
+}

@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 4C · Provider Adapter Data Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/04c-adapter/adapter.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      580
+    ]
+  },
+  "stages": [
+    {
+      "label": "输入"
+    },
+    {
+      "label": "转换"
+    },
+    {
+      "label": "SDK"
+    },
+    {
+      "label": "Wire"
+    },
+    {
+      "label": "返回"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "messages",
+      "label": "内部 messages",
+      "sublabel": "角色 / blocks / tool IDs",
+      "stage": 0,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/transform.ts",
+          "line": 46
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "Tool contracts",
+      "sublabel": "schema / native 标记",
+      "stage": 0,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/tool-transform.ts",
+          "line": 24
+        }
+      ]
+    },
+    {
+      "id": "transform",
+      "label": "消息与工具转换",
+      "sublabel": "AI SDK 标准数据",
+      "stage": 1,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-options.ts",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "id": "sdk",
+      "label": "三协议 SDK",
+      "sublabel": "具体 wire 序列化",
+      "stage": 2,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+          "line": 282
+        }
+      ]
+    },
+    {
+      "id": "maps",
+      "label": "Option-map patch",
+      "sublabel": "JSON body merge patches",
+      "stage": 3,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/model-option-map-fetch.ts",
+          "line": 13
+        }
+      ]
+    },
+    {
+      "id": "options",
+      "label": "模型 options",
+      "sublabel": "reasoning / max-output",
+      "stage": 2,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "packages/model-option-map/src/option-maps.ts",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "id": "response",
+      "label": "标准 Model 结果",
+      "sublabel": "text / tools / usage / 流",
+      "stage": 4,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-normalization.ts",
+          "line": 62
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "messages-transform",
+      "from": "messages",
+      "to": "transform",
+      "label": "消息",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "tools-transform",
+      "from": "tools",
+      "to": "transform",
+      "label": "工具",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "transform-sdk",
+      "from": "transform",
+      "to": "sdk",
+      "label": "参数",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "sdk-maps",
+      "from": "sdk",
+      "to": "maps",
+      "label": "body",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "options-maps",
+      "from": "options",
+      "to": "maps",
+      "label": "选项",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "maps-response",
+      "from": "maps",
+      "to": "response",
+      "label": "请求响应",
+      "variant": "emphasis",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "转换职责",
+      "items": [
+        "业务代码生成 SDK 标准消息；SDK 生成具体 API payload",
+        "Chat 合并开头 system；tool media 可后置成 user blocks"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "返回职责",
+      "items": [
+        "WebSearch providerExecuted 不由 Core executor 重复执行",
+        "finish / error / reasoning 等事件归一化后交回 Agent Loop"
+      ]
+    }
+  ]
+}

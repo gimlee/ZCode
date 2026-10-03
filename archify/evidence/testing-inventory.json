@@ -1,0 +1,18 @@
+{
+  "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+  "trackedTestFiles": [
+    "packages/services/test/importedClaudeRecovery.test.ts",
+    "packages/services/test/nonCliAcpRetirement.test.ts",
+    "packages/services/test/providerConfigMigration.test.ts",
+    "packages/ui/test/nonCliAcpRetirement.test.ts"
+  ],
+  "matchingScripts": [
+    {
+      "path": "package.json",
+      "name": "dev:desktop:test",
+      "command": "node scripts/dev-desktop-env.mjs test"
+    }
+  ],
+  "evalRunnerPaths": [],
+  "testExecution": "not-run; dependencies missing"
+}

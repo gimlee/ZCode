@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 1B · Runtime Architecture",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/01b-runtime/runtime.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "subtitle": "创建与持有关系 · core 通过抽象 ports / factory 接入外部能力"
+  },
+  "components": [
+    {
+      "id": "owner",
+      "type": "backend",
+      "label": "协议进程 owner",
+      "sublabel": "entrypoint / cleanup",
+      "pos": [
+        35,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 249
+        }
+      ]
+    },
+    {
+      "id": "server",
+      "type": "backend",
+      "label": "Protocol Server",
+      "sublabel": "sessions map / resources",
+      "pos": [
+        335,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/server.ts",
+          "line": 234
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "type": "backend",
+      "label": "ZCodeApp / Facades",
+      "sublabel": "每会话 create / close",
+      "pos": [
+        635,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 144
+        }
+      ]
+    },
+    {
+      "id": "runtime",
+      "type": "backend",
+      "label": "AgentRuntime",
+      "sublabel": "会话执行与命令边界",
+      "pos": [
+        935,
+        80
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+          "line": 228
+        }
+      ]
+    },
+    {
+      "id": "store",
+      "type": "database",
+      "label": "SessionStore",
+      "sublabel": "进程注入 / App 借用",
+      "pos": [
+        35,
+        310
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 139
+        }
+      ]
+    },
+    {
+      "id": "provider",
+      "type": "cloud",
+      "label": "Provider Registry",
+      "sublabel": "进程共享身份与目录",
+      "pos": [
+        335,
+        310
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/process-provider-registry-runtime.ts",
+          "line": 45
+        }
+      ]
+    },
+    {
+      "id": "factory",
+      "type": "backend",
+      "label": "Model Factory",
+      "sublabel": "Registry + Model Adapter",
+      "pos": [
+        635,
+        310
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 548
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "type": "backend",
+      "label": "History / CommandQueue",
+      "sublabel": "独立于 UI 的会话状态",
+      "pos": [
+        935,
+        310
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+          "line": 277
+        }
+      ]
+    },
+    {
+      "id": "pool",
+      "type": "external",
+      "label": "MCP Connection Pool",
+      "sublabel": "进程 pool / session lease",
+      "pos": [
+        35,
+        540
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 227
+        }
+      ]
+    },
+    {
+      "id": "ports",
+      "type": "external",
+      "label": "I/O / MCP Ports",
+      "sublabel": "Node adapters / injected",
+      "pos": [
+        335,
+        540
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 375
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "type": "backend",
+      "label": "Registry / Scheduler",
+      "sublabel": "能力注册 / 批次安排",
+      "pos": [
+        580,
+        540
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+          "line": 295
+        }
+      ]
+    },
+    {
+      "id": "executor",
+      "type": "backend",
+      "label": "Tool Executor / Hooks",
+      "sublabel": "执行权限与工具 handler",
+      "pos": [
+        935,
+        745
+      ],
+      "size": [
+        210,
+        76
+      ],
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/helpers/runtime-tools.ts",
+          "line": 34
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "r0",
+      "from": "owner",
+      "to": "server",
+      "label": "创建"
+    },
+    {
+      "id": "r1",
+      "from": "server",
+      "to": "app",
+      "label": "按请求创建"
+    },
+    {
+      "id": "r2",
+      "from": "app",
+      "to": "runtime",
+      "label": "创建 / 持有"
+    },
+    {
+      "id": "r3",
+      "from": "owner",
+      "to": "store",
+      "label": "持有"
+    },
+    {
+      "id": "r4",
+      "from": "server",
+      "to": "provider",
+      "label": "factory 注入"
+    },
+    {
+      "id": "r5",
+      "from": "provider",
+      "to": "factory",
+      "label": "按 selection 创建"
+    },
+    {
+      "id": "r6",
+      "from": "factory",
+      "to": "runtime",
+      "label": "注入 factory"
+    },
+    {
+      "id": "r7",
+      "from": "runtime",
+      "to": "history",
+      "label": "持有"
+    },
+    {
+      "id": "r8",
+      "from": "pool",
+      "to": "ports",
+      "label": "session lease"
+    },
+    {
+      "id": "r9",
+      "from": "ports",
+      "to": "executor",
+      "label": "执行端口"
+    },
+    {
+      "id": "r10",
+      "from": "tools",
+      "to": "executor",
+      "label": "registry + schedule"
+    },
+    {
+      "id": "r11",
+      "from": "runtime",
+      "to": "executor",
+      "label": "持有"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "生命周期",
+      "items": [
+        "Server 的 ProtocolRuntimeResources 跟踪全部 App",
+        "App close 只关闭 owns 标记为真的资源"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "会话隔离",
+      "items": [
+        "App 注入共享 store / registry；Runtime 持有独立 history",
+        "MCP pool 是进程共享；执行 ports 可由宿主注入"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "2e06854e-5a8a-468f-b0a6-e029d221a3dd",
+  "status": "current",
+  "command": "deliver",
+  "type": "sequence",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\11b-mcp\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\11b-mcp\\mcp.html",
+  "specification": {
+    "sha256": "023501610668943c48ba0cfc3ebf4043cf8c8b4f89c14fa0c3b3acc1a03df80b",
+    "bytes": 3807
+  },
+  "artifact": {
+    "sha256": "27b9f2d9056f7309ea85c448b85543fc75b7678359228a055de0d8f3f1e8540c",
+    "bytes": 753375
+  }
+}

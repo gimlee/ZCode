@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 3C · Model Context Data Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/03c-model-context/model-context.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1080,
+      560
+    ]
+  },
+  "stages": [
+    {
+      "label": "历史"
+    },
+    {
+      "label": "运行时"
+    },
+    {
+      "label": "角色投影"
+    },
+    {
+      "label": "媒体"
+    },
+    {
+      "label": "请求"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "history",
+      "label": "Canonical history",
+      "sublabel": "prefix / summary / 对话",
+      "stage": 0,
+      "row": 0,
+      "type": "database",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "label": "Turn request entries",
+      "sublabel": "本轮追加 / Continue scope",
+      "stage": 1,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 172
+        }
+      ]
+    },
+    {
+      "id": "reminders",
+      "label": "动态提醒",
+      "sublabel": "模式 / todo / plan / hook",
+      "stage": 0,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 120
+        }
+      ]
+    },
+    {
+      "id": "projection",
+      "label": "Provider projection",
+      "sublabel": "重排 / MCS / 去 metadata",
+      "stage": 2,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+          "line": 48
+        }
+      ]
+    },
+    {
+      "id": "media",
+      "label": "媒体视图",
+      "sublabel": "路径 → 能力 → 40 MiB",
+      "stage": 3,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "id": "tools",
+      "label": "当前工具 contracts",
+      "sublabel": "随模型能力选择",
+      "stage": 3,
+      "row": 2,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "label": "ModelRequest",
+      "sublabel": "messages / tools / options",
+      "stage": 4,
+      "row": 0,
+      "type": "backend",
+      "width": 148,
+      "height": 64,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+          "line": 119
+        }
+      ]
+    }
+  ],
+  "flows": [
+    {
+      "id": "history-turn",
+      "from": "history",
+      "to": "turn",
+      "label": "活跃副本",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "id": "reminders-turn",
+      "from": "reminders",
+      "to": "turn",
+      "label": "追加",
+      "variant": "default"
+    },
+    {
+      "id": "turn-projection",
+      "from": "turn",
+      "to": "projection",
+      "label": "entries",
+      "variant": "default"
+    },
+    {
+      "id": "projection-media",
+      "from": "projection",
+      "to": "media",
+      "label": "messages",
+      "variant": "default"
+    },
+    {
+      "id": "media-request",
+      "from": "media",
+      "to": "request",
+      "label": "内容",
+      "variant": "emphasis",
+      "route": "straight"
+    },
+    {
+      "id": "tools-request",
+      "from": "tools",
+      "to": "request",
+      "label": "schemas",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "发送边界",
+      "items": [
+        "sourceEntries 与 runtime metadata 留在内部，不进 provider payload",
+        "tools 单独发送；由 Provider Adapter 转成具体 API schema"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "保留与裁剪",
+      "items": [
+        "最新真实 user 媒体受保护；超预算当前附件返回可恢复错误",
+        "工具输出已先经 resultBudget；历史媒体与 compact 还可改变请求视图"
+      ]
+    }
+  ]
+}

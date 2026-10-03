@@ -1,0 +1,263 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "图 13A · Error Recovery Workflow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/13a-recovery/recovery.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1100,
+      700
+    ]
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "模型请求"
+    },
+    {
+      "id": "core",
+      "label": "Core 恢复"
+    },
+    {
+      "id": "tool",
+      "label": "工具执行"
+    },
+    {
+      "id": "outcome",
+      "label": "收口"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "attempt",
+      "label": "物理请求失败",
+      "sublabel": "分类 / 输出边界",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+          "line": 123
+        }
+      ],
+      "lane": "model",
+      "col": 0,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "retry",
+      "label": "允许原样 retry",
+      "sublabel": "budget + retryable",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+          "line": 1455
+        }
+      ],
+      "lane": "model",
+      "col": 1,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "backoff",
+      "label": "释放与退避",
+      "sublabel": "ticket / jitter / abort",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/model/runner-retry.ts",
+          "line": 39
+        }
+      ],
+      "lane": "model",
+      "col": 2,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "recover",
+      "label": "安全 stream anchor",
+      "sublabel": "commit / discard partial",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/streaming-recovery.ts",
+          "line": 207
+        }
+      ],
+      "lane": "core",
+      "col": 1,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "compact",
+      "label": "Context exceeded",
+      "sublabel": "reactive compact / rebuild",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 742
+        }
+      ],
+      "lane": "core",
+      "col": 2,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "new",
+      "label": "新的 model step",
+      "sublabel": "受 recovery budget 限制",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 43
+        }
+      ],
+      "lane": "core",
+      "col": 3,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "handler",
+      "label": "工具失败",
+      "sublabel": "lookup / validate / IO",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 560
+        }
+      ],
+      "lane": "tool",
+      "col": 0,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "paired",
+      "label": "配对 error result",
+      "sublabel": "持久化后交模型判断",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ],
+      "lane": "tool",
+      "col": 1,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "end",
+      "label": "Error / cancelled",
+      "sublabel": "outcome + finally cleanup",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+          "line": 715
+        }
+      ],
+      "lane": "outcome",
+      "col": 3,
+      "width": 148,
+      "height": 76
+    }
+  ],
+  "edges": [
+    {
+      "from": "attempt",
+      "to": "retry",
+      "label": "可重试",
+      "variant": "default"
+    },
+    {
+      "from": "retry",
+      "to": "backoff",
+      "label": "未越界",
+      "variant": "default"
+    },
+    {
+      "from": "attempt",
+      "to": "recover",
+      "label": "已输出",
+      "variant": "default"
+    },
+    {
+      "from": "recover",
+      "to": "new",
+      "label": "锚点安全",
+      "variant": "default"
+    },
+    {
+      "from": "compact",
+      "to": "new",
+      "label": "压缩成功",
+      "variant": "default"
+    },
+    {
+      "from": "handler",
+      "to": "paired",
+      "label": "规范化",
+      "variant": "default"
+    },
+    {
+      "from": "paired",
+      "to": "new",
+      "label": "模型改方案",
+      "variant": "default"
+    },
+    {
+      "from": "retry",
+      "to": "end",
+      "label": "不可重试",
+      "variant": "default"
+    },
+    {
+      "from": "recover",
+      "to": "end",
+      "label": "预算或安全性失败",
+      "variant": "default"
+    }
+  ],
+  "mainPath": [
+    "attempt",
+    "retry",
+    "backoff"
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "并行入口",
+      "items": [
+        "overflow 对应 Core compact 分支；不是 adapter 原样 retry",
+        "工具失败不会自动重跑 handler；副作用无通用 rollback"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "范围",
+      "items": [
+        "图为恢复策略概览，各分支不保证覆盖全部异常",
+        "取消贯穿请求、退避和工具执行"
+      ]
+    }
+  ]
+}

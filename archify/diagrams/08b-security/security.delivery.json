@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "92855ca3-044e-4ef9-b094-5dcb9fe1fc53",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\08b-security\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\08b-security\\security.html",
+  "specification": {
+    "sha256": "f473366a8e35c7099cd81ca48e2bf3e51bd08bd1b0765ea1d50c9aef96c49f35",
+    "bytes": 4446
+  },
+  "artifact": {
+    "sha256": "d25a2bf6a87089d7d5ff491729d00036ffc320c7a78ec6dec34b75fb655d3691",
+    "bytes": 756971
+  }
+}

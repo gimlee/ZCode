@@ -1,0 +1,250 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "图 7B · Coding Task Workflow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/07b-coding-workflow/coding-workflow.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      1100,
+      700
+    ]
+  },
+  "lanes": [
+    {
+      "id": "decision",
+      "label": "普通模型循环"
+    },
+    {
+      "id": "search",
+      "label": "搜索与读取工具"
+    },
+    {
+      "id": "edit",
+      "label": "修改工具"
+    },
+    {
+      "id": "test",
+      "label": "Shell 测试工具"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "task",
+      "label": "修复请求",
+      "sublabel": "已有 context 与用户目标",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ],
+      "lane": "decision",
+      "col": 0,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "model",
+      "label": "模型选动作",
+      "sublabel": "没有固定 BugFix 状态机",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 205
+        }
+      ],
+      "lane": "decision",
+      "col": 1,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "search",
+      "label": "搜索 / Read",
+      "sublabel": "按需发现与理解",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+          "line": 141
+        }
+      ],
+      "lane": "search",
+      "col": 2,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "edit",
+      "label": "Edit / Write",
+      "sublabel": "匹配与 freshness",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 204
+        }
+      ],
+      "lane": "edit",
+      "col": 2,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "test",
+      "label": "Bash 测试",
+      "sublabel": "模型选择实际命令",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+          "line": 97
+        }
+      ],
+      "lane": "test",
+      "col": 2,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "result",
+      "label": "成功或错误结果",
+      "sublabel": "不自动重跑 handler",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 235
+        }
+      ],
+      "lane": "decision",
+      "col": 3,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "next",
+      "label": "后续模型步骤",
+      "sublabel": "可重读、再改、再测",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 205
+        }
+      ],
+      "lane": "decision",
+      "col": 4,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "final",
+      "label": "最终回答",
+      "sublabel": "沿用普通 Loop 结束规则",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ],
+      "lane": "decision",
+      "col": 5,
+      "width": 148,
+      "height": 76
+    }
+  ],
+  "edges": [
+    {
+      "from": "task",
+      "to": "model",
+      "label": "输入",
+      "variant": "default"
+    },
+    {
+      "from": "model",
+      "to": "search",
+      "label": "工具选择",
+      "variant": "default"
+    },
+    {
+      "from": "search",
+      "to": "result",
+      "label": "读取结果",
+      "variant": "default"
+    },
+    {
+      "from": "model",
+      "to": "edit",
+      "label": "工具选择",
+      "variant": "default"
+    },
+    {
+      "from": "edit",
+      "to": "result",
+      "label": "改动结果",
+      "variant": "default"
+    },
+    {
+      "from": "model",
+      "to": "test",
+      "label": "可选测试",
+      "variant": "default"
+    },
+    {
+      "from": "test",
+      "to": "result",
+      "label": "exit/output",
+      "variant": "default"
+    },
+    {
+      "from": "result",
+      "to": "next",
+      "label": "下一请求",
+      "variant": "default"
+    },
+    {
+      "from": "next",
+      "to": "final",
+      "label": "完成判断",
+      "variant": "default"
+    }
+  ],
+  "mainPath": [
+    "task",
+    "model",
+    "search",
+    "result",
+    "next",
+    "final"
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "能力组合",
+      "items": [
+        "搜索、修改和测试均有实际 handler 支持",
+        "箭头不表示每个修复都必经测试"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "反馈循环",
+      "items": [
+        "失败返回模型后可发新 call，不等于通用 Tool Retry",
+        "checkpoint 不撤销任意 shell / network 副作用"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "图 6A · Repository Understanding Workflow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/06a-repository-workflow/repository-workflow.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "模型决策与历史"
+    },
+    {
+      "id": "io",
+      "label": "按需检索与读取"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "task",
+      "label": "任务与已有上下文",
+      "sublabel": "不预装全仓库",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 109
+        }
+      ],
+      "lane": "model",
+      "col": 0,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "choose",
+      "label": "模型选择工具",
+      "sublabel": "Bash / direct 分支",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+          "line": 1
+        }
+      ],
+      "lane": "model",
+      "col": 1,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "permit",
+      "label": "执行前检查",
+      "sublabel": "schema / hooks / permission",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+          "line": 65
+        }
+      ],
+      "lane": "io",
+      "col": 1,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "search",
+      "label": "搜索范围",
+      "sublabel": "find / grep / rg 或 FS",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/exec/embedded-search-prelude.ts",
+          "line": 34
+        }
+      ],
+      "lane": "io",
+      "col": 2,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "read",
+      "label": "定向 Read",
+      "sublabel": "路径 / offset / limit",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+          "line": 141
+        }
+      ],
+      "lane": "io",
+      "col": 3,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "result",
+      "label": "工具结果预算",
+      "sublabel": "preview / artifact",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+          "line": 46
+        }
+      ],
+      "lane": "io",
+      "col": 4,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "context",
+      "label": "下一步请求",
+      "sublabel": "paired tool entries",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+          "line": 48
+        }
+      ],
+      "lane": "model",
+      "col": 4,
+      "width": 148,
+      "height": 76
+    },
+    {
+      "id": "decide",
+      "label": "继续或回答",
+      "sublabel": "模型判断是否足够",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 205
+        }
+      ],
+      "lane": "model",
+      "col": 5,
+      "width": 148,
+      "height": 76
+    }
+  ],
+  "edges": [
+    {
+      "from": "task",
+      "to": "choose",
+      "label": "请求",
+      "variant": "default"
+    },
+    {
+      "from": "choose",
+      "to": "permit",
+      "label": "tool call",
+      "variant": "default"
+    },
+    {
+      "from": "permit",
+      "to": "search",
+      "label": "允许",
+      "variant": "default"
+    },
+    {
+      "from": "search",
+      "to": "result",
+      "label": "匹配结果",
+      "variant": "default",
+      "route": "bottom-channel",
+      "channelY": 460
+    },
+    {
+      "from": "choose",
+      "to": "read",
+      "label": "选择 Read",
+      "variant": "default",
+      "route": "drop"
+    },
+    {
+      "from": "read",
+      "to": "result",
+      "label": "文件内容",
+      "variant": "default"
+    },
+    {
+      "from": "result",
+      "to": "context",
+      "label": "提交",
+      "variant": "default"
+    },
+    {
+      "from": "context",
+      "to": "decide",
+      "label": "再次模型",
+      "variant": "default"
+    }
+  ],
+  "mainPath": [
+    "task",
+    "choose",
+    "permit",
+    "search",
+    "result",
+    "context",
+    "decide"
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "按需探索",
+      "items": [
+        "默认 embedded Bash 搜索；direct Grep/Glob 是配置分支",
+        "Read 是独立的下一次工具选择，搜索不自动读取全文"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "可用能力边界",
+      "items": [
+        "未确认普通 Agent 使用语义索引、LSP 或全仓库 Repo Map",
+        "大结果预算约束模型输入，不保证限制所有遍历成本"
+      ]
+    }
+  ]
+}

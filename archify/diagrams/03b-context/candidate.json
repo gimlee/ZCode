@@ -1,0 +1,268 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 3B · Context Lifecycle",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/03b-context/context.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "普通请求"
+    },
+    {
+      "id": "compact",
+      "label": "压缩路径"
+    },
+    {
+      "id": "terminal",
+      "label": "失败边界"
+    }
+  ],
+  "states": [
+    {
+      "id": "init",
+      "label": "延迟初始化",
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "sublabel": "snapshot / 技能 / memory",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/context.ts",
+          "line": 31
+        }
+      ]
+    },
+    {
+      "id": "active",
+      "label": "活跃历史",
+      "lane": "main",
+      "col": 1,
+      "type": "active",
+      "sublabel": "canonical + turn-local",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+          "line": 137
+        }
+      ]
+    },
+    {
+      "id": "budget",
+      "label": "预算决策",
+      "lane": "main",
+      "col": 2,
+      "type": "decision",
+      "sublabel": "usage 或 estimate",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/compact.ts",
+          "line": 184
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "label": "请求模型",
+      "lane": "main",
+      "col": 3,
+      "type": "active",
+      "sublabel": "媒体投影 / output budget",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "id": "append",
+      "label": "追加本轮结果",
+      "lane": "main",
+      "col": 4,
+      "type": "active",
+      "sublabel": "assistant + paired tools",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+          "line": 359
+        }
+      ]
+    },
+    {
+      "id": "clear",
+      "label": "可选局部清理",
+      "lane": "compact",
+      "col": 1,
+      "type": "active",
+      "sublabel": "旧 tool 内容换占位",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/microcompact.ts",
+          "line": 27
+        }
+      ]
+    },
+    {
+      "id": "summary",
+      "label": "模型摘要",
+      "lane": "compact",
+      "col": 2,
+      "type": "active",
+      "sublabel": "Auto / Reactive / Manual",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/compact-active.ts",
+          "line": 75
+        }
+      ]
+    },
+    {
+      "id": "replace",
+      "label": "替换活跃历史",
+      "lane": "compact",
+      "col": 3,
+      "type": "active",
+      "sublabel": "prefix + summary + tail",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/helpers/compact.ts",
+          "line": 72
+        }
+      ]
+    },
+    {
+      "id": "fail",
+      "label": "保留错误边界",
+      "lane": "terminal",
+      "col": 2,
+      "type": "failure",
+      "sublabel": "取消 / 熔断 / 摘要失败",
+      "width": 176,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/compact/policy.ts",
+          "line": 100
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "init",
+      "to": "active",
+      "label": "初始化",
+      "variant": "default"
+    },
+    {
+      "from": "active",
+      "to": "budget",
+      "label": "每步",
+      "variant": "default"
+    },
+    {
+      "from": "budget",
+      "to": "request",
+      "label": "足够",
+      "variant": "default"
+    },
+    {
+      "from": "request",
+      "to": "append",
+      "label": "响应",
+      "variant": "default"
+    },
+    {
+      "from": "append",
+      "to": "active",
+      "label": "下一步",
+      "variant": "dashed"
+    },
+    {
+      "from": "active",
+      "to": "clear",
+      "label": "开启",
+      "variant": "default"
+    },
+    {
+      "from": "clear",
+      "to": "budget",
+      "label": "继续",
+      "variant": "default"
+    },
+    {
+      "from": "budget",
+      "to": "summary",
+      "label": "压力",
+      "variant": "default"
+    },
+    {
+      "from": "request",
+      "to": "summary",
+      "label": "超限",
+      "variant": "dashed"
+    },
+    {
+      "from": "summary",
+      "to": "replace",
+      "label": "成功",
+      "variant": "default"
+    },
+    {
+      "from": "replace",
+      "to": "request",
+      "label": "恢复",
+      "variant": "default"
+    },
+    {
+      "from": "summary",
+      "to": "fail",
+      "label": "失败",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "流程抽象",
+      "items": [
+        "不是新增状态机枚举；同一运行时方法链的生命周期视图",
+        "默认完整活跃历史，压缩后发送摘要与保留轮次"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "预算与恢复",
+      "items": [
+        "microcompact 需显式开启；媒体结果默认不清理",
+        "摘要超限按完整轮次删减重试；持久化历史不等于活跃输入"
+      ]
+    }
+  ]
+}

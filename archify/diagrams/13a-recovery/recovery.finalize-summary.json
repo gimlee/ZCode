@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "workflow",
+  "quality": "showcase",
+  "specification": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\candidate.json",
+    "sha256": "8686b5fb2937b2468c73a82967f01ff6bd9767be37c32e52ae7944390e3715f6",
+    "bytes": 5718
+  },
+  "artifact": {
+    "path": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+    "sha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+    "bytes": 759792
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.finalize.json",
+    "summaryReceipt": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.finalize-summary.json",
+    "browserCheckReceipt": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.0.1",
+    "availableVersion": "3.0.1",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-02T18:25:19.682Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 4952,
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "routesOverSuggestedBends": 4,
+      "routesOverSuggestedStretch": 3
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [],
+      "detours": [
+        {
+          "relationship": {
+            "from": "attempt",
+            "to": "recover",
+            "label": "已输出",
+            "collectionIndex": 0,
+            "artifactIndex": 1
+          },
+          "bends": 3,
+          "stretch": 1.137
+        },
+        {
+          "relationship": {
+            "from": "attempt",
+            "to": "retry",
+            "label": "可重试",
+            "collectionIndex": 1,
+            "artifactIndex": 2
+          },
+          "bends": 3,
+          "stretch": 1.681
+        },
+        {
+          "relationship": {
+            "from": "recover",
+            "to": "end",
+            "label": "预算或安全性失败",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "bends": 3,
+          "stretch": 1.647
+        },
+        {
+          "relationship": {
+            "from": "retry",
+            "to": "end",
+            "label": "不可重试",
+            "collectionIndex": 8,
+            "artifactIndex": 9
+          },
+          "bends": 3,
+          "stretch": 1.587
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "attempt → recover needs 3 bends: move node attempt or recover so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "attempt → retry needs 3 bends: move node attempt or retry so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "recover → end needs 3 bends: move node recover or end so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "retry → end needs 3 bends: move node retry or end so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

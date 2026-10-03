@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b20c06a6-e3e6-463d-b54d-5ecf46a2603d",
+  "status": "current",
+  "command": "deliver",
+  "type": "workflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\13a-recovery\\recovery.html",
+  "specification": {
+    "sha256": "8686b5fb2937b2468c73a82967f01ff6bd9767be37c32e52ae7944390e3715f6",
+    "bytes": 5718
+  },
+  "artifact": {
+    "sha256": "96690fa53cd5e62d09dc8a9660ed59b5aa393692988cb7bf818cfb9ac4caf08f",
+    "bytes": 759792
+  }
+}

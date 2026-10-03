@@ -1,0 +1,1834 @@
+{
+  "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+  "checkedSourceAnchors": 301,
+  "sources": [
+    {
+      "diagram": "00-repository",
+      "path": "packages/desktop/src/renderer/src/main.tsx",
+      "line": 303,
+      "end_line": 350,
+      "lineCount": 372
+    },
+    {
+      "diagram": "00-repository",
+      "path": "packages/desktop/src/host/index.ts",
+      "line": 2780,
+      "end_line": 2845,
+      "lineCount": 2970
+    },
+    {
+      "diagram": "00-repository",
+      "path": "packages/services/src/node.ts",
+      "line": 2301,
+      "end_line": 2337,
+      "lineCount": 2811
+    },
+    {
+      "diagram": "00-repository",
+      "path": "packages/services/src/zcode-agent/zcodeAgentProcessManager.ts",
+      "line": 1019,
+      "end_line": 1037,
+      "lineCount": 1470
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/cli/src/main.ts",
+      "line": 15,
+      "end_line": 93,
+      "lineCount": 123
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/cli/src/run.ts",
+      "line": 498,
+      "end_line": 581,
+      "lineCount": 588
+    },
+    {
+      "diagram": "00-repository",
+      "path": "packages/web/src/main.tsx",
+      "line": 438,
+      "end_line": 469,
+      "lineCount": 479
+    },
+    {
+      "diagram": "00-repository",
+      "path": "packages/server/src/entry-http.ts",
+      "line": 8,
+      "end_line": 26,
+      "lineCount": 33
+    },
+    {
+      "diagram": "00-repository",
+      "path": "packages/server/src/entry-stdio.ts",
+      "line": 39,
+      "end_line": 84,
+      "lineCount": 134
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 249,
+      "end_line": 283,
+      "lineCount": 387
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 144,
+      "end_line": 261,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+      "line": 228,
+      "end_line": 307,
+      "lineCount": 665
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 43,
+      "end_line": 218,
+      "lineCount": 239
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+      "line": 277,
+      "end_line": 305,
+      "lineCount": 665
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/core/src/runtime/helpers/runtime-tools.ts",
+      "line": 34,
+      "end_line": 50,
+      "lineCount": 292
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+      "line": 12,
+      "end_line": 54,
+      "lineCount": 148
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 726,
+      "end_line": 765,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+      "line": 190,
+      "end_line": 208,
+      "lineCount": 400
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 523,
+      "end_line": 556,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-runtime.ts",
+      "line": 1,
+      "end_line": 52,
+      "lineCount": 53
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+      "line": 101,
+      "end_line": 109,
+      "lineCount": 661
+    },
+    {
+      "diagram": "00-repository",
+      "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+      "line": 609,
+      "end_line": 652,
+      "lineCount": 1023
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/cli/src/main.ts",
+      "line": 15,
+      "lineCount": 123
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/cli/src/run.ts",
+      "line": 313,
+      "lineCount": 588
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 138,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 156,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 334,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/server-operations.ts",
+      "line": 1271,
+      "lineCount": 4058
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 153,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 238,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 548,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 726,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/server-operations.ts",
+      "line": 1335,
+      "lineCount": 4058
+    },
+    {
+      "diagram": "01a-startup",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 356,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 249,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/server.ts",
+      "line": 234,
+      "lineCount": 935
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 144,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+      "line": 228,
+      "lineCount": 665
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 139,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/process-provider-registry-runtime.ts",
+      "line": 45,
+      "lineCount": 226
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 548,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+      "line": 277,
+      "lineCount": 665
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+      "line": 227,
+      "lineCount": 387
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 375,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+      "line": 295,
+      "lineCount": 665
+    },
+    {
+      "diagram": "01b-runtime",
+      "path": "apps/zcode-cli/packages/core/src/runtime/helpers/runtime-tools.ts",
+      "line": 34,
+      "lineCount": 292
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/input-facade.ts",
+      "line": 369,
+      "lineCount": 383
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/input-facade.ts",
+      "line": 127,
+      "lineCount": 383
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 76,
+      "lineCount": 873
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 69,
+      "lineCount": 239
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+      "line": 141,
+      "lineCount": 519
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 645,
+      "lineCount": 804
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 178,
+      "lineCount": 528
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/streaming-tool-coordinator.ts",
+      "line": 148,
+      "lineCount": 394
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-stop.ts",
+      "line": 199,
+      "lineCount": 238
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 647,
+      "lineCount": 873
+    },
+    {
+      "diagram": "02a-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 715,
+      "lineCount": 873
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 93,
+      "lineCount": 873
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 69,
+      "lineCount": 239
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 205,
+      "lineCount": 239
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 645,
+      "lineCount": 804
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-stop.ts",
+      "line": 199,
+      "lineCount": 238
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 178,
+      "lineCount": 528
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 278,
+      "lineCount": 804
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 647,
+      "lineCount": 873
+    },
+    {
+      "diagram": "02b-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 715,
+      "lineCount": 873
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "02c-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/turn-state.ts",
+      "line": 230,
+      "lineCount": 264
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 99,
+      "lineCount": 373
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/adapters/src/context/index.ts",
+      "line": 102,
+      "lineCount": 348
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/core/src/context/sections/skills.ts",
+      "line": 43,
+      "lineCount": 80
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 87,
+      "lineCount": 373
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 234,
+      "lineCount": 373
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 282,
+      "lineCount": 373
+    },
+    {
+      "diagram": "03a-prompt",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/context-history-entries.ts",
+      "line": 1,
+      "lineCount": 17
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/context.ts",
+      "line": 31,
+      "lineCount": 348
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+      "line": 137,
+      "lineCount": 527
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/compact.ts",
+      "line": 184,
+      "lineCount": 463
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+      "line": 36,
+      "lineCount": 519
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/microcompact.ts",
+      "line": 27,
+      "lineCount": 117
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/compact-active.ts",
+      "line": 75,
+      "lineCount": 726
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/helpers/compact.ts",
+      "line": 72,
+      "lineCount": 167
+    },
+    {
+      "diagram": "03b-context",
+      "path": "apps/zcode-cli/packages/core/src/compact/policy.ts",
+      "line": 100,
+      "lineCount": 161
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+      "line": 137,
+      "lineCount": 527
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 172,
+      "lineCount": 239
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 120,
+      "lineCount": 239
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+      "line": 48,
+      "lineCount": 334
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+      "line": 49,
+      "lineCount": 519
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "03c-model-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+      "line": 119,
+      "lineCount": 519
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "packages/provider/src/registry.ts",
+      "line": 74,
+      "lineCount": 178
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/provider-registry-model-runtime.ts",
+      "line": 45,
+      "lineCount": 95
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+      "line": 40,
+      "lineCount": 197
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner.ts",
+      "line": 138,
+      "lineCount": 373
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 181,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-option-map-fetch.ts",
+      "line": 13,
+      "lineCount": 54
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 282,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 292,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "04a-provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 302,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "04b-request",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+      "line": 36,
+      "lineCount": 519
+    },
+    {
+      "diagram": "04b-request",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+      "line": 91,
+      "lineCount": 197
+    },
+    {
+      "diagram": "04b-request",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+      "line": 123,
+      "lineCount": 1656
+    },
+    {
+      "diagram": "04b-request",
+      "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+      "line": 38,
+      "lineCount": 61
+    },
+    {
+      "diagram": "04b-request",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-options.ts",
+      "line": 102,
+      "lineCount": 249
+    },
+    {
+      "diagram": "04b-request",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 282,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "apps/zcode-cli/packages/adapters/src/model/transform.ts",
+      "line": 46,
+      "lineCount": 514
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "apps/zcode-cli/packages/adapters/src/model/tool-transform.ts",
+      "line": 24,
+      "lineCount": 289
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-options.ts",
+      "line": 102,
+      "lineCount": 249
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 282,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-option-map-fetch.ts",
+      "line": 13,
+      "lineCount": 54
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "packages/model-option-map/src/option-maps.ts",
+      "line": 27,
+      "lineCount": 43
+    },
+    {
+      "diagram": "04c-adapter",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-normalization.ts",
+      "line": 62,
+      "lineCount": 303
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/index.ts",
+      "line": 195,
+      "lineCount": 313
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+      "line": 32,
+      "lineCount": 148
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+      "line": 112,
+      "lineCount": 148
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+      "line": 60,
+      "lineCount": 477
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/tools.ts",
+      "line": 38,
+      "lineCount": 305
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/permission-flow.ts",
+      "line": 35,
+      "lineCount": 432
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/tool/types.ts",
+      "line": 137,
+      "lineCount": 491
+    },
+    {
+      "diagram": "05a-tools",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "05b-tool-call",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 645,
+      "lineCount": 804
+    },
+    {
+      "diagram": "05b-tool-call",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 43,
+      "lineCount": 528
+    },
+    {
+      "diagram": "05b-tool-call",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "05b-tool-call",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/permission-flow.ts",
+      "line": 35,
+      "lineCount": 432
+    },
+    {
+      "diagram": "05b-tool-call",
+      "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+      "line": 214,
+      "lineCount": 477
+    },
+    {
+      "diagram": "05b-tool-call",
+      "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+      "line": 379,
+      "lineCount": 527
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 443,
+      "lineCount": 704
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+      "line": 46,
+      "lineCount": 396
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/result-display.ts",
+      "line": 1,
+      "lineCount": 462
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/core/src/tool/types.ts",
+      "line": 409,
+      "lineCount": 491
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+      "line": 83,
+      "lineCount": 396
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "05c-tool-result",
+      "path": "apps/zcode-cli/packages/adapters/src/model/transform.ts",
+      "line": 100,
+      "lineCount": 514
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 1,
+      "lineCount": 804
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/embedded-search-prelude.ts",
+      "line": 34,
+      "lineCount": 220
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+      "line": 141,
+      "lineCount": 527
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+      "line": 46,
+      "lineCount": 396
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+      "line": 48,
+      "lineCount": 334
+    },
+    {
+      "diagram": "06a-repository-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 205,
+      "lineCount": 239
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+      "line": 115,
+      "lineCount": 1879
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/adapters/src/context/index.ts",
+      "line": 102,
+      "lineCount": 348
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+      "line": 200,
+      "lineCount": 527
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 87,
+      "lineCount": 373
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+      "line": 46,
+      "lineCount": 396
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "06b-repository-context",
+      "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+      "line": 48,
+      "lineCount": 334
+    },
+    {
+      "diagram": "07a-code-modification",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 205,
+      "lineCount": 239
+    },
+    {
+      "diagram": "07a-code-modification",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "07a-code-modification",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 156,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07a-code-modification",
+      "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+      "line": 291,
+      "lineCount": 1879
+    },
+    {
+      "diagram": "07a-code-modification",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 205,
+      "lineCount": 239
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+      "line": 141,
+      "lineCount": 527
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 204,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+      "line": 97,
+      "lineCount": 570
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 235,
+      "lineCount": 528
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 205,
+      "lineCount": 239
+    },
+    {
+      "diagram": "07b-coding-workflow",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 84,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 156,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/edit-matchers.ts",
+      "line": 40,
+      "lineCount": 412
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 421,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+      "line": 291,
+      "lineCount": 1879
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 523,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+      "line": 470,
+      "lineCount": 657
+    },
+    {
+      "diagram": "07c-edit-data",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+      "line": 46,
+      "lineCount": 396
+    },
+    {
+      "diagram": "08a-shell",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+      "line": 97,
+      "lineCount": 570
+    },
+    {
+      "diagram": "08a-shell",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+      "line": 187,
+      "lineCount": 570
+    },
+    {
+      "diagram": "08a-shell",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-process.ts",
+      "line": 58,
+      "lineCount": 269
+    },
+    {
+      "diagram": "08a-shell",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+      "line": 197,
+      "lineCount": 400
+    },
+    {
+      "diagram": "08a-shell",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+      "line": 25,
+      "lineCount": 400
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/core/src/permission/service.ts",
+      "line": 99,
+      "lineCount": 688
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/permission-flow.ts",
+      "line": 184,
+      "lineCount": 432
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 443,
+      "lineCount": 704
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/core/src/tool/path-policy.ts",
+      "line": 15,
+      "lineCount": 77
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+      "line": 197,
+      "lineCount": 400
+    },
+    {
+      "diagram": "08b-security",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-process.ts",
+      "line": 58,
+      "lineCount": 269
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 150,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 434,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/message-persistence.ts",
+      "line": 1,
+      "lineCount": 389
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/session-resident-pool.ts",
+      "line": 56,
+      "lineCount": 319
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/session-resident-pool.ts",
+      "line": 152,
+      "lineCount": 319
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/cold-session-resume.ts",
+      "line": 42,
+      "lineCount": 114
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/resume.ts",
+      "line": 56,
+      "lineCount": 454
+    },
+    {
+      "diagram": "09a-session",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/resume.ts",
+      "line": 70,
+      "lineCount": 454
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 150,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+      "line": 1,
+      "lineCount": 665
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/message-persistence.ts",
+      "line": 1,
+      "lineCount": 389
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+      "line": 225,
+      "lineCount": 1023
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+      "line": 137,
+      "lineCount": 527
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/contracts/src/events/in-memory-session-event-store.ts",
+      "line": 32,
+      "lineCount": 150
+    },
+    {
+      "diagram": "09b-state",
+      "path": "apps/zcode-cli/packages/core/src/subagent/runner.ts",
+      "line": 131,
+      "lineCount": 2143
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/message-persistence.ts",
+      "line": 1,
+      "lineCount": 389
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/workspace-checkpoint-persistence.ts",
+      "line": 28,
+      "lineCount": 267
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+      "line": 609,
+      "lineCount": 1023
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/file-rewind.ts",
+      "line": 327,
+      "lineCount": 718
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/repositories/session-inputs.ts",
+      "line": 191,
+      "lineCount": 392
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/file-rewind.ts",
+      "line": 337,
+      "lineCount": 718
+    },
+    {
+      "diagram": "09c-persistence",
+      "path": "apps/zcode-cli/packages/core/src/agent/session-history-hydrator.ts",
+      "line": 51,
+      "lineCount": 590
+    },
+    {
+      "diagram": "10a-events",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+      "line": 68,
+      "lineCount": 661
+    },
+    {
+      "diagram": "10a-events",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model-streaming-event-queue.ts",
+      "line": 12,
+      "lineCount": 70
+    },
+    {
+      "diagram": "10a-events",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+      "line": 80,
+      "lineCount": 661
+    },
+    {
+      "diagram": "10a-events",
+      "path": "apps/zcode-cli/packages/contracts/src/events/in-memory-session-event-store.ts",
+      "line": 60,
+      "lineCount": 150
+    },
+    {
+      "diagram": "10a-events",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+      "line": 104,
+      "lineCount": 661
+    },
+    {
+      "diagram": "10a-events",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/events.ts",
+      "line": 108,
+      "lineCount": 661
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+      "line": 118,
+      "lineCount": 506
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/runtime-command-queue.ts",
+      "line": 36,
+      "lineCount": 477
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 109,
+      "lineCount": 239
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+      "line": 38,
+      "lineCount": 61
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/batch-runner.ts",
+      "line": 24,
+      "lineCount": 161
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/core/src/subagent/runner.ts",
+      "line": 131,
+      "lineCount": 2143
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/model-streaming-event-queue.ts",
+      "line": 12,
+      "lineCount": 70
+    },
+    {
+      "diagram": "10b-concurrency",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/runtime-command-queue.ts",
+      "line": 1,
+      "lineCount": 477
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+      "line": 127,
+      "lineCount": 992
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/startup-marks.ts",
+      "line": 11,
+      "lineCount": 172
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 212,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/core/src/hooks/configured-runner.ts",
+      "line": 15,
+      "lineCount": 192
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/adapters/src/skills/index.ts",
+      "line": 58,
+      "lineCount": 483
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+      "line": 157,
+      "lineCount": 1951
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/core/src/hooks/configured-runner-callback.ts",
+      "line": 18,
+      "lineCount": 246
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/context.ts",
+      "line": 213,
+      "lineCount": 348
+    },
+    {
+      "diagram": "11a-extension",
+      "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+      "line": 60,
+      "lineCount": 477
+    },
+    {
+      "diagram": "11b-mcp",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "11b-mcp",
+      "path": "apps/zcode-cli/packages/core/src/mcp/index.ts",
+      "line": 214,
+      "lineCount": 477
+    },
+    {
+      "diagram": "11b-mcp",
+      "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+      "line": 438,
+      "lineCount": 1951
+    },
+    {
+      "diagram": "11b-mcp",
+      "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+      "line": 1449,
+      "lineCount": 1951
+    },
+    {
+      "diagram": "11b-mcp",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+      "line": 127,
+      "lineCount": 992
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+      "line": 180,
+      "lineCount": 992
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/startup-marks.ts",
+      "line": 11,
+      "lineCount": 172
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/adapters/src/skills/index.ts",
+      "line": 58,
+      "lineCount": 483
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/adapters/src/skills/index.ts",
+      "line": 94,
+      "lineCount": 483
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/plugin-facade.ts",
+      "line": 42,
+      "lineCount": 113
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/adapters/src/plugins/index.ts",
+      "line": 193,
+      "lineCount": 992
+    },
+    {
+      "diagram": "11c-plugin-lifecycle",
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/skill.ts",
+      "line": 35,
+      "lineCount": 151
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/ui/src/v4/SessionPane.tsx",
+      "line": 1395,
+      "lineCount": 4835
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/ui/src/v4/agentConversationTransport.ts",
+      "line": 89,
+      "lineCount": 630
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/desktop/src/host/windowRemoteConnectionRegistry.ts",
+      "line": 1,
+      "lineCount": 787
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/desktop/src/main/desktopHostProcess.ts",
+      "line": 706,
+      "lineCount": 875
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/desktop/src/main/desktopRemoteSessions.ts",
+      "line": 976,
+      "lineCount": 1034
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/services/src/zcode-agent/zcodeStdioTransport.ts",
+      "line": 35,
+      "lineCount": 390
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "packages/ui/src/v4/conversationProjectionStore.ts",
+      "line": 1,
+      "lineCount": 1384
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 43,
+      "lineCount": 239
+    },
+    {
+      "diagram": "12a-front-runtime",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/v4-gateway.ts",
+      "line": 2376,
+      "lineCount": 3455
+    },
+    {
+      "diagram": "12b-ui-request",
+      "path": "packages/ui/src/v4/SessionPane.tsx",
+      "line": 1395,
+      "lineCount": 4835
+    },
+    {
+      "diagram": "12b-ui-request",
+      "path": "packages/ui/src/v4/agentConversationTransport.ts",
+      "line": 350,
+      "lineCount": 630
+    },
+    {
+      "diagram": "12b-ui-request",
+      "path": "packages/services/src/zcode-agent/zcodeAgentService.ts",
+      "line": 5044,
+      "lineCount": 5665
+    },
+    {
+      "diagram": "12b-ui-request",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/v4-gateway.ts",
+      "line": 2376,
+      "lineCount": 3455
+    },
+    {
+      "diagram": "12b-ui-request",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 93,
+      "lineCount": 873
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+      "line": 123,
+      "lineCount": 1656
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+      "line": 1455,
+      "lineCount": 1656
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-retry.ts",
+      "line": 39,
+      "lineCount": 279
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/streaming-recovery.ts",
+      "line": 207,
+      "lineCount": 371
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 742,
+      "lineCount": 804
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 43,
+      "lineCount": 239
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 560,
+      "lineCount": 704
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+      "line": 359,
+      "lineCount": 528
+    },
+    {
+      "diagram": "13a-recovery",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+      "line": 715,
+      "lineCount": 873
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+      "line": 38,
+      "lineCount": 61
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+      "line": 240,
+      "lineCount": 1656
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+      "line": 1455,
+      "lineCount": 1656
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/adapters/src/model/request-admission.ts",
+      "line": 38,
+      "lineCount": 61
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-retry.ts",
+      "line": 39,
+      "lineCount": 279
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/adapters/src/model/runner-normalization.ts",
+      "line": 17,
+      "lineCount": 303
+    },
+    {
+      "diagram": "13b-retry",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+      "line": 742,
+      "lineCount": 804
+    },
+    {
+      "diagram": "19-master",
+      "path": "packages/ui/src/v4/SessionPane.tsx",
+      "line": 1395,
+      "lineCount": 4835
+    },
+    {
+      "diagram": "19-master",
+      "path": "packages/services/src/zcode-agent/zcodeAgentService.ts",
+      "line": 5044,
+      "lineCount": 5665
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 144,
+      "lineCount": 1291
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 43,
+      "lineCount": 239
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+      "line": 40,
+      "lineCount": 197
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 344,
+      "lineCount": 1081
+    },
+    {
+      "diagram": "19-master",
+      "path": "packages/desktop/src/main/desktopHostProcess.ts",
+      "line": 706,
+      "lineCount": 875
+    },
+    {
+      "diagram": "19-master",
+      "path": "packages/desktop/src/host/windowRemoteConnectionRegistry.ts",
+      "line": 1,
+      "lineCount": 787
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+      "line": 118,
+      "lineCount": 506
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 87,
+      "lineCount": 373
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+      "line": 157,
+      "lineCount": 1951
+    },
+    {
+      "diagram": "19-master",
+      "path": "packages/desktop/src/main/desktopRemoteSessions.ts",
+      "line": 976,
+      "lineCount": 1034
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+      "line": 225,
+      "lineCount": 1023
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/startup-marks.ts",
+      "line": 11,
+      "lineCount": 172
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+      "line": 135,
+      "lineCount": 527
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+      "line": 115,
+      "lineCount": 1879
+    },
+    {
+      "diagram": "19-master",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+      "line": 26,
+      "lineCount": 400
+    }
+  ]
+}

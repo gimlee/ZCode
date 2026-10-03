@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "a5e099ff-61cb-4a0f-99eb-fc00d6be6ad8",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\04c-adapter\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\04c-adapter\\adapter.html",
+  "specification": {
+    "sha256": "098a0e3630dc0e1e631ff7f5c80fe4a04243c8d9186625256b9b67087a52e6fa",
+    "bytes": 4764
+  },
+  "artifact": {
+    "sha256": "9d647a046b12ac9d96d06ce1ebd140beb72240df5599a66d92f4a3903327c7d6",
+    "bytes": 754651
+  }
+}

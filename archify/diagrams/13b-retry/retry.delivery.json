@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b474ddc1-7396-49fe-a475-2414c0eb6da9",
+  "status": "current",
+  "command": "deliver",
+  "type": "lifecycle",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\13b-retry\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\13b-retry\\retry.html",
+  "specification": {
+    "sha256": "fa5b55d23ec1b66e3eaf058d3c1249a130594ec4465fe44e91abd326c92004d1",
+    "bytes": 4569
+  },
+  "artifact": {
+    "sha256": "84ff96bbabd497071e84564e760a37b20b4e7e9a28a9db50d6574f7e32df51f1",
+    "bytes": 759794
+  }
+}

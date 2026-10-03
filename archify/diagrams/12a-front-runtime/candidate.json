@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "图 12A · Frontend / Runtime Architecture",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/12a-front-runtime/front-runtime.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    }
+  },
+  "components": [
+    {
+      "id": "ui",
+      "label": "共享 V4 UI",
+      "sublabel": "composer / projection",
+      "type": "frontend",
+      "sources": [
+        {
+          "path": "packages/ui/src/v4/SessionPane.tsx",
+          "line": 1395
+        }
+      ],
+      "pos": [
+        35,
+        310
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "transport",
+      "label": "Conversation Transport",
+      "sublabel": "injected service / handshake",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/ui/src/v4/agentConversationTransport.ts",
+          "line": 89
+        }
+      ],
+      "pos": [
+        365,
+        310
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "host",
+      "label": "Window Local Host",
+      "sublabel": "workspace / remote registry",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/desktop/src/host/windowRemoteConnectionRegistry.ts",
+          "line": 1
+        }
+      ],
+      "pos": [
+        695,
+        310
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "main",
+      "label": "Desktop Main",
+      "sublabel": "utilityProcess / MessagePort",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/desktop/src/main/desktopHostProcess.ts",
+          "line": 706
+        }
+      ],
+      "pos": [
+        695,
+        60
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "remote",
+      "label": "手机 Attachment",
+      "sublabel": "复用已有 logical session",
+      "type": "external",
+      "sources": [
+        {
+          "path": "packages/desktop/src/main/desktopRemoteSessions.ts",
+          "line": 976
+        }
+      ],
+      "pos": [
+        365,
+        560
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "stdio",
+      "label": "Agent Process + stdio",
+      "sublabel": "identity key / LF JSON",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "packages/services/src/zcode-agent/zcodeStdioTransport.ts",
+          "line": 35
+        }
+      ],
+      "pos": [
+        695,
+        560
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "projection",
+      "label": "权威投影",
+      "sublabel": "snapshot replace / seq gap",
+      "type": "database",
+      "sources": [
+        {
+          "path": "packages/ui/src/v4/conversationProjectionStore.ts",
+          "line": 1
+        }
+      ],
+      "pos": [
+        35,
+        810
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "runtime",
+      "label": "App / Session Runtime",
+      "sublabel": "queue / model / tools",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+          "line": 43
+        }
+      ],
+      "pos": [
+        365,
+        810
+      ],
+      "size": [
+        220,
+        80
+      ]
+    },
+    {
+      "id": "gateway",
+      "label": "CLI V4 Gateway",
+      "sublabel": "inbox / trusted profile",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/v4-gateway.ts",
+          "line": 2376
+        }
+      ],
+      "pos": [
+        695,
+        810
+      ],
+      "size": [
+        220,
+        80
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "from": "ui",
+      "to": "transport",
+      "label": "command",
+      "variant": "default"
+    },
+    {
+      "from": "transport",
+      "to": "host",
+      "label": "service RPC",
+      "variant": "default"
+    },
+    {
+      "from": "main",
+      "to": "host",
+      "label": "启动与原生转发",
+      "variant": "default"
+    },
+    {
+      "from": "remote",
+      "to": "host",
+      "label": "可信 attachment",
+      "variant": "default"
+    },
+    {
+      "from": "host",
+      "to": "stdio",
+      "label": "workspace client",
+      "variant": "default"
+    },
+    {
+      "from": "stdio",
+      "to": "gateway",
+      "label": "V4 frames",
+      "variant": "default"
+    },
+    {
+      "from": "gateway",
+      "to": "runtime",
+      "label": "admission",
+      "variant": "default"
+    },
+    {
+      "from": "runtime",
+      "to": "projection",
+      "label": "订阅事实",
+      "variant": "default"
+    },
+    {
+      "from": "projection",
+      "to": "ui",
+      "label": "render",
+      "variant": "default"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "通道分工",
+      "items": [
+        "Renderer / Host：MessagePort RPC；Host / CLI：stdio",
+        "远控：可信 WebSocket attachment，不另起手机 Agent"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "状态所有者",
+      "items": [
+        "ACK 是 admission；conversation facts 由 CLI 投影",
+        "continuous 与 replayable 必须保留不同恢复语义"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,244 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "图 7C · Edit / Patch Data Flow",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/07c-edit-data/edit-data.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "viewBox": [
+      940,
+      570
+    ]
+  },
+  "stages": [
+    {
+      "label": "输入事实"
+    },
+    {
+      "label": "文本转换"
+    },
+    {
+      "label": "写入与状态"
+    },
+    {
+      "label": "结果视图"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "input",
+      "label": "old / new string",
+      "sublabel": "或 Write 的完整 content",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 84
+        }
+      ],
+      "stage": 0,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "current",
+      "label": "当前文件与读状态",
+      "sublabel": "revision / partial 标志",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 156
+        }
+      ],
+      "stage": 0,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "match",
+      "label": "匹配与歧义检查",
+      "sublabel": "exact 优先；有序回退",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/edit-matchers.ts",
+          "line": 40
+        }
+      ],
+      "stage": 1,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "fresh",
+      "label": "freshness",
+      "sublabel": "缺读 / stale 时失败",
+      "type": "security",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 421
+        }
+      ],
+      "stage": 1,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "write",
+      "label": "FS 写入",
+      "sublabel": "expectedRevision / encoding",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+          "line": 291
+        }
+      ],
+      "stage": 2,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "state",
+      "label": "更新 readFileState",
+      "sublabel": "实际写后内容与 revision",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 523
+        }
+      ],
+      "stage": 2,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "patch",
+      "label": "patch / 前后内容",
+      "sublabel": "UI、checkpoint 与 rewind",
+      "type": "database",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+          "line": 470
+        }
+      ],
+      "stage": 3,
+      "row": 0,
+      "width": 148,
+      "height": 64
+    },
+    {
+      "id": "model",
+      "label": "模型结果",
+      "sublabel": "summary / budget preview",
+      "type": "backend",
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/core/src/tool/executor/result-serialization.ts",
+          "line": 46
+        }
+      ],
+      "stage": 3,
+      "row": 1,
+      "width": 148,
+      "height": 64
+    }
+  ],
+  "flows": [
+    {
+      "from": "input",
+      "to": "match",
+      "label": "参数",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "current",
+      "to": "match",
+      "label": "content",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        208,
+        225
+      ]
+    },
+    {
+      "from": "current",
+      "to": "fresh",
+      "label": "比较",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        208,
+        280
+      ]
+    },
+    {
+      "from": "fresh",
+      "to": "write",
+      "label": "通过",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "match",
+      "to": "write",
+      "label": "newContent",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "write",
+      "to": "state",
+      "label": "revision",
+      "variant": "default",
+      "route": "straight",
+      "labelAt": [
+        530,
+        225
+      ]
+    },
+    {
+      "from": "write",
+      "to": "patch",
+      "label": "差异数据",
+      "variant": "default",
+      "route": "straight"
+    },
+    {
+      "from": "state",
+      "to": "model",
+      "label": "结果",
+      "variant": "default",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Patch 的含义",
+      "items": [
+        "structured patch 是结果/恢复数据，不是启用 ApplyPatch 工具",
+        "匹配失败不写文件；写后更新内存状态"
+      ]
+    }
+  ]
+}

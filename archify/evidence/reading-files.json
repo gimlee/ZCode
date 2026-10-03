@@ -1,0 +1,272 @@
+[
+  {
+    "rank": 1,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+    "line": 43,
+    "role": "model/tool 外层循环",
+    "why": "实际 continue/break 权威",
+    "symbol": "runRegularTurnLoop",
+    "when": "先读核心主干"
+  },
+  {
+    "rank": 2,
+    "path": "apps/zcode-cli/packages/core/src/runtime/agent-runtime.ts",
+    "line": 244,
+    "role": "单 session 对象装配",
+    "why": "确定依赖和状态所有者；实现分布在 methods",
+    "symbol": "AgentRuntime / installAgentRuntimeMethods",
+    "when": "循环前后对照"
+  },
+  {
+    "rank": 3,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn.ts",
+    "line": 93,
+    "role": "输入、turn 生命周期与 cleanup",
+    "why": "冻结 selection、成功/取消/异常收口",
+    "symbol": "executeTurn / executeTurnCommand",
+    "when": "理解一次完整输入"
+  },
+  {
+    "rank": 4,
+    "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+    "line": 144,
+    "role": "ports/model/runtime/facades composition",
+    "why": "知道对象从哪里来及 owns/shared 边界",
+    "symbol": "createZCodeApp",
+    "when": "定位启动和 DI"
+  },
+  {
+    "rank": 5,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-model-step.ts",
+    "line": 235,
+    "role": "模型结果分类与恢复分支",
+    "why": "连接 stream、tools、compact、完成",
+    "symbol": "runModelBackedTurnStep",
+    "when": "深入一次模型步"
+  },
+  {
+    "rank": 6,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-tools.ts",
+    "line": 359,
+    "role": "工具调度和 paired commit",
+    "why": "执行成功不等于历史已提交",
+    "symbol": "executeToolCallsForModelStep / commitTurnRequestEntries 调用",
+    "when": "追副作用与回注"
+  },
+  {
+    "rank": 7,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/runtime-command-queue.ts",
+    "line": 36,
+    "role": "串行 command drain",
+    "why": "并发输入不会直接进入 while",
+    "symbol": "drainRuntimeCommandQueue / runRuntimeCommand",
+    "when": "研究 busy/queue/cancel"
+  },
+  {
+    "rank": 8,
+    "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+    "line": 118,
+    "role": "ID 幂等与 durable admission",
+    "why": "远端重连 accepted input 的所有者",
+    "symbol": "CommandInbox.handle",
+    "when": "研究发送重复和队列"
+  },
+  {
+    "rank": 9,
+    "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/v4-gateway.ts",
+    "line": 2376,
+    "role": "V4 command/subscription 边界",
+    "why": "trusted profile、cold resume、ACK 与投影",
+    "symbol": "V4Gateway.handleCommand",
+    "when": "跨 UI/Host/CLI 时"
+  },
+  {
+    "rank": 10,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/model.ts",
+    "line": 36,
+    "role": "最后请求与 stream 采集",
+    "why": "真正调用 Model 的位置",
+    "symbol": "runModelTextRequest",
+    "when": "核对 LLM 请求"
+  },
+  {
+    "rank": 11,
+    "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+    "line": 87,
+    "role": "system/meta-user sections",
+    "why": "prompt 顺序与 custom/workflow 差异",
+    "symbol": "ContextBuilder.build",
+    "when": "修改 prompt 时"
+  },
+  {
+    "rank": 12,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/context.ts",
+    "line": 31,
+    "role": "惰性环境/技能/memory 装配",
+    "why": "context 不是启动时全量仓库扫描",
+    "symbol": "ensureContextInitialized / createContextBuilderFromSnapshot",
+    "when": "理解上下文来源"
+  },
+  {
+    "rank": 13,
+    "path": "apps/zcode-cli/packages/core/src/runtime/helpers/provider-request-messages.ts",
+    "line": 48,
+    "role": "请求视图投影",
+    "why": "reminder 因果位置与内部 metadata 剥离",
+    "symbol": "buildProviderRequestMessages",
+    "when": "调试模型看到的内容"
+  },
+  {
+    "rank": 14,
+    "path": "apps/zcode-cli/packages/core/src/agent/message-history.ts",
+    "line": 135,
+    "role": "canonical 历史模型",
+    "why": "真实输入/attachments/tool pairing 与 clone",
+    "symbol": "MessageHistoryImpl",
+    "when": "改消息/持久化前"
+  },
+  {
+    "rank": 15,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/compact-active.ts",
+    "line": 75,
+    "role": "摘要、tail、boundary 替换",
+    "why": "context overflow/长期任务的主实现",
+    "symbol": "compactActiveConversation",
+    "when": "调 compact/recovery 时"
+  },
+  {
+    "rank": 16,
+    "path": "apps/zcode-cli/packages/adapters/src/model/model.ts",
+    "line": 40,
+    "role": "Model handle / request 校验",
+    "why": "能力和 bound/per-request options 权威",
+    "symbol": "ExecutableModel.prepareRequest",
+    "when": "扩展模型契约时"
+  },
+  {
+    "rank": 17,
+    "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+    "line": 181,
+    "role": "协议 factory / snapshot / auth",
+    "why": "Provider 品牌与 wire protocol 分离",
+    "symbol": "AiSdkModelExecution.bindModel / createFactory",
+    "when": "新增 Provider 时"
+  },
+  {
+    "rank": 18,
+    "path": "apps/zcode-cli/packages/adapters/src/model/runner-stream.ts",
+    "line": 123,
+    "role": "stream attempts / retry boundary",
+    "why": "可见输出后不能无条件重放",
+    "symbol": "runStreamText / canRetryStreamFailure",
+    "when": "查断流/429 时"
+  },
+  {
+    "rank": 19,
+    "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+    "line": 65,
+    "role": "完整工具执行边界",
+    "why": "校验、hooks、permission 与结果互相约束",
+    "symbol": "executeToolCall",
+    "when": "改 dispatcher 或权限时"
+  },
+  {
+    "rank": 20,
+    "path": "apps/zcode-cli/packages/core/src/tool/registry.ts",
+    "line": 30,
+    "role": "entry/alias/contracts",
+    "why": "注册集合与模型曝光不是一回事",
+    "symbol": "ToolRegistryImpl.register / toContracts",
+    "when": "增加 Tool 时"
+  },
+  {
+    "rank": 21,
+    "path": "apps/zcode-cli/packages/core/src/tool/scheduler.ts",
+    "line": 50,
+    "role": "安全并发分组",
+    "why": "副作用和交互工具不能任意 Promise.all",
+    "symbol": "ToolScheduler.schedule",
+    "when": "修改 tool concurrency 时"
+  },
+  {
+    "rank": 22,
+    "path": "apps/zcode-cli/packages/core/src/tool/handlers/read.ts",
+    "line": 141,
+    "role": "文本/媒体读取与 read state",
+    "why": "后续 Edit/Write freshness 的依据",
+    "symbol": "readHandler",
+    "when": "查读缓存/文件回注时"
+  },
+  {
+    "rank": 23,
+    "path": "apps/zcode-cli/packages/core/src/tool/handlers/edit.ts",
+    "line": 84,
+    "role": "匹配、替换、编码与 freshness",
+    "why": "不是直接应用统一 diff patch",
+    "symbol": "editHandler / writeEditResult",
+    "when": "修改文件匹配时"
+  },
+  {
+    "rank": 24,
+    "path": "apps/zcode-cli/packages/core/src/tool/handlers/bash.ts",
+    "line": 97,
+    "role": "shell tool 产品行为",
+    "why": "cwd/background/timeout 与 permission entry",
+    "symbol": "bashHandler / createBashToolEntry",
+    "when": "研究测试执行/OS 时"
+  },
+  {
+    "rank": 25,
+    "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+    "line": 115,
+    "role": "FS/search backend",
+    "why": "实际 revision/atomic fallback 与 rg worker",
+    "symbol": "NodeFileSystemAdapter",
+    "when": "追 IO/search 的真实实现"
+  },
+  {
+    "rank": 26,
+    "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+    "line": 1,
+    "role": "Node process 执行 orchestration",
+    "why": "spawn、输出收集、终止树分布到相关模块",
+    "symbol": "NodeExecutionAdapterRun",
+    "when": "追 shell 进程生命周期"
+  },
+  {
+    "rank": 27,
+    "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+    "line": 225,
+    "role": "session/message/part/input storage",
+    "why": "多 port 共用 DatabaseSync 与事务",
+    "symbol": "SqliteSessionStore",
+    "when": "查 durable 状态时"
+  },
+  {
+    "rank": 28,
+    "path": "apps/zcode-cli/packages/core/src/runtime/methods/resume.ts",
+    "line": 56,
+    "role": "恢复 active history / read state",
+    "why": "中断工具不会自动重跑",
+    "symbol": "resumeFromStore",
+    "when": "研究重启恢复时"
+  },
+  {
+    "rank": 29,
+    "path": "packages/services/src/zcode-agent/zcodeAgentService.ts",
+    "line": 5044,
+    "role": "Host V4 service facade",
+    "why": "identity/trusted mode 与 CLI client 路由",
+    "symbol": "sendConversationCommandV4",
+    "when": "跨平台集成时"
+  },
+  {
+    "rank": 30,
+    "path": "packages/ui/src/v4/SessionPane.tsx",
+    "line": 1395,
+    "role": "当前 UI 提交与 pending",
+    "why": "ACK admission 与订阅 facts 分离",
+    "symbol": "dispatchCommand",
+    "when": "改用户输入/重连交互时"
+  }
+]

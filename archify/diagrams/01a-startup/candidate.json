@@ -1,0 +1,302 @@
+{
+  "schema_version": 2,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "图 1A · Startup Lifecycle",
+    "locale": "zh-CN",
+    "output": "archify/diagrams/01a-startup/startup.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/gimlee/ZCode.git",
+      "provider": "github",
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "link_mode": "web"
+    },
+    "subtitle": "协议 Agent 主路径 · 进程 ready 与会话初始化分开"
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "进程入口与共享依赖"
+    },
+    {
+      "id": "session",
+      "label": "按需会话 App 装配"
+    },
+    {
+      "id": "ready",
+      "label": "可用边界：不代表已调用模型"
+    },
+    {
+      "id": "terminal",
+      "label": "关闭边界"
+    }
+  ],
+  "states": [
+    {
+      "id": "entry",
+      "label": "CLI 入口",
+      "lane": "main",
+      "col": 0,
+      "type": "start",
+      "sublabel": "argv / stdout / 环境",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/cli/src/main.ts",
+          "line": 15
+        }
+      ]
+    },
+    {
+      "id": "args",
+      "label": "命令与配置",
+      "lane": "main",
+      "col": 1,
+      "type": "active",
+      "sublabel": "app-server / agent-server",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/cli/src/run.ts",
+          "line": 313
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "label": "共享 SQLite",
+      "lane": "main",
+      "col": 2,
+      "type": "active",
+      "sublabel": "先打开启动存储",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "id": "registry",
+      "label": "Provider Registry",
+      "lane": "main",
+      "col": 3,
+      "type": "active",
+      "sublabel": "process runtime.start",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 156
+        }
+      ]
+    },
+    {
+      "id": "transport",
+      "label": "协议进程可服务",
+      "lane": "main",
+      "col": 4,
+      "type": "waiting",
+      "sublabel": "pool / server / NDJSON",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 334
+        }
+      ]
+    },
+    {
+      "id": "request",
+      "label": "session 请求",
+      "lane": "session",
+      "col": 0,
+      "type": "active",
+      "sublabel": "按需 materialize record",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/server-operations.ts",
+          "line": 1271
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "label": "Config / 扩展",
+      "lane": "session",
+      "col": 1,
+      "type": "active",
+      "sublabel": "logger → plugins → skills",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 153
+        }
+      ]
+    },
+    {
+      "id": "ports",
+      "label": "存储与 I/O ports",
+      "lane": "session",
+      "col": 2,
+      "type": "active",
+      "sublabel": "store → MCP → exec / FS",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 238
+        }
+      ]
+    },
+    {
+      "id": "model",
+      "label": "Model Factory",
+      "lane": "session",
+      "col": 3,
+      "type": "active",
+      "sublabel": "注入 Registry / Adapter",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 548
+        }
+      ]
+    },
+    {
+      "id": "runtime",
+      "label": "AgentRuntime",
+      "lane": "session",
+      "col": 4,
+      "type": "active",
+      "sublabel": "history / tools / scheduler",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+          "line": 726
+        }
+      ]
+    },
+    {
+      "id": "ready",
+      "label": "返回 App / snapshot",
+      "lane": "ready",
+      "col": 4,
+      "type": "success",
+      "sublabel": "context / MCP 按执行准备",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol/server-operations.ts",
+          "line": 1335
+        }
+      ]
+    },
+    {
+      "id": "closed",
+      "label": "Shutdown / 资源关闭",
+      "lane": "terminal",
+      "col": 4,
+      "type": "neutral",
+      "sublabel": "EOF / abort → cleanup",
+      "width": 188,
+      "height": 78,
+      "sources": [
+        {
+          "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-entrypoint.ts",
+          "line": 356
+        }
+      ]
+    }
+  ],
+  "transitions": [
+    {
+      "from": "entry",
+      "to": "args"
+    },
+    {
+      "from": "args",
+      "to": "db"
+    },
+    {
+      "from": "db",
+      "to": "registry"
+    },
+    {
+      "from": "registry",
+      "to": "transport"
+    },
+    {
+      "from": "transport",
+      "to": "request",
+      "label": "session/create 或 resume"
+    },
+    {
+      "from": "request",
+      "to": "config"
+    },
+    {
+      "from": "config",
+      "to": "ports"
+    },
+    {
+      "from": "ports",
+      "to": "model"
+    },
+    {
+      "from": "model",
+      "to": "runtime"
+    },
+    {
+      "from": "runtime",
+      "to": "ready"
+    },
+    {
+      "from": "transport",
+      "to": "closed",
+      "variant": "dashed",
+      "label": "EOF / abort"
+    },
+    {
+      "from": "ready",
+      "to": "closed",
+      "variant": "dashed",
+      "label": "EOF / abort"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "顺序依据",
+      "items": [
+        "共享 DB 在 Provider Registry 前完成",
+        "协议进程持有共享资源；会话请求才创建 App"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Ready 的边界",
+      "items": [
+        "Runtime 构造时默认 contextBuilder 仍为空",
+        "首个模型步骤等待 MCP；恢复在执行边界或显式 resume"
+      ]
+    }
+  ]
+}

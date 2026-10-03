@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "b076ddf3-2fa2-4801-8f30-6873830a8954",
+  "status": "current",
+  "command": "deliver",
+  "type": "dataflow",
+  "input": "F:\\github\\ZCode\\archify\\diagrams\\05c-tool-result\\candidate.json",
+  "output": "F:\\github\\ZCode\\archify\\diagrams\\05c-tool-result\\tool-result.html",
+  "specification": {
+    "sha256": "89c3284da58e4067f5bf223142109c9fbb0e4ce9556b41f02a46fa740e4af9e9",
+    "bytes": 4974
+  },
+  "artifact": {
+    "sha256": "e7fd05080c54c6779bbdb6c18b01bfc314ba4ec6afff443644bc3ff649bd16a5",
+    "bytes": 755860
+  }
+}
