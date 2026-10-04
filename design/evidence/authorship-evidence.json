@@ -1,0 +1,134 @@
+{
+  "date": "2026-10-04",
+  "timezone": "Asia/Shanghai",
+  "head": "83c178950627478356281fb2d4cc748487d1031a",
+  "currentBranchCommitCount": 5,
+  "allRefsCommitCount": 6,
+  "shallow": false,
+  "commits": [
+    {
+      "revision": "83c178950627478356281fb2d4cc748487d1031a",
+      "date": "2026-10-03T16:14:42+08:00",
+      "subject": "docs: add architecture documentation and prompts",
+      "hasExplicitAiAuthorshipMarker": false
+    },
+    {
+      "revision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+      "date": "2026-10-03T10:42:59+08:00",
+      "subject": "docs: add architecture analysis report",
+      "hasExplicitAiAuthorshipMarker": false
+    },
+    {
+      "revision": "662c30bea4e833acaacbfb745a65eb09c23d55f8",
+      "date": "2026-09-29T16:46:19+08:00",
+      "subject": "feat: add UI plugins and Gen UI",
+      "hasExplicitAiAuthorshipMarker": false
+    },
+    {
+      "revision": "29628c9acdb81b703bbd4080c207a0e7ce5e276e",
+      "date": "2026-09-23T17:36:31+08:00",
+      "subject": "feat: update v3.14.3",
+      "hasExplicitAiAuthorshipMarker": false
+    },
+    {
+      "revision": "872ad960de7ec172591f7e1952f7849229f94521",
+      "date": "2026-09-21T05:14:32+08:00",
+      "subject": "feat: open source",
+      "hasExplicitAiAuthorshipMarker": false
+    },
+    {
+      "revision": "77432b6dbf9f70176ced3f4dcdc25f851c3acb2d",
+      "date": "2026-09-20T20:06:58+08:00",
+      "subject": "Initial commit",
+      "hasExplicitAiAuthorshipMarker": false
+    }
+  ],
+  "openSourceSnapshot": {
+    "commit": "872ad96",
+    "files": 6973,
+    "svg": 2306,
+    "tsx": 756,
+    "changeStats": "6973 files changed, 1033262 insertions(+)"
+  },
+  "versionUpdate": {
+    "commit": "29628c9",
+    "changeStats": "283 files changed, 30342 insertions(+), 1768 deletions(-)"
+  },
+  "sources": [
+    {
+      "path": "apps/zcode-cli/packages/core/src/tool/handlers/generated/bash-command-registry.ts",
+      "line": 2,
+      "lineCount": 10,
+      "claim": "明确确定性生成头"
+    },
+    {
+      "path": "apps/zcode-cli/scripts/generate-bash-command-registry.mjs",
+      "line": 18,
+      "lineCount": 237,
+      "claim": "生成器输出路径"
+    },
+    {
+      "path": "apps/zcode-cli/packages/dynamic-workflow/scripts/generate-libs.mjs",
+      "line": 64,
+      "lineCount": 79,
+      "claim": "生成模板，不证明产物已提交"
+    },
+    {
+      "path": "promt/archify-promt.md",
+      "line": 105,
+      "lineCount": 2480,
+      "claim": "当前分析任务分配给 Codex，不证明应用实现来源"
+    },
+    {
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/dynamic-workflow-run-replay.ts",
+      "line": 22,
+      "lineCount": 121,
+      "claim": "复杂注释样本，仅风格证据"
+    },
+    {
+      "path": "AGENTS.md",
+      "line": 3,
+      "lineCount": 83,
+      "claim": "代理开发工作流规则"
+    }
+  ],
+  "searchScope": {
+    "commitBodies": "all local refs; no explicit AI authorship markers found",
+    "sourceMarkers": "bounded scan in apps/packages/scripts; excluded vendor, generated registry bulk and icons, then inspected registry header directly",
+    "workflowFiles": "AGENTS.md, local skills and promt; presence is intent evidence, not source authorship proof"
+  },
+  "conclusions": {
+    "applicationCode": "unknown; human-only, AI-assisted and mixed all remain possible; no credible percentage or per-file assignment",
+    "conversationDocuments": "AI-assisted provenance confirmed from current conversation, limited to authored analysis/design/specification artifacts",
+    "generatedRegistry": "deterministic code generation; not proof of LLM generation",
+    "generatorScriptAuthorship": "unknown"
+  },
+  "checks": {
+    "freshness": "pass; main synced with origin/main",
+    "typecheck": {
+      "command": "corepack pnpm typecheck",
+      "exitCode": 1,
+      "reason": "tsc unavailable / node_modules missing",
+      "output": "design/evidence/authorship-typecheck.txt"
+    },
+    "lint": {
+      "command": "corepack pnpm lint",
+      "exitCode": 1,
+      "reason": "oxlint unavailable / node_modules missing",
+      "output": "design/evidence/authorship-lint.txt"
+    },
+    "documents": {
+      "count": 5,
+      "checkedLocalLinks": 43,
+      "checkedSourceAnchors": 6,
+      "errors": []
+    }
+  },
+  "limitations": [
+    "no private pre-open-source history or coding-agent sessions inspected",
+    "no original author statement obtained",
+    "no style detector or percentage estimate",
+    "generation scripts not executed; no application behavior tests"
+  ],
+  "applicationCodeChanged": false
+}

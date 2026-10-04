@@ -1,0 +1,237 @@
+{
+  "date": "2026-10-04",
+  "timezone": "Asia/Shanghai",
+  "head": "83c178950627478356281fb2d4cc748487d1031a",
+  "previousAnalysisRevision": "540f6338390f5fcc4aaf38eb1086aa6f51f97b2c",
+  "implementationChangesSincePrevious": [],
+  "workspaceFreshness": {
+    "command": "node scripts/check-workspace-freshness.mjs",
+    "status": "pass",
+    "branch": "main",
+    "ahead": 0,
+    "behind": 0
+  },
+  "scope": "impact-only / documentation; no application, spec or feature seed graph modifications",
+  "skills": {
+    "featureBoundaryPlanner": "impact-only; subagent profile/service seed and one-hop relations read and verified; industry-base is a graph-drift-candidate, no graph edit",
+    "architectureGovernance": "design ownership/layer guidance consulted; code-change workflow skipped for documentation-only work"
+  },
+  "sources": [
+    {
+      "id": "runtime-loop",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/turn-loop.ts",
+      "line": 43,
+      "lineCount": 239,
+      "claim": "普通 model/tool while；重用执行核"
+    },
+    {
+      "id": "input-admission",
+      "path": "apps/zcode-cli/packages/bootstrap/src/zcode-protocol-v4/command-inbox.ts",
+      "line": 118,
+      "lineCount": 506,
+      "claim": "已接纳 command 幂等与串行 admission"
+    },
+    {
+      "id": "app-assembly",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/create-app.ts",
+      "line": 144,
+      "lineCount": 1291,
+      "claim": "Provider Registry 依赖；ports 装配"
+    },
+    {
+      "id": "app-options",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/types.ts",
+      "line": 126,
+      "lineCount": 755,
+      "claim": "AppOptions modelAdapter 是具体类型；IO/Store/MCP 可注入"
+    },
+    {
+      "id": "core-deps",
+      "path": "apps/zcode-cli/packages/core/src/runtime/types.ts",
+      "line": 309,
+      "lineCount": 925,
+      "claim": "CoreDeps 提供 ToolRegistry/Executor 等注入接缝"
+    },
+    {
+      "id": "profile",
+      "path": "apps/zcode-cli/packages/core/src/subagent/profile.ts",
+      "line": 21,
+      "lineCount": 352,
+      "claim": "AgentProfile prompt/tools/mcp/memory/model/maxTurns"
+    },
+    {
+      "id": "tool-executor",
+      "path": "apps/zcode-cli/packages/core/src/tool/executor/call-runner.ts",
+      "line": 65,
+      "lineCount": 704,
+      "claim": "handler 前后的校验/权限/结果处理"
+    },
+    {
+      "id": "mcp",
+      "path": "apps/zcode-cli/packages/adapters/src/mcp/index.ts",
+      "line": 157,
+      "lineCount": 1951,
+      "claim": "现有 MCP adapter"
+    },
+    {
+      "id": "skill",
+      "path": "apps/zcode-cli/packages/adapters/src/skills/index.ts",
+      "line": 94,
+      "lineCount": 483,
+      "claim": "正文按需加载"
+    },
+    {
+      "id": "plugin-assembly",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/startup-marks.ts",
+      "line": 11,
+      "lineCount": 172,
+      "claim": "插件启用组件的 startup 装配"
+    },
+    {
+      "id": "context",
+      "path": "apps/zcode-cli/packages/core/src/context/builder.ts",
+      "line": 87,
+      "lineCount": 373,
+      "claim": "Prompt/context 构造"
+    },
+    {
+      "id": "compact",
+      "path": "apps/zcode-cli/packages/core/src/runtime/methods/compact-active.ts",
+      "line": 75,
+      "lineCount": 726,
+      "claim": "长期 context 摘要与历史替换"
+    },
+    {
+      "id": "memory",
+      "path": "apps/zcode-cli/packages/core/src/memory/extraction.ts",
+      "line": 34,
+      "lineCount": 302,
+      "claim": "已存在 memory extraction scheduler/prompt"
+    },
+    {
+      "id": "workflow-service",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/dynamic-workflow-run-service.ts",
+      "line": 1,
+      "lineCount": 651,
+      "claim": "现有 run 编译/launch/观察/恢复 owner"
+    },
+    {
+      "id": "workflow-journal",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/dynamic-workflow-run-journal.ts",
+      "line": 1,
+      "lineCount": 136,
+      "claim": "production journal 能力探测"
+    },
+    {
+      "id": "workflow-replay",
+      "path": "apps/zcode-cli/packages/bootstrap/src/app/dynamic-workflow-run-replay.ts",
+      "line": 38,
+      "lineCount": 121,
+      "claim": "journal 到 live 同类型进度投影"
+    },
+    {
+      "id": "provider",
+      "path": "apps/zcode-cli/packages/adapters/src/model/model-execution.ts",
+      "line": 344,
+      "lineCount": 1081,
+      "claim": "协议 factories"
+    },
+    {
+      "id": "storage",
+      "path": "apps/zcode-cli/packages/adapters/src/storage/session-store/sqlite-session-store.ts",
+      "line": 248,
+      "lineCount": 1023,
+      "claim": "DatabaseSync；异步 port 不等于不阻塞"
+    },
+    {
+      "id": "file-revision",
+      "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+      "line": 473,
+      "lineCount": 1879,
+      "claim": "revision 检查"
+    },
+    {
+      "id": "file-atomic",
+      "path": "apps/zcode-cli/packages/adapters/src/fs/index.ts",
+      "line": 700,
+      "lineCount": 1879,
+      "claim": "temp/rename 与 fallback 的边界"
+    },
+    {
+      "id": "shell",
+      "path": "apps/zcode-cli/packages/adapters/src/exec/node-execution-adapter-run.ts",
+      "line": 276,
+      "lineCount": 400,
+      "claim": "protected-resource sandbox 已撤除的说明"
+    },
+    {
+      "id": "http-auth",
+      "path": "packages/server/src/http.ts",
+      "line": 309,
+      "lineCount": 477,
+      "claim": "authToken 中间件；不能说现有服务完全没有鉴权"
+    },
+    {
+      "id": "quota",
+      "path": "packages/shared/src/usage-quota.ts",
+      "line": 1,
+      "lineCount": 75,
+      "claim": "已存在套餐/组织额度类型，不等于新的行业任务预算"
+    },
+    {
+      "id": "projection",
+      "path": "packages/ui/src/v4/conversationProjectionStore.ts",
+      "line": 1,
+      "lineCount": 1384,
+      "claim": "subscription facts 与 UI pending 区分"
+    }
+  ],
+  "testFiles": [
+    "packages/services/test/importedClaudeRecovery.test.ts",
+    "packages/services/test/nonCliAcpRetirement.test.ts",
+    "packages/services/test/providerConfigMigration.test.ts",
+    "packages/ui/test/nonCliAcpRetirement.test.ts"
+  ],
+  "testExecution": "not-run",
+  "checks": {
+    "node": "24.21.0",
+    "pinnedNode": "24.14.0",
+    "pnpm": "10.33.2",
+    "typecheck": {
+      "command": "corepack pnpm typecheck",
+      "exitCode": 1,
+      "result": "tsc unavailable; node_modules missing",
+      "output": "design/evidence/typecheck.txt"
+    },
+    "lint": {
+      "command": "corepack pnpm lint",
+      "exitCode": 1,
+      "result": "oxlint unavailable; node_modules missing",
+      "output": "design/evidence/lint.txt"
+    },
+    "documentAudit": {
+      "checkedMarkdownFiles": 4,
+      "checkedLocalLinks": 33,
+      "externalLinks": 2,
+      "checkedSourceAnchors": 24,
+      "mermaidBlocks": 2,
+      "diagramValidation": "fence and structure review only; no renderer/browser QA claimed",
+      "errors": []
+    }
+  },
+  "externalReferences": [
+    {
+      "url": "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices",
+      "purpose": "bounded recommendations for token audience / no unvalidated passthrough; not a claim of a detected repository vulnerability"
+    },
+    {
+      "url": "https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/gen-ai-agent-spans.md",
+      "purpose": "optional telemetry mapping; conventions Development status, pin compatible snapshot"
+    }
+  ],
+  "limitations": [
+    "static inspection, not live domain or deployment validation",
+    "industry/customer/target SLA not specified; no schedule, maturity score or performance assumptions",
+    "no tenant security audit or failure injection performed"
+  ]
+}

@@ -1,0 +1,8 @@
+
+> zcode@3.14.3 lint F:\github\ZCode
+> oxlint
+
+'oxlint' is not recognized as an internal or external command,
+operable program or batch file.
+ ELIFECYCLE  Command failed with exit code 1.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?
